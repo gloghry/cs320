@@ -8,7 +8,9 @@ Contact: garett.loghry@wsu.edu
 Description: tbd  
 
 ## Julion
-
+Name: Julion Oddy
+Contact: julion.oddy@wsu.edu
+Description: tbd
 ## Levicy
 
 

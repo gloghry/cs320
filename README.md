@@ -13,9 +13,9 @@ Contact: julion.oddy@wsu.edu
 Description: tbd  
 
 ## Levicy
-Name: Levicy Radeleff
-Contact: Levicy.radeleff@wsu.edu
-Description: tbd
+Name: Levicy Radeleff  
+Contact: levicy.radeleff@wsu.edu  
+Description: tbd  
 
 ### Thanks!
 Thanks for checking out our project! We hope you enjoyed your stay :)

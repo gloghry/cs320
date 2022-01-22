@@ -18,13 +18,13 @@ Contact: levicy.radeleff@wsu.edu
 Description: tbd  
 
 ## Peter
-Name: Peter Wanner 
-Contact: peter.wanner@wsu.edu 
-Description: tbd 
+Name: Peter Wanner  
+Contact: peter.wanner@wsu.edu  
+Description: tbd  
 
 ## Jared
-Name: Jared Diamond 
-Contact: jared.diamond@wsu.edu 
+Name: Jared Diamond  
+Contact: jared.diamond@wsu.edu  
 Description: tbd  
 
 ### Thanks!

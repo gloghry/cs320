@@ -17,5 +17,15 @@ Name: Levicy Radeleff
 Contact: levicy.radeleff@wsu.edu  
 Description: tbd  
 
+## Peter
+Name: Peter Wanner  
+Contact: peter.wanner@wsu.edu  
+Description: tbd  
+
+## Jared
+Name: Jared Diamond  
+Contact: jared.diamond@wsu.edu  
+Description: tbd  
+
 ### Thanks!
 Thanks for checking out our project! We hope you enjoyed your stay :)

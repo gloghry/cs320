@@ -23,17 +23,20 @@ def hexDraw(surface, color, radius, position):
         (xPoint[2],yPoint[2]),
         (xPoint[3],yPoint[3]),
         (xPoint[4],yPoint[4]),
-        (xPoint[5],yPoint[5])], width = 2)
+        (xPoint[5],yPoint[5])], width = 1)
 
 def mapDraw(width, height, radius):
     #initial width draw
     x = radius
     y = radius
-    for i in range(width):
-        i = 5
-        hexDraw(screen, (0,0,0), radius, (x,y))
-        x = radius*3 + x
-        i = i + radius*2
+    for a in range(0, height):
+        x = radius
+        for i in range(0, width):
+            hexDraw(screen, (0,0,0), radius, (x,y))
+            x = radius*3 + x
+            i = i + 1
+        y = radius*2 + y
+        a = a + 2
 
 while active: #while the program is running...
     #if the user wants to quit, change active to false
@@ -42,7 +45,7 @@ while active: #while the program is running...
             active = False
 
     screen.fill((211, 211, 211)) #fills background with a nice grey
-    mapDraw(1440, 1000, 12.5)
+    mapDraw(40, 25, 12.5)
     #refreshes screen, to show any updates
     pygame.display.flip()
 

@@ -4,7 +4,7 @@ import pygame
 from math import *
 pygame.init()
 
-screen = pygame.display.set_mode([1500, 1000]) #sets screen size
+screen = pygame.display.set_mode([1500, 660]) #sets screen size
 #For hexes to be 35px x 35px roughly, the screen size should be 1440 x 1000
 #to cover 40x25 hexes
 
@@ -35,7 +35,17 @@ def mapDraw(width, height, radius):
             hexDraw(screen, (0,0,0), radius, (x,y))
             x = radius*3 + x
             i = i + 1
-        y = radius*2 + y
+        y = (radius*2 + y)-4
+        a = a + 2
+    #have to repeat above code to do the offset hexes
+    y = radius*2 - 2
+    for a in range(0, height):
+        x = radius*2.5
+        for i in range(0, width):
+            hexDraw(screen, (0,0,0), radius, (x,y))
+            x = radius*3 + x
+            i = i + 1
+        y = (radius*2 + y)-4
         a = a + 2
 
 while active: #while the program is running...
@@ -45,7 +55,7 @@ while active: #while the program is running...
             active = False
 
     screen.fill((211, 211, 211)) #fills background with a nice grey
-    mapDraw(40, 25, 12.5)
+    mapDraw(40, 26, 12.5)
     #refreshes screen, to show any updates
     pygame.display.flip()
 

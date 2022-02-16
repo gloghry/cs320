@@ -3,7 +3,9 @@
 import pygame
 pygame.init()
 
-display = pygame.display.set_mode([1000, 1000]) #sets screen size
+screen = pygame.display.set_mode([1440, 1000]) #sets screen size
+#For hexes to be 35px x 35px roughly, the screen size should be 1440 x 1000
+#to cover 40x25 hexes
 
 active = True #declares that the program is actively running
 
@@ -13,7 +15,10 @@ while active: #while the program is running...
         if event.type == pygame.QUIT:
             active = False
 
-    display.fill((211,211,211)) #fills background with a nice grey
+    screen.fill((211, 211, 211)) #fills background with a nice grey
+
+    #refreshes screen, to show any updates
+    pygame.display.flip()
 
 #after while loop is done (i.e., user wants to quit, pygame closes.)
 pygame.quit()

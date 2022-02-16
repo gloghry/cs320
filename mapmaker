@@ -1,2 +1,19 @@
+#Current Goal: Open a window which is 1000x1000 px
+
 import pygame
 pygame.init()
+
+display = pygame.display.set_mode([1000, 1000]) #sets screen size
+
+active = True #declares that the program is actively running
+
+while active: #while the program is running...
+    #if the user wants to quit, change active to false
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            active = False
+
+    display.fill((211,211,211)) #fills background with a nice grey
+
+#after while loop is done (i.e., user wants to quit, pygame closes.)
+pygame.quit()

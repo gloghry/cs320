@@ -1,13 +1,39 @@
 #Current Goal: Open a window which is 1000x1000 px
 
 import pygame
+from math import *
 pygame.init()
 
-screen = pygame.display.set_mode([1440, 1000]) #sets screen size
+screen = pygame.display.set_mode([1500, 1000]) #sets screen size
 #For hexes to be 35px x 35px roughly, the screen size should be 1440 x 1000
 #to cover 40x25 hexes
 
 active = True #declares that the program is actively running
+
+#Draw a hexagon
+def hexDraw(surface, color, radius, position):
+    x, y = position
+    xPoint = [0,0,0,0,0,0]
+    yPoint = [0,0,0,0,0,0]
+    for i in range(6):
+        xPoint[i] = x + radius * cos(2 * pi * i / 6)
+        yPoint[i] = y + radius * sin(2 * pi * i / 6)
+    pygame.draw.polygon(surface, color, [(xPoint[0],yPoint[0]),
+        (xPoint[1],yPoint[1]),
+        (xPoint[2],yPoint[2]),
+        (xPoint[3],yPoint[3]),
+        (xPoint[4],yPoint[4]),
+        (xPoint[5],yPoint[5])], width = 2)
+
+def mapDraw(width, height, radius):
+    #initial width draw
+    x = radius
+    y = radius
+    for i in range(width):
+        i = 5
+        hexDraw(screen, (0,0,0), radius, (x,y))
+        x = radius*3 + x
+        i = i + radius*2
 
 while active: #while the program is running...
     #if the user wants to quit, change active to false
@@ -16,7 +42,7 @@ while active: #while the program is running...
             active = False
 
     screen.fill((211, 211, 211)) #fills background with a nice grey
-
+    mapDraw(1440, 1000, 12.5)
     #refreshes screen, to show any updates
     pygame.display.flip()
 

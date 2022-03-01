@@ -5,12 +5,20 @@ from math import *
 pygame.init()
 
 screen = pygame.display.set_mode([1500, 660]) #sets screen size
-#For hexes to be 35px x 35px roughly, the screen size should be 1440 x 1000
-#to cover 40x25 hexes
 
+clock = pygame.time.Clock()
+baseFont = pygame.font.Font(None, 20)
+userInput = ''
+
+textBox = pygame.Rect(200, 200, 140, 32)
+
+activeColor = pygame.Color('lightskyblue3') #sets the color of the active (selected) box
+passiveColor = pygame.Color('chartreuse4') #sets the color of the inactive boxes
+
+boxActive = False
 active = True #declares that the program is actively running
+trigger = False
 
-#Draw a hexagon
 def hexDraw(surface, color, radius, position):
     x, y = position
     xPoint = [0,0,0,0,0,0]
@@ -54,10 +62,37 @@ while active: #while the program is running...
         if event.type == pygame.QUIT:
             active = False
 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if textBox.collidepoint(event.pos):
+                active = True
+            else:
+                active = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                userInput = userInput[:-1]
+            else:
+                userInput += event.unicode
+
     screen.fill((211, 211, 211)) #fills background with a nice grey
-    mapDraw(40, 26, 12.5)
-    #refreshes screen, to show any updates
+    if boxActive:
+        color = activeColor
+    else:
+        color = passiveColor
+
+    pygame.draw.rect(screen, color, textBox)
+    textSurface = baseFont.render(userInput, True, (255, 255, 255))
+
+    screen.blit(textSurface, (textBox.x+5, textBox.y+5))
+
+    textBox.w = max(100, textSurface.get_width()+10)
     pygame.display.flip()
 
+    if(trigger):
+        mapDraw(40, 26, 12.5)
+        #refreshes screen, to show any updates
+        pygame.display.flip()
+
 #after while loop is done (i.e., user wants to quit, pygame closes.)
-pygame.quit()
+if(active == False):
+    pygame.quit()

@@ -1,0 +1,38 @@
+#Pick any 3
+
+
+
+
+
+
+
+
+
+
+None
+
+#Pick any 2 Notable
+None
+
+
+
+
+
+
+
+#Pick 1 below
+None
+
+
+
+
+
+
+
+@Descriptions
+
+~~~~~~~~~Explanations
+This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.
+Each trait has a description linked to it, which will be displayed to the user when they select a hex tile.
+Each tile will have a total of 6 traits, each is marked by a percentage chance to get it (out of 100), and some of the traits are none.
+Meaning, a tile may only have 2 traits. Once a trait is selected, it cannot be selected again.

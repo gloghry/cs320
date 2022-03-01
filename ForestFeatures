@@ -1,0 +1,97 @@
+#Pick any 3
+50/Dark/Sunlit
+33/Jungle/Pine/Oak
+2/Ruined/Thriving
+50/Green/Brown
+33/Snow/Warm/Cool
+20/Berries
+50/Village(s)
+80/Mushrooms
+20/Mountain
+20/Plateau
+/None
+
+#Pick any 2 Notable
+20/None
+10/Stormy
+15/City(s)
+30/Traversable
+50/Buzzing
+20/Rivers
+10/Lake
+
+#Pick 1 below
+75/None
+5/Fae Entrance
+5/Monster
+5/Cave
+5/Ruin
+5/Dungeon
+5/Enchanted
+
+@Descriptions
+- None
+- Dark
+This forest is dark, the leaves above cut out the sunlight.
+- Sunlit
+This forest is lit easily by the sun or moon above.
+- Jungle
+This forest is a jungle, the canopy is thick and it teems with life.
+- Oak
+This forest is filled with non-coniferous trees
+- Pine
+This forest is filled with coniferous trees
+- Ruined
+This forest has been ruined by a large fire, logging, or a large beast.
+- Thriving
+This forest is thriving.
+- Green
+This forest is green.
+- Brown
+This forest appears brown
+- Snow
+This forest is covered in snow. Dress warmly!
+- Warm
+This forest is uncomfortably warm.
+- Cool
+This forest is comfortably cool.
+- Berries
+This forest has berries and other sources of safe food.
+- Village(s)
+This forest is populated by various villages and towns.
+- Mushrooms
+This forest has edible and non-edible mushrooms, be careful what you eat!
+- Mountain
+This forest has a mountain
+- Plateau
+This forest has a large open plateau somewhere.
+- Stormy
+The leaves and branches on these trees seem to move on their own occasionally.
+- City(s)
+This forest has a large city in it
+- Traversable
+This forest is easily traversable via paths and roads.
+- Buzzing
+This forest is inhabited by insects, which are making loud noises.
+- Rivers
+This forest has rivers in it.
+- Lake
+This forest has a lake.
+- Fae Entrance
+This forest has an entrance to the faewilds.
+- Monster
+This forest is inhabited by a large, dangerous, monster.
+- Cave
+This forest is known for it's advanced cave system.
+- Ruin
+This forest has a ruin of an ancient civilization in it.
+- Dungeon
+This forest has a villain's dungeon in it.
+- Enchanted
+This forest is known to be enchanted.
+
+~~~~~~~~~Explanations
+This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.
+Each trait has a description linked to it, which will be displayed to the user when they select a hex tile.
+Each tile will have a total of 6 traits, each is marked by a percentage chance to get it (out of 100), and some of the traits are none.
+Meaning, a tile may only have 2 traits. Once a trait is selected, it cannot be selected again.

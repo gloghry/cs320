@@ -1,5 +1,3 @@
-#Current Goal: Open a window which is 1000x1000 px
-
 import pygame
 import sys
 from math import *

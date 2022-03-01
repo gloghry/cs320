@@ -5,7 +5,12 @@ Hello! This repository is a group project for the CS 320 class at Washington Sta
 ## Garett
 Name: Garett Loghry  
 Contact: garett.loghry@wsu.edu  
-Description: tbd  
+Description:  
+My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It is made with Python using the pygame library. Pygame is an excellent Free and Open Source Python library typically used in game development. I work in the pycharm IDE and will make system calls to Julion and Levicy's Cool Cams (see below!)  
+   TO RUN:  
+      make garett  
+   NOTE:
+      An asset is included in the repo. Can be removed if cumbersome. The Assets/ dir is mine also  
 
 ## Julion
 Name: Julion Oddy  

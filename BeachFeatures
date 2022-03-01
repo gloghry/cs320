@@ -1,35 +1,87 @@
 #Pick any 3
-
-
-
-
-
-
-
-
-
-
+Cliff
+Rocky/Sandy
+Village
+Fish
+Bay
+Warm/Cold
+White/Yellow/Brown
+Spawning
+Riptide
+Smooth/Rough
 None
 
 #Pick any 2 Notable
 None
-
-
-
-
-
-
+Lighthouse
+City
+Reef
+Fishery
+Stormy
+Tidepools
 
 #Pick 1 below
 None
-
-
-
-
-
-
+Wreck
+Cave
+Abyss
+Carcass
+Ruin
 
 @Descriptions
+- None
+- Cliff
+This beach backs up to large cliffs.
+- Rocky
+This beach is covered in large, pointed rocks.
+- Sandy
+This beach is sandy and soft.
+- Village
+This beach has villages and towns.
+- Fish
+The waters here are inhabited by a large array of fish.
+- Bay
+This beach has a large sheltered bay.
+- Warm
+This beach and surrounding waters are warm.
+- Cold
+This beach and surrounding waters are chill.
+- White
+This beach has bright white sand.
+- Yellow
+This beach has yellow sand.
+- Brown
+This beach has brown and red sand.
+- Spawning
+This beach is known for the variety of animals that come here to lay eggs or raise young.
+- Riptide
+This beach has a deadly riptide.
+- Smooth
+This beach is known for it's smooth waves, not often breaking on the shore.
+- Rough
+This beach is known for it's large harsh waves.
+- Lighthouse
+This beach has a lighthouse.
+- City
+This beach has a large city.
+- Reef
+The waters here have a beautiful reef.
+- Fishery
+This beach hosts a fishery.
+- Stormy
+This beach is known for it's storms, turning the sky dark grey and whipping up waves within minutes.
+- Tidepools
+This beach has a variety of tidepools.
+- Wreck
+This beach has many large wrecks dotting the coastline.
+- Cave
+This place is known for it's intricate cave system.
+- Abyss
+The waters here hide a secret hole, descending far farther than any person has ever gone.
+- Carcass
+This beach regularly has large carcasses washed up on it.
+- Ruin
+This beach hosts an ancient ruin.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

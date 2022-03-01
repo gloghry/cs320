@@ -35,7 +35,7 @@ class TextBox:
         # Blit the rect.
         pg.draw.rect(screen, self.color, self.rect, 2)
 
-class tileBox:
+class HexBox:
     def __init__(self, radius, x, y):
         self.x = x
         self.y = y
@@ -68,7 +68,7 @@ class tileBox:
     #def assignTraits():
         #there's nothing here yet
 
-class map:
+class Map:
     def __init__(self, width, height):
         self.tiles = []
         self.waterAmount = 0

@@ -3,6 +3,5 @@
 garett: GUI.py
 	python3 GUI.py
 
-
 # line count finder
 # grep -v -E '^\s*(/[*/].*|}\s*|\*.*||#.*|\{\s*)$' <filename> |wc -l

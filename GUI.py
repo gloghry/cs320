@@ -43,10 +43,8 @@ BACKGROUND_LARGE = pygame.image.load(
     os.path.join('Assets', 'desert.jpg'))
 BACKGROUND_SCALED = pygame.transform.scale(BACKGROUND_LARGE, (WIN_WIDTH, WIN_HEIGHT))
 
-
-
-COLOR_INACTIVE = pygame.Color('lightskyblue3')
-COLOR_ACTIVE = pygame.Color('dodgerblue2')
+COLOR_INACTIVE = BLACK
+COLOR_ACTIVE = WHITE
 
 
 class TextBox:
@@ -64,7 +62,10 @@ class TextBox:
             else:
                 self.active = False
             # Change the current color of the input box.
-            self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
+            if self.active:
+                self.color = COLOR_ACTIVE
+            else:
+                self.color = COLOR_INACTIVE
         if event.type == pygame.KEYDOWN:
             if self.active:
                 if event.key == pygame.K_RETURN:
@@ -77,16 +78,13 @@ class TextBox:
                 # Re-render the text.
                 self.txt_surface = FONT.render(self.text, True, self.color)
 
-    def update(self):
-        # Resize the box if the text is too long.
-        width = max(200, self.txt_surface.get_width() + 10)
-        self.rect.w = width
-
     def draw(self, screen):
-        # Blit the text.
-        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
-        # Blit the rect.
+        # Background of the box
         pygame.draw.rect(screen, self.color, self.rect, 2)
+        # Transparent box, would like to fill, but need the reverse color
+
+        # Text formatted inside the box
+        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
 
 
 def main():
@@ -96,15 +94,33 @@ def main():
     clock = pygame.time.Clock()
     MAIN_WINDOW.fill(SAND)
 
-    x = 50
-    y = 50
+    # NEED TO ACCOUNT FOR A BARE MINIMUM OF:
+    # NAME                          1
+    # RACE                          2
+    # GENDER                        3
+    # CLASS                         4
+    # QUIRKS                        5
+    # BACKGROUND                    6
+    #   SUB BACKGROUND - OCCUPATION 7 ?
+    x = margin = WIN_HEIGHT/10
+    height_offset = int(WIN_HEIGHT - margin)
+    # width_offset = WIN_WIDTH - margin
+    y = increment = int(height_offset / 7)
 
     input_boxes = []
 
-    for i in range(6):
+    for i in range(7):
         input_box = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT)
-        y += 50
+        y += increment
         input_boxes.append(input_box)
+
+    input_boxes[0].text = 'Name'
+    input_boxes[1].text = 'Race'
+    input_boxes[2].text = 'Gender'
+    input_boxes[3].text = 'Class'
+    input_boxes[4].text = 'Quirks'
+    input_boxes[5].text = 'Background'
+    input_boxes[6].text = 'Occupation'
 
     run = True
     while run:
@@ -117,7 +133,6 @@ def main():
                 run = False
 
         for box in input_boxes:
-            box.update()
             box.draw(MAIN_WINDOW)
 
         # update should always be last

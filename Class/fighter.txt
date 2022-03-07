@@ -1,0 +1,18 @@
+fighter
+1, 1, 0, 2, 2, 3
+1, 0, 1, 0, 0, 0
+1, 1, 1, 1
+1, 1, pickaxe
+
+2
+acrobatics, animal handling, ...
+Battle Master, Champion, Samurai, Gunslinger
+10
+**
+Fighting Style, Second Wind
+Action Surge (x1)
+!!Martial Archetype
+Ability Score Improvement
+Extra Attack (x1)
+**
+Fighting Style: You adopt a particular style of fighting as your specialty.

@@ -1,0 +1,9 @@
+Human
+Elf
+Gnome
+Dwarf
+Goblin
+Dragonborn
+Kobold
+Orc
+Halfling

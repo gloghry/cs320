@@ -9,7 +9,7 @@ Description:
 &emsp;My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It is made with Python using the pygame library. Pygame is an excellent Free and Open Source Python library typically used in game development. I work in the pycharm IDE and will make system calls to Julion and Levicy's Cool Cams (see below!)  
 &emsp;TO RUN:  
 &emsp;&emsp;make garett  
-&emsp;NOTE: 
+&emsp;NOTE:  
 &emsp;&emsp;An asset is included in the repo. Can be removed if cumbersome. The Assets/ dir is mine also  
 
 ## Julion

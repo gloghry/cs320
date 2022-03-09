@@ -21,10 +21,10 @@ grep -v -E '^\s*(/[*/].*|}\s*|\*.*||#.*|\{\s*)$' $1 | wc -l # regex mostly writt
 
 # Here's the code I'd like to follow - it's from Grant's grading criteria
 #
-# code lines: 105
-# single-line comments: 28
-# single-brace lines: 0
-# short html-tag lines: 0
-# whitespace lines: 32
+# code lines: ----
+# single-line comments: ----
+# single-brace lines: ----
+# short html-tag lines: ----
+# whitespace lines: ----
 #  ----------------------
-# total lines examined: 165
+# total lines examined: ----

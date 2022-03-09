@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+# Error handling starts here
 if [[ $# < 1 ]]
 then
    echo "Supply a file to do a line count on."
@@ -12,4 +14,17 @@ then
    exit
 fi
 
+# Start of the regex and sorting
 grep -v -E '^\s*(/[*/].*|}\s*|\*.*||#.*|\{\s*)$' $1 | wc -l # regex mostly written by Matthew Rease
+
+
+
+# Here's the code I'd like to follow - it's from Grant's grading criteria
+#
+# code lines: 105
+# single-line comments: 28
+# single-brace lines: 0
+# short html-tag lines: 0
+# whitespace lines: 32
+#  ----------------------
+# total lines examined: 165

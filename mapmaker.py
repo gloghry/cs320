@@ -3,7 +3,7 @@ import sys
 from math import *
 pygame.init()
 #sys.path.append(".")
-#from classesForMap import TextBox
+from classesForMap import TextBox
 
 screen = pygame.display.set_mode([1500, 660]) #sets screen size
 

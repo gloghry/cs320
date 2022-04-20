@@ -1,37 +1,34 @@
-ACTIVECOLOR = pygame.Color('lightskyblue3') #sets the color of the active (selected) box
-PASSIVECOLOR = pygame.Color('chartreuse4') #sets the color of the inactive boxes
-
-class TextBox:
-    def __init__(self, x, y, w, h, text=''):
-        self.Rect = pygame.Rect(x, y, w, h)
-        self.color = PASSIVECOLOR
-        self.text = text
-        self.textSurface = baseFont.render(text, True, (255, 255, 255))
-        self.active = False
-
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.Rect.collidepoint(event.pos):
-                self.active = True
-            else:
-                self.active = False
-            self.color = ACTIVECOLOR if self.active else PASSIVECOLOR
-
-        if event.type == pygame.KEYDOWN:
-                if self.active:
-                    if event.key == pygame.K_BACKSPACE:
-                        self.text = self.text[:-1]
-                    else:
-                        self.text += event.unicode
-                    # Re-render the text.
-                    self.textSurface = baseFont.render(self.text, True, self.color)
-
-    def update(self):
-        self.w = max(100, self.textSurface.get_width()+10)
-
-    def draw(self, screen):
-        screen.blit(self.textSurface, (self.Rect.x+5, self.Rect.y+5)) #Update the text
-        pygame.draw.rect(screen, self.color, self.Rect, 2) #Update the rect
+#class TextBox:
+#    def __init__(self, x, y, w, h, text=''):
+#        self.Rect = pygame.Rect(x, y, w, h)
+#        self.color = PASSIVECOLOR
+#        self.text = text
+#        self.textSurface = baseFont.render(text, True, (255, 255, 255))
+#        self.active = False
+#
+#    def handle_event(self, event):
+#        if event.type == pygame.MOUSEBUTTONDOWN:
+#            if self.Rect.collidepoint(event.pos):
+#                self.active = True
+#            else:
+#                self.active = False
+#            self.color = ACTIVECOLOR if self.active else PASSIVECOLOR
+#
+#        if event.type == pygame.KEYDOWN:
+#                if self.active:
+#                    if event.key == pygame.K_BACKSPACE:
+#                        self.text = self.text[:-1]
+#                    else:
+#                        self.text += event.unicode
+#                    # Re-render the text.
+#                    self.textSurface = baseFont.render(self.text, True, self.color)
+#
+#    def update(self):
+#        self.w = max(100, self.textSurface.get_width()+10)
+#
+#    def draw(self, screen):
+#        screen.blit(self.textSurface, (self.Rect.x+5, self.Rect.y+5)) #Update the text
+#        pygame.draw.rect(screen, self.color, self.Rect, 2) #Update the rect
 
 class HexBox:
     def __init__(self, radius, x, y):
@@ -45,7 +42,7 @@ class HexBox:
         self.color = PASSIVECOLOR
 
     def handle_event(self, event):
-        if event.type = pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if self.polygon.collidepoint(event.pos):
                 self.active = True
             else:
@@ -106,7 +103,7 @@ class Biome:
 
     def assignTraits(self):
         fileName = filePicker(self)
-        if fileName == "E"
+        if fileName == "E":
             error = True
             #handle the error (maybe quit?)
         textFile = open(fileName, "r") #open appropriate textfile
@@ -115,12 +112,12 @@ class Biome:
 
         fileName.close() #close the file now that I'm done with it.
 
-    def filePicker(self.biomeName): #this returns the text file as a string to the assignTraits function
-        switcher ={
-            "Grassland": "GrasslandFeatures.txt"
-            "Tundra": "TundraFeatures.txt"
-            "Aquatic": "AquaticFeatures.txt"
-            "Beach": "BeachFeatures.txt"
-            "Forest": "ForestFeatures.txt"
-        }
-        return switcher.get(self.biomeName, "E")
+    #def filePicker(biomeName): #this returns the text file as a string to the assignTraits function
+        #switcher ={
+            #"Grassland": "GrasslandFeatures.txt"
+            #"Tundra": "TundraFeatures.txt"
+            #"Aquatic": "AquaticFeatures.txt"
+            #"Beach": "BeachFeatures.txt"
+            #"Forest": "ForestFeatures.txt"
+        #}
+        #return switcher.get(self.biomeName, "E")

@@ -36,18 +36,18 @@ class HexBox:
         self.y = y
         self.xPoint = [0,0,0,0,0,0]
         self.yPoint = [0,0,0,0,0,0]
-        #self.traits = ['','','','','','']
+        self.traits = ['','','','','','']
+        self.number = 0
         #self.biome = class for biome call here
         self.active = False
-        self.color = PASSIVECOLOR
+        self.color = pygame.Color('chartreuse4')
 
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.polygon.collidepoint(event.pos):
-                self.active = True
-            else:
-                self.active = False
-            self.color = ACTIVECOLOR if self.active else PASSIVECOLOR
+#    def handle_event(self, event):
+#        if event.type == pygame.MOUSEBUTTONDOWN:
+#            if self.polygon.collidepoint(event.pos):
+#                self.active = True
+#            else:
+#                self.active = False
 
     def draw(self, screen, x, y):
         for i in range(6):
@@ -63,38 +63,38 @@ class HexBox:
     #def assignTraits():
         #there's nothing here yet
 
-class Map:
-    def __init__(self, width, height):
-        self.tiles = []
-        self.waterAmount = 0
-        self.width = width
-        self.height = height
-        self.seed = randint(100000,999999)
+#class Map:
+#    def __init__(self, width, height):
+#        self.tiles = []
+#        self.waterAmount = 0
+#        self.width = width
+#        self.height = height
+#        self.seed = randint(100000,999999)
 
-    def drawMap(self, radius):
-        random.seed(self.seed) #set the random seed to match the map's seed.
-
-        x = radius
-        y = radius
-        for a in range(0, height):
-            x = radius
-            for i in range(0, width):
-                #call hex class here
-                x = radius*3 + x
-                i = i + 1
-            y = (radius*2 + y)-4
-            a = a + 2
+#    def drawMap(self, radius):
+#        random.seed(self.seed) #set the random seed to match the map's seed.
+#
+#        x = radius
+#        y = radius
+#        for a in range(0, height):
+#            x = radius
+#            for i in range(0, width):
+#                #new HexBox(radius, x, y)??
+#                x = radius*3 + x
+#                i = i + 1
+#            y = (radius*2 + y)-4
+#            a = a + 2
         #self.tiles[a] = the hex returned?
         #have to repeat above code to do the offset hexes
-        y = radius*2 - 2
-        for a in range(0, height):
-            x = radius*2.5
-            for i in range(0, width):
-                #call hex class here
-                x = radius*3 + x
-                i = i + 1
-            y = (radius*2 + y)-4
-            a = a + 2
+#        y = radius*2 - 2
+#        for a in range(0, height):
+#            x = radius*2.5
+#            for i in range(0, (width-1)):
+#                #call hex class here
+#                x = radius*3 + x
+#                i = i + 1
+#            y = (radius*2 + y)-4
+#            a = a + 2
 
 class Biome:
     def __init__(self):

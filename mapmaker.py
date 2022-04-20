@@ -2,8 +2,7 @@ import pygame
 import sys
 from math import *
 pygame.init()
-#sys.path.append(".")
-from classesForMap import *
+
 
 screen = pygame.display.set_mode([1500, 660]) #sets screen size
 
@@ -11,32 +10,48 @@ clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
 userInput = ''
 
-#boxActive = False
 active = True #declares that the program is actively running
 trigger = False
 
-def hexDraw(surface, color, radius, position):
-    x, y = position
-    xPoint = [0,0,0,0,0,0]
-    yPoint = [0,0,0,0,0,0]
-    for i in range(6):
-        xPoint[i] = x + radius * cos(2 * pi * i / 6)
-        yPoint[i] = y + radius * sin(2 * pi * i / 6)
-    pygame.draw.polygon(surface, color, [(xPoint[0],yPoint[0]),
-        (xPoint[1],yPoint[1]),
-        (xPoint[2],yPoint[2]),
-        (xPoint[3],yPoint[3]),
-        (xPoint[4],yPoint[4]),
-        (xPoint[5],yPoint[5])], width = 1)
+class HexBox:
+    def __init__(self, radius, x, y):
+        self.x = x
+        self.y = y
+        self.xPoint = [0,0,0,0,0,0]
+        self.yPoint = [0,0,0,0,0,0]
+        self.traits = ['','','','','','']
+        self.number = 0
+        #self.biome = class for biome call here
+        self.active = False
+        self.color = pygame.Color('chartreuse4')
+        self.radius = radius
+
+    def draw(self, screen, x, y, q):
+        self.number = q
+        for i in range(6):
+            self.xPoint[i] = x + self.radius * cos(2 * pi * i / 6)
+            self.yPoint[i] = y + self.radius * sin(2 * pi * i / 6)
+        pygame.draw.polygon(screen, self.color, [(self.xPoint[0],self.yPoint[0]),
+            (self.xPoint[1],self.yPoint[1]),
+            (self.xPoint[2],self.yPoint[2]),
+            (self.xPoint[3],self.yPoint[3]),
+            (self.xPoint[4],self.yPoint[4]),
+            (self.xPoint[5],self.yPoint[5])], width = 1)
 
 def mapDraw(width, height, radius):
     #initial width draw
+    map = []
+    q = 1
+
     x = radius
     y = radius
     for a in range(0, height):
         x = radius
         for i in range(0, width):
-            hexDraw(screen, (0,0,0), radius, (x,y))
+            currBox = HexBox(radius, x, y)
+            currBox.draw(screen, x, y, q)
+            map.append(currBox)
+            q = q+1
             x = radius*3 + x
             i = i + 1
         y = (radius*2 + y)-4
@@ -46,7 +61,10 @@ def mapDraw(width, height, radius):
     for a in range(0, height):
         x = radius*2.5
         for i in range(0, (width-1)):
-            hexDraw(screen, (0,0,0), radius, (x,y))
+            currBox = HexBox(radius, x, y)
+            currBox.draw(screen, x, y, q)
+            map.append(currBox)
+            q = q+1
             x = radius*3 + x
             i = i + 1
         y = (radius*2 + y)-4

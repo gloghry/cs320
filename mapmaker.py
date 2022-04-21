@@ -25,6 +25,7 @@ class HexBox:
         self.active = False
         self.color = pygame.Color('chartreuse4')
         self.radius = radius
+        self.collisionBox = Collider(radius, x, y)
 
     def draw(self, screen, x, y, q):
         self.number = q
@@ -37,6 +38,13 @@ class HexBox:
             (self.xPoint[3],self.yPoint[3]),
             (self.xPoint[4],self.yPoint[4]),
             (self.xPoint[5],self.yPoint[5])], width = 1)
+
+class Collider:
+    def __init__(self, width, x, y):
+        self.x1 = x
+        self.y1 = y
+        self.x2 = x+width
+        self.y2 = y+width
 
 def mapDraw(width, height, radius):
     #initial width draw

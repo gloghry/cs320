@@ -19,7 +19,7 @@ class HexBox: #this is the hex boxes which compose the map
         self.y = y
         self.xPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
         self.yPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
-        self.traits = ['','','','','',''] #empty list ready to hold the traits that compose the hex
+        self.traits = ['TraitOne','TraitTwo','TraitThree','TraitFour','TraitFive','TraitSix'] #empty list ready to hold the traits that compose the hex
         self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
         #self.biome = class for biome call here
         self.active = False #not current active (clicked on)

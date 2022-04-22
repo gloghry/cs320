@@ -13,19 +13,19 @@ userInput = ''
 active = True #declares that the program is actively running
 trigger = False
 
-class HexBox:
+class HexBox: #this is the hex boxes which compose the map
     def __init__(self, radius, x, y):
         self.x = x
         self.y = y
-        self.xPoint = [0,0,0,0,0,0]
-        self.yPoint = [0,0,0,0,0,0]
-        self.traits = ['','','','','','']
-        self.number = 0
+        self.xPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
+        self.yPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
+        self.traits = ['','','','','',''] #empty list ready to hold the traits that compose the hex
+        self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
         #self.biome = class for biome call here
-        self.active = False
-        self.color = pygame.Color('chartreuse4')
+        self.active = False #not current active (clicked on)
+        self.color = pygame.Color('chartreuse4') #assigns a color for it
         self.radius = radius
-        self.collisionBox = Collider(radius, x, y)
+        self.collisionBox = Collider(radius, x, y) #gives the hex a collision box
 
     def draw(self, screen, x, y, q):
         self.number = q
@@ -39,14 +39,14 @@ class HexBox:
             (self.xPoint[4],self.yPoint[4]),
             (self.xPoint[5],self.yPoint[5])], width = 1)
 
-class Collider:
+class Collider: #this creates colliders in each hex, which will be checked when seeing if the user has moused over a hex
     def __init__(self, width, x, y):
         self.x1 = x
         self.y1 = y
         self.x2 = x+width
         self.y2 = y+width
 
-def mapDraw(width, height, radius):
+def mapDraw(width, height, radius): #this runs all the required information to generate the hex map
     #initial width draw
     map = []
     q = 1

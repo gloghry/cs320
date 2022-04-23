@@ -29,52 +29,12 @@ TANCOLOR = (255, 211, 182) #deserts
 WHITECOLOR = (253, 243, 236) #tundra
 TANCOLORTWO = (224, 198, 181) #beach
 PINK = (255, 170, 165) #background
+GREY = (115, 122, 133) #color
+BLUECOLOR = (32, 85, 168)
 
 #font definitions
 titleFont = pygame.font.Font(None, 40)
-otherFont = pygame.font.Font(None, 20)
-
-#define locations for where the text will be going for hex info.
-textTitleBox = (1500/2-80, 570)
-
-textLocBox = (10, 600)
-#textLocBoxResponse =
-
-textBiomeBox = (10, 640)
-#textBiomeBoxResponse =
-
-textTOneBox = (1500/2-300, 600)
-#textTOneBoxResponse =
-
-textTTwoBox = (1500/2-300, 640)
-#textTTwoBoxResponse =
-
-textTThreeBox = (1500/2-300, 680)
-#textTThreeBoxResponse =
-
-textTFourBox = (1500/2, 600)
-#textTFourBoxResponse =
-
-textTFiveBox = (1500/2, 640)
-#textTFiveBoxResponse =
-
-textTSixBox = (1500/2, 680)
-#textTSixBoxResponse =
-
-textDescBox = (10, 680)
-#textDescBoxResponse =
-
-#define the text that is static and unchanging
-textTitle = titleFont.render('Info Pane', True, BLACK, None)
-textLoc = otherFont.render('Location', True, BLACK, None)
-textBiome = otherFont.render('Biome', True, BLACK, None)
-textTOne = otherFont.render('Trait One:', True, BLACK, None)
-textTTwo = otherFont.render('Trait Two:', True, BLACK, None)
-textTThree = otherFont.render('Trait Three:', True, BLACK, None)
-textTFour = otherFont.render('Trait Four:', True, BLACK, None)
-textTFive = otherFont.render('Trait Five:', True, BLACK, None)
-textTSix = otherFont.render('Trait Six:', True, BLACK, None)
-textDesc = otherFont.render('Description', True, BLACK, None)
+otherFont = pygame.font.Font(None, 25)
 
 active = True #declares that the program is actively running
 trigger = False
@@ -92,67 +52,64 @@ class HexBox: #this is the hex boxes which compose the map
         self.active = False #not current active (clicked on)
         self.color = GREEN #assigns a color for the lines
         self.radius = radius
-        self.collisionBox = pygame.Rect(x, y, radius, radius) #gives the hex a collision box
-        self.location = (0,0)
+        self.location = 0,0
 
     def traitAssign(self):
-        global RUNBEFORE
         global WATERTOTAL
-        if not RUNBEFORE: #don't run this more than once per map.
-            #if water total max isn't reached, this can also be a water tile, so random between 1 - 6 biomes
-            biomeNum = random.randrange(100)
-            if(WATERTOTAL != 0):
-                #this can be a water tile, so it has a 30% chance of being one, until max is reached.
-                #Aquatic - 30%
-                #Beach - 10%
-                #Grassland - 25%
-                #Forest - 25%
-                #Desert - 5%
-                #Tundra - 5%
-                if(biomeNum < 31): #aquatic
-                    self.biome = 'Aquatic'
-                    self.color = BLUE
-                    WATERTOTAL = WATERTOTAL - 1
-                elif(biomeNum < 41): #Beach
-                    self.biome = 'Beach'
-                    self.color = TANCOLORTWO
-                elif(biomeNum < 66): #grassland
-                    self.biome = 'Grassland'
-                    self.color = GREEN
-                elif(biomeNum < 91): #Forest
-                    self.biome = 'Forest'
-                    self.color = MOREGREEN
-                elif(biomeNum < 96): #Desert
-                    self.biome = 'Desert'
-                    self.color = TANCOLOR
-                else: #Tundra
-                    self.biome = 'Tundra'
-                    self.color = WHITECOLOR
-            else: #if water total has been reached, this cannot be a water tile, so random between 1 - 5 biomes
+        #if water total max isn't reached, this can also be a water tile, so random between 1 - 6 biomes
+        biomeNum = random.randrange(100)
+        if(WATERTOTAL != 0):
+            #this can be a water tile, so it has a 30% chance of being one, until max is reached.
+            #Aquatic - 30%
+            #Beach - 10%
+            #Grassland - 25%
+            #Forest - 25%
+            #Desert - 5%
+            #Tundra - 5%
+            if(biomeNum < 31): #aquatic
+                self.biome = 'Aquatic'
+                self.color = BLUE
+                WATERTOTAL = WATERTOTAL - 1
+            elif(biomeNum < 41): #Beach
+                self.biome = 'Beach'
+                self.color = TANCOLORTWO
+            elif(biomeNum < 66): #grassland
+                self.biome = 'Grassland'
+                self.color = GREEN
+            elif(biomeNum < 91): #Forest
+                self.biome = 'Forest'
+                self.color = MOREGREEN
+            elif(biomeNum < 96): #Desert
+                self.biome = 'Desert'
+                self.color = TANCOLOR
+            else: #Tundra
+                self.biome = 'Tundra'
+                self.color = WHITECOLOR
+        else: #if water total has been reached, this cannot be a water tile, so random between 1 - 5 biomes
                 #Beach - 14%
-                #Grassland - 36%
-                #Forest - 36%
-                #Desert - 7%
-                #Tundra - 7%
-                if(biomeNum < 15): #Beach
-                    self.biome = 'Beach'
-                    self.color = TANCOLORTWO
-                elif(biomeNum < 51): #grassland
-                    self.biome = 'Grassland'
-                    self.color = GREEN
-                elif(biomeNum < 87): #Forest
-                    self.biome = 'Forest'
-                    self.color = MOREGREEN
-                elif(biomeNum < 94): #Desert
-                    self.biome = 'Desert'
-                    self.color = TANCOLOR
-                else: #Tundra
-                    self.biome = 'Tundra'
-                    self.color = WHITECOLOR
+            #Grassland - 36%
+            #Forest - 36%
+            #Desert - 7%
+            #Tundra - 7%
+            if(biomeNum < 15): #Beach
+                self.biome = 'Beach'
+                self.color = TANCOLORTWO
+            elif(biomeNum < 51): #grassland
+                self.biome = 'Grassland'
+                self.color = GREEN
+            elif(biomeNum < 87): #Forest
+                self.biome = 'Forest'
+                self.color = MOREGREEN
+            elif(biomeNum < 94): #Desert
+                self.biome = 'Desert'
+                self.color = TANCOLOR
+            else: #Tundra
+                self.biome = 'Tundra'
+                self.color = WHITECOLOR
 
-        #now that biome is assigned, we need to read in the biome text file & assign traits
+    #now that biome is assigned, we need to read in the biome text file & assign traits
 
-        #change trait text of this biome
+    #change trait text of this biome
 
 
     def draw(self, screen, x, y, q):
@@ -178,14 +135,14 @@ class HexBox: #this is the hex boxes which compose the map
 
 def mapDraw(width, height, radius): #this runs all the required information to generate the hex map
     #initial width draw
-    c = 0
-    r = 0
-    q = (c, r)
+    global map
+    c = 1
+    r = 1
+    q = c, r
     x = radius
     y = radius
     for a in range(0, height):
         x = radius
-        r = r + 1
         for i in range(0, width):
             currBox = HexBox(radius, x, y)
             currBox.traitAssign()
@@ -196,9 +153,10 @@ def mapDraw(width, height, radius): #this runs all the required information to g
             i = i + 1
         y = (radius*2 + y)-4
         a = a + 2
+        r = r + 2
     #have to repeat above code to do the offset hexes
     c = 0
-    r = 2
+    r = 1
     y = radius*2 - 2
     for a in range(0, height):
         x = radius*2.5
@@ -211,78 +169,142 @@ def mapDraw(width, height, radius): #this runs all the required information to g
             i = i + 1
         y = (radius*2 + y)-4
         a = a + 2
+        r = r + 2
+
+def setup():
+    #define locations for where the text will be going for hex info.
+    textTitleBox = (1500/2-80, 570)
+
+    textLocBox = (10, 600)
+    textLocBoxResponse = (10, 615)
+    textBiomeBox = (10, 640)
+    textBiomeBoxResponse = (10, 655)
+    textTOneBox = (1500/2-300, 600)
+    textTOneBoxResponse = (1500/2-300, 615)
+    textTTwoBox = (1500/2-300, 640)
+    textTTwoBoxResponse = (1500/2-300, 655)
+    textTThreeBox = (1500/2-300, 680)
+    textTThreeBoxResponse = (1500/2-300, 695)
+    textTFourBox = (1500/2, 600)
+    textTFourBoxResponse =  (1500/2, 615)
+    textTFiveBox = (1500/2, 640)
+    textTFiveBoxResponse = (1500/2, 655)
+    textTSixBox = (1500/2, 680)
+    textTSixBoxResponse = (1500/2, 695)
+    textDescBox = (10, 680)
+    textDescBoxResponse = (10, 695)
+
+    #define the text that is static and unchanging
+    textTitle = titleFont.render('Info Pane', True, BLACK, None)
+    textLoc = otherFont.render('Location', True, BLACK, None)
+    textBiome = otherFont.render('Biome', True, BLACK, None)
+    textTOne = otherFont.render('Trait One:', True, BLACK, None)
+    textTTwo = otherFont.render('Trait Two:', True, BLACK, None)
+    textTThree = otherFont.render('Trait Three:', True, BLACK, None)
+    textTFour = otherFont.render('Trait Four:', True, BLACK, None)
+    textTFive = otherFont.render('Trait Five:', True, BLACK, None)
+    textTSix = otherFont.render('Trait Six:', True, BLACK, None)
+    textDesc = otherFont.render('Description', True, BLACK, None)
 
 #main stuff below here
-screen.fill(PINK)
-mapDraw(39, 26, 12.5)
+def main():
+    setup()
 
-while active: #while the program is running...
-    #if the user wants to quit, change active to false
-    #textBox1 = TextBox(100, 100, 140, 32)
-    #textBox2 = TextBox(100, 300, 140, 32)
-    #textBoxes = [textBox1, textBox2]
+    screen.fill(GREY)
+    mapDraw(39, 26, 12.5)
 
-    #now add in all the static text
-    screen.blit(textTitle, textTitleBox)
-    screen.blit(textLoc, textLocBox)
-    screen.blit(textBiome, textBiomeBox)
-    screen.blit(textTOne, textTOneBox)
-    screen.blit(textTTwo, textTTwoBox)
-    screen.blit(textTThree, textTThreeBox)
-    screen.blit(textTFour, textTFourBox)
-    screen.blit(textTFive, textTFiveBox)
-    screen.blit(textTSix, textTSixBox)
-    screen.blit(textDesc, textDescBox)
+    while active: #while the program is running...
+        #textBox1 = TextBox(100, 100, 140, 32)
+        #textBox2 = TextBox(100, 300, 140, 32)
+        #textBoxes = [textBox1, textBox2]
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            active = False
-        if event.type == pygame.MOUSEBUTTONUP:
-            mousePosX, mousePosY = pygame.mouse.get_pos()
+        #now add in all the static text
+        screen.blit(textTitle, textTitleBox)
+        screen.blit(textLoc, textLocBox)
+        screen.blit(textBiome, textBiomeBox)
+        screen.blit(textTOne, textTOneBox)
+        screen.blit(textTTwo, textTTwoBox)
+        screen.blit(textTThree, textTThreeBox)
+        screen.blit(textTFour, textTFourBox)
+        screen.blit(textTFive, textTFiveBox)
+        screen.blit(textTSix, textTSixBox)
+        screen.blit(textDesc, textDescBox)
 
-            column = mousePosX / 39
-            row = mousePosY / 26
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                active = False
 
-            for hex in map:
-                if((column, row) == hex.location):
-                    print("a")
-                    #display the info about the hexes
-            #now we've identified that mouse is over a specific hex.
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousePosX, mousePosY = pygame.mouse.get_pos()
 
-        #for box in textBoxes:
-            #box.handle_event(event)
+                column = round(mousePosX/18)
+                row = round(mousePosY/11)
+                print(str(column) + " " + str(row))
+
+                #parse the column and row variable to match the way it's parsed in my map
+                if(column % 2 == 0 and row % 2 != 0):
+                    #The row cannot be odd, so minus 1 from row if it doesn't match
+                    row = row - 1
+                elif(column % 2 != 0 and row % 2 == 0):
+                    #This row can only be odd, so minus 1 from row if it doesn't match
+                    row = row - 1
+
+                for hex in map: #now we've identified that mouse is over a specific hex.
+                    if(column, row == hex.location):
+                        #render the text
+                        #print(hex.biome)
+                        print(str(hex.location))
+                        textLocResponse = otherFont.render(str(hex.location) , True, BLUECOLOR, None)
+                        #textBiomeResponse = otherFont.render(hex.biome, True, BLUECOLOR, None)
+                        textTOneResponse = otherFont.render(hex.traits[0] , True, BLUECOLOR, None)
+                        textTTwoResponse = otherFont.render(hex.traits[1] , True, BLUECOLOR, None)
+                        textTThreeResponse = otherFont.render(hex.traits[2] , True, BLUECOLOR, None)
+                        textTFourResponse = otherFont.render(hex.traits[3] , True, BLUECOLOR, None)
+                        textTFiveResponse = otherFont.render(hex.traits[4] , True, BLUECOLOR, None)
+                        textTSixResponse = otherFont.render(hex.traits[5] , True, BLUECOLOR, None)
+                        textDescResponse  = otherFont.render('-' , True, BLUECOLOR, None)
+
+                        #put the text on screen
+                        screen.blit(textLocResponse, textLocBoxResponse)
+                        #screen.blit(textBiomeResponse, textBiomeBoxResponse)
+                        screen.blit(textTOneResponse, textTOneBoxResponse)
+                        screen.blit(textTTwoResponse, textTTwoBoxResponse)
+                        screen.blit(textTThreeResponse, textTThreeBoxResponse)
+                        screen.blit(textTFourResponse, textTFourBoxResponse)
+                        screen.blit(textTFiveResponse, textTFiveBoxResponse)
+                        screen.blit(textTSixResponse, textTSixBoxResponse)
+                        screen.blit(textDescResponse, textDescBoxResponse)
             #for box in textBoxes:
-                #box.update()
-                #screen.fill((255, 211, 211))
-            #for box in textBoxes:
-                #box.draw(screen)
-                #pygame.display.flip()
-                #clock.tick(30)
+                #box.handle_event(event)
+                #for box in textBoxes:
+                    #box.update()
+                    #screen.fill((255, 211, 211))
+                #for box in textBoxes:
+                    #box.draw(screen)
+                    #pygame.display.flip()
+                    #clock.tick(30)
 
-        #if event.type == pygame.MOUSEBUTTONDOWN:
-            #if textBox.collidepoint(event.pos):
-            #    active = True
-            #else:
-            #    active = False
+            #if event.type == pygame.MOUSEBUTTONDOWN:
+                #if textBox.collidepoint(event.pos):
+                #    active = True
+                #else:
+                #    active = False
 
-        #if event.type == pygame.KEYDOWN:
-        #    if event.key == pygame.K_BACKSPACE:
-        #        userInput = userInput[:-1]
-        #    else:
-        #        userInput += event.unicode
+            #if event.type == pygame.KEYDOWN:
+            #    if event.key == pygame.K_BACKSPACE:
+            #        userInput = userInput[:-1]
+            #    else:
+            #        userInput += event.unicode
 
-    #screen.fill((211, 211, 211)) #fills background with a nice grey
+        #screen.fill((211, 211, 211)) #fills background with a nice grey
 
-    #pygame.draw.rect(screen, color, textBox)
-    #textSurface = baseFont.render(userInput, True, (255, 255, 255))
+        #pygame.draw.rect(screen, color, textBox)
+        #textSurface = baseFont.render(userInput, True, (255, 255, 255))
 
-    #screen.blit(textSurface, (textBox.x+5, textBox.y+5))
+        #screen.blit(textSurface, (textBox.x+5, textBox.y+5))
 
-    #textBox.w = max(100, textSurface.get_width()+10)
-    #pygame.display.flip()
-    #refreshes screen, to show any updates
-    pygame.display.flip()
-
-#after while loop is done (i.e., user wants to quit, pygame closes.)
-if(active == False):
+        #textBox.w = max(100, textSurface.get_width()+10)
+        #pygame.display.flip()
+        #refreshes screen, to show any updates
+        pygame.display.flip()
     pygame.quit()

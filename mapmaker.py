@@ -3,11 +3,67 @@ import sys
 from math import *
 pygame.init()
 
-screen = pygame.display.set_mode([1500, 660]) #sets screen size
+screen = pygame.display.set_mode([1500, 800]) #sets screen size
 
 clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
 userInput = ''
+pygame.display.set_caption('Map Maker - V 0.1')
+
+#color definitions
+BLACK = (00,00,00)
+WHITE = (255,255,255)
+RED = (255, 139, 148) #extra color if needed
+GREEN = (220, 237, 193) #grass
+BLUE = (168, 230, 207) #water
+TANCOLOR = (255, 211, 182) #deserts
+PINK = (255, 170, 165) #background
+
+#font definitions
+titleFont = pygame.font.Font(None, 40)
+otherFont = pygame.font.Font(None, 20)
+
+#define locations for where the text will be going for hex info.
+textTitleBox = (1500/2-80, 570)
+
+#textLocBox =
+#textLocBoxResponse =
+
+#textBiomeBox =
+#textBiomeBoxResponse =
+
+#textTOneBox =
+#textTOneBoxResponse =
+
+#textTTwoBox =
+#textTTwoBoxResponse =
+
+#textTThreeBox =
+#textTThreeBoxResponse =
+
+#textTFourBox =
+#textTFourBoxResponse =
+
+#textTFiveBox =
+#textTFiveBoxResponse =
+
+#textTSixBox =
+#textTSixBoxResponse =
+
+#textDescBox =
+#textDescBoxResponse =
+
+#define the text that is static and unchanging
+textTitle = titleFont.render('Info Pane', True, BLACK, None)
+#textLoc = font.render('Location', True, BLACK, None)
+#textBiome = font.render('Biome', True, BLACK, None)
+#textTOne = font.render('Trait One:', True, BLACK, None)
+#textTTwo = font.render('Trait Two:', True, BLACK, None)
+#textTThree = font.render('Trait Three:', True, BLACK, None)
+#textTFour = font.render('Trait Four:', True, BLACK, None)
+#textTFive = font.render('Trait Five:', True, BLACK, None)
+#textTSix = font.render('Trait Six:', True, BLACK, None)
+#textDesc = font.render('Description', True, BLACK, None)
 
 active = True #declares that the program is actively running
 trigger = False
@@ -23,7 +79,7 @@ class HexBox: #this is the hex boxes which compose the map
         self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
         #self.biome = class for biome call here
         self.active = False #not current active (clicked on)
-        self.color = pygame.Color('chartreuse4') #assigns a color for the lines
+        self.color = BLACK #assigns a color for the lines
         self.radius = radius
         self.collisionBox = pygame.Rect(x, y, radius, radius) #gives the hex a collision box
         self.location = (0,0)
@@ -60,7 +116,8 @@ def mapDraw(width, height, radius): #this runs all the required information to g
         y = (radius*2 + y)-4
         a = a + 2
     #have to repeat above code to do the offset hexes
-    c = -1
+    c = 0
+    r = 2
     y = radius*2 - 2
     for a in range(0, height):
         x = radius*2.5
@@ -80,7 +137,8 @@ while active: #while the program is running...
     #textBox1 = TextBox(100, 100, 140, 32)
     #textBox2 = TextBox(100, 300, 140, 32)
     #textBoxes = [textBox1, textBox2]
-    screen.fill((255, 211, 211))
+    screen.fill(PINK)
+    screen.blit(textTitle, textTitleBox)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -93,6 +151,7 @@ while active: #while the program is running...
 
             for hex in map:
                 if((column, row) == hex.location):
+                    print("a")
                     #display the info about the hexes
             #now we've identified that mouse is over a specific hex.
 

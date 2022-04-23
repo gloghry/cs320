@@ -27,7 +27,7 @@ MOREGREEN = (59, 128, 54) #forest
 BLUE = (101, 114, 247) #water
 TANCOLOR = (201, 200, 113) #deserts
 WHITECOLOR = (253, 243, 236) #tundra
-TANCOLORTWO = (227, 226, 148) #beach
+TANCOLORTWO = (196, 127, 35) #beach
 PINK = (255, 170, 165) #background
 GREY = (115, 122, 133) #color
 BLUECOLOR = (32, 85, 168)
@@ -252,18 +252,25 @@ while active: #while the program is running...
             #i = 0
             cleanScreen()
             mousePosX, mousePosY = pygame.mouse.get_pos()
-
+            unroundedRow = mousePosY/11
             column = round(mousePosX/18)
             row = round(mousePosY/11)
 
             #parse the column and row variable to match the way it's parsed in my map
 
             if(column % 2 == 0 and row % 2 != 0):
-                #The row cannot be odd, so minus 1 from row if it doesn't match
-                row = row - 1
+                #The row cannot be odd
+                if(unroundedRow > row):
+                    row = row + 1
+                else:
+                    row = row - 1
             elif(column % 2 != 0 and row % 2 == 0):
-                #This row can only be odd, so minus 1 from row if it doesn't match
-                row = row - 1
+                #This row cannot be even
+                if(unroundedRow > row):
+                    row = row + 1
+                else:
+                    row = row - 1
+
 
             if column <= 0:
                 column = column + 1

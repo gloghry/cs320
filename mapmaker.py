@@ -1,9 +1,17 @@
 import pygame
 import sys
+import random
 from math import *
+
 pygame.init()
 
 screen = pygame.display.set_mode([1500, 800]) #sets screen size
+
+random.seed(None) #initializes random number generator, with a seed of the current system date
+
+#have 1014 tiles.
+WATERTOTAL = random.randrange(100, 700) #min of about 10% water, to a maximum of about 75%
+RUNBEFORE = False
 
 clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
@@ -15,8 +23,11 @@ BLACK = (00,00,00)
 WHITE = (255,255,255)
 RED = (255, 139, 148) #extra color if needed
 GREEN = (220, 237, 193) #grass
+MOREGREEN = (139, 198, 147)#forest
 BLUE = (168, 230, 207) #water
 TANCOLOR = (255, 211, 182) #deserts
+WHITECOLOR = (253, 243, 236) #tundra
+TANCOLORTWO = (224, 198, 181) #beach
 PINK = (255, 170, 165) #background
 
 #font definitions
@@ -77,19 +88,88 @@ class HexBox: #this is the hex boxes which compose the map
         self.yPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
         self.traits = ['TraitOne','TraitTwo','TraitThree','TraitFour','TraitFive','TraitSix'] #empty list ready to hold the traits that compose the hex
         self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
-        #self.biome = class for biome call here
+        self.biome = '' #string to hold the biome name
         self.active = False #not current active (clicked on)
-        self.color = BLACK #assigns a color for the lines
+        self.color = GREEN #assigns a color for the lines
         self.radius = radius
         self.collisionBox = pygame.Rect(x, y, radius, radius) #gives the hex a collision box
         self.location = (0,0)
 
+    def traitAssign(self):
+        global RUNBEFORE
+        global WATERTOTAL
+        if not RUNBEFORE: #don't run this more than once per map.
+            #if water total max isn't reached, this can also be a water tile, so random between 1 - 6 biomes
+            biomeNum = random.randrange(100)
+            if(WATERTOTAL != 0):
+                #this can be a water tile, so it has a 30% chance of being one, until max is reached.
+                #Aquatic - 30%
+                #Beach - 10%
+                #Grassland - 25%
+                #Forest - 25%
+                #Desert - 5%
+                #Tundra - 5%
+                if(biomeNum < 31): #aquatic
+                    self.biome = 'Aquatic'
+                    self.color = BLUE
+                    WATERTOTAL = WATERTOTAL - 1
+                elif(biomeNum < 41): #Beach
+                    self.biome = 'Beach'
+                    self.color = TANCOLORTWO
+                elif(biomeNum < 66): #grassland
+                    self.biome = 'Grassland'
+                    self.color = GREEN
+                elif(biomeNum < 91): #Forest
+                    self.biome = 'Forest'
+                    self.color = MOREGREEN
+                elif(biomeNum < 96): #Desert
+                    self.biome = 'Desert'
+                    self.color = TANCOLOR
+                else: #Tundra
+                    self.biome = 'Tundra'
+                    self.color = WHITECOLOR
+            else: #if water total has been reached, this cannot be a water tile, so random between 1 - 5 biomes
+                #Beach - 14%
+                #Grassland - 36%
+                #Forest - 36%
+                #Desert - 7%
+                #Tundra - 7%
+                if(biomeNum < 15): #Beach
+                    self.biome = 'Beach'
+                    self.color = TANCOLORTWO
+                elif(biomeNum < 51): #grassland
+                    self.biome = 'Grassland'
+                    self.color = GREEN
+                elif(biomeNum < 87): #Forest
+                    self.biome = 'Forest'
+                    self.color = MOREGREEN
+                elif(biomeNum < 94): #Desert
+                    self.biome = 'Desert'
+                    self.color = TANCOLOR
+                else: #Tundra
+                    self.biome = 'Tundra'
+                    self.color = WHITECOLOR
+
+        #now that biome is assigned, we need to read in the biome text file & assign traits
+
+        #change trait text of this biome
+
+
     def draw(self, screen, x, y, q):
         self.location = q
-        for i in range(6):
+        for i in range(6): #this draws the colored polygon
             self.xPoint[i] = x + self.radius * cos(2 * pi * i / 6)
             self.yPoint[i] = y + self.radius * sin(2 * pi * i / 6)
         pygame.draw.polygon(screen, self.color, [(self.xPoint[0],self.yPoint[0]),
+            (self.xPoint[1],self.yPoint[1]),
+            (self.xPoint[2],self.yPoint[2]),
+            (self.xPoint[3],self.yPoint[3]),
+            (self.xPoint[4],self.yPoint[4]),
+            (self.xPoint[5],self.yPoint[5])])
+        for i in range(6): #this draws the outline on the polygon
+            self.xPoint[i] = x + self.radius * cos(2 * pi * i / 6)
+            self.yPoint[i] = y + self.radius * sin(2 * pi * i / 6)
+        pygame.draw.polygon(screen, BLACK, [(self.xPoint[0],self.yPoint[0]),
             (self.xPoint[1],self.yPoint[1]),
             (self.xPoint[2],self.yPoint[2]),
             (self.xPoint[3],self.yPoint[3]),
@@ -108,6 +188,7 @@ def mapDraw(width, height, radius): #this runs all the required information to g
         r = r + 1
         for i in range(0, width):
             currBox = HexBox(radius, x, y)
+            currBox.traitAssign()
             currBox.draw(screen, x, y, q)
             map.append(currBox)
             c = c + 2

@@ -26,44 +26,44 @@ otherFont = pygame.font.Font(None, 20)
 #define locations for where the text will be going for hex info.
 textTitleBox = (1500/2-80, 570)
 
-#textLocBox =
+textLocBox = (10, 600)
 #textLocBoxResponse =
 
-#textBiomeBox =
+textBiomeBox = (10, 640)
 #textBiomeBoxResponse =
 
-#textTOneBox =
+textTOneBox = (1500/2-300, 600)
 #textTOneBoxResponse =
 
-#textTTwoBox =
+textTTwoBox = (1500/2-300, 640)
 #textTTwoBoxResponse =
 
-#textTThreeBox =
+textTThreeBox = (1500/2-300, 680)
 #textTThreeBoxResponse =
 
-#textTFourBox =
+textTFourBox = (1500/2, 600)
 #textTFourBoxResponse =
 
-#textTFiveBox =
+textTFiveBox = (1500/2, 640)
 #textTFiveBoxResponse =
 
-#textTSixBox =
+textTSixBox = (1500/2, 680)
 #textTSixBoxResponse =
 
-#textDescBox =
+textDescBox = (10, 680)
 #textDescBoxResponse =
 
 #define the text that is static and unchanging
 textTitle = titleFont.render('Info Pane', True, BLACK, None)
-#textLoc = font.render('Location', True, BLACK, None)
-#textBiome = font.render('Biome', True, BLACK, None)
-#textTOne = font.render('Trait One:', True, BLACK, None)
-#textTTwo = font.render('Trait Two:', True, BLACK, None)
-#textTThree = font.render('Trait Three:', True, BLACK, None)
-#textTFour = font.render('Trait Four:', True, BLACK, None)
-#textTFive = font.render('Trait Five:', True, BLACK, None)
-#textTSix = font.render('Trait Six:', True, BLACK, None)
-#textDesc = font.render('Description', True, BLACK, None)
+textLoc = otherFont.render('Location', True, BLACK, None)
+textBiome = otherFont.render('Biome', True, BLACK, None)
+textTOne = otherFont.render('Trait One:', True, BLACK, None)
+textTTwo = otherFont.render('Trait Two:', True, BLACK, None)
+textTThree = otherFont.render('Trait Three:', True, BLACK, None)
+textTFour = otherFont.render('Trait Four:', True, BLACK, None)
+textTFive = otherFont.render('Trait Five:', True, BLACK, None)
+textTSix = otherFont.render('Trait Six:', True, BLACK, None)
+textDesc = otherFont.render('Description', True, BLACK, None)
 
 active = True #declares that the program is actively running
 trigger = False
@@ -138,7 +138,18 @@ while active: #while the program is running...
     #textBox2 = TextBox(100, 300, 140, 32)
     #textBoxes = [textBox1, textBox2]
     screen.fill(PINK)
+
+    #now add in all the static text
     screen.blit(textTitle, textTitleBox)
+    screen.blit(textLoc, textLocBox)
+    screen.blit(textBiome, textBiomeBox)
+    screen.blit(textTOne, textTOneBox)
+    screen.blit(textTTwo, textTTwoBox)
+    screen.blit(textTThree, textTThreeBox)
+    screen.blit(textTFour, textTFourBox)
+    screen.blit(textTFive, textTFiveBox)
+    screen.blit(textTSix, textTSixBox)
+    screen.blit(textDesc, textDescBox)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

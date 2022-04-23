@@ -22,12 +22,12 @@ pygame.display.set_caption('Map Maker - V 0.1')
 BLACK = (00,00,00)
 WHITE = (255,255,255)
 RED = (255, 139, 148) #extra color if needed
-GREEN = (220, 237, 193) #grass
-MOREGREEN = (139, 198, 147)#forest
-BLUE = (168, 230, 207) #water
-TANCOLOR = (255, 211, 182) #deserts
+GREEN = (120, 201, 113) #grass
+MOREGREEN = (59, 128, 54) #forest
+BLUE = (54, 101, 128) #water
+TANCOLOR = (201, 200, 113) #deserts
 WHITECOLOR = (253, 243, 236) #tundra
-TANCOLORTWO = (224, 198, 181) #beach
+TANCOLORTWO = (227, 226, 148) #beach
 PINK = (255, 170, 165) #background
 GREY = (115, 122, 133) #color
 BLUECOLOR = (32, 85, 168)

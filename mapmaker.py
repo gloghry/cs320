@@ -213,12 +213,14 @@ def mapDraw(width, height, radius): #this runs all the required information to g
         a = a + 2
 
 #main stuff below here
+screen.fill(PINK)
+mapDraw(39, 26, 12.5)
+
 while active: #while the program is running...
     #if the user wants to quit, change active to false
     #textBox1 = TextBox(100, 100, 140, 32)
     #textBox2 = TextBox(100, 300, 140, 32)
     #textBoxes = [textBox1, textBox2]
-    screen.fill(PINK)
 
     #now add in all the static text
     screen.blit(textTitle, textTitleBox)
@@ -278,7 +280,6 @@ while active: #while the program is running...
 
     #textBox.w = max(100, textSurface.get_width()+10)
     #pygame.display.flip()
-    mapDraw(39, 26, 12.5)
     #refreshes screen, to show any updates
     pygame.display.flip()
 

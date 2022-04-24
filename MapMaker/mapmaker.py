@@ -15,6 +15,7 @@ WATERTOTAL = random.randrange(200, 1500) #min of about 10% water, to a maximum o
 RUNBEFORE = False
 FILEBUFFER = 51
 
+
 clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
 userInput = ''

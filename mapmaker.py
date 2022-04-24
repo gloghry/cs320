@@ -124,7 +124,7 @@ class HexBox: #this is the hex boxes which compose the map
                 self.biome = 'Tundra'
                 self.color = WHITECOLOR
         else: #if water total has been reached, this cannot be a water tile, so random between 1 - 5 biomes
-                #Beach - 14%
+            #Beach - 14%
             #Grassland - 36%
             #Forest - 36%
             #Desert - 7%
@@ -167,18 +167,24 @@ class HexBox: #this is the hex boxes which compose the map
         content = file.readlines()
 
         #first 10 lines describe the first 3 traits, use 3 random numbers to pick the traits, ensure they don't match
-        firstTrait = random.randrange(10)
-        secondTrait = random.randrange(10)
-        thirdTrait = random.randrange(10)
+        firstTrait = random.randrange(9)
+        secondTrait = random.randrange(9)
+        thirdTrait = random.randrange(9)
 
         #First 7 of these have 2 options each
         if(firstTrait > 7):
             string = content[firstTrait]
-            self.traits[0] = string[0:len(string)-1:1]
-            string = content[firstTrait + 50]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[0] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
         else:
             flip = random.randrange(1,2)
             list = content[firstTrait].split(',')
@@ -195,6 +201,7 @@ class HexBox: #this is the hex boxes which compose the map
             elif(flip == 2):
                 string = list[1]
                 self.traits[0] = string[0:len(string)-1:1]
+                list[1] = string[0:len(string)-1:1]
                 i = 0
                 for words in content:
                     if(words == '- ' + list[1]):
@@ -206,11 +213,17 @@ class HexBox: #this is the hex boxes which compose the map
 
         if(secondTrait > 7):
             string = content[secondTrait]
-            self.traits[1] = string[0:len(string)-1:1]
-            string = content[secondTrait + 50]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[1] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
         else:
             flip = random.randrange(1,2)
             list = content[secondTrait].split(',')
@@ -238,11 +251,17 @@ class HexBox: #this is the hex boxes which compose the map
 
         if(thirdTrait > 7):
             string = content[thirdTrait]
-            self.traits[2] = string[0:len(string)-1:1]
-            string = content[thirdTrait + 50]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[2] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
         else:
             flip = random.randrange(1,2)
             list = content[thirdTrait].split(',')
@@ -276,21 +295,33 @@ class HexBox: #this is the hex boxes which compose the map
             self.traits[3] = 'None'
         else:
             string = content[fourthTrait]
-            self.traits[3] = string[0:len(string)-1:1]
-            string = content[fourthTrait + FILEBUFFER]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[3] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
 
         if(fifthTrait > 17):
             self.traits[4] = 'None'
         else:
             string = content[fifthTrait]
-            self.traits[4] = string[0:len(string)-1:1]
-            string = content[fifthTrait + FILEBUFFER]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[4] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
 
         #22-28 describe last one
         sixthTrait = random.randrange(20, 40)
@@ -299,11 +330,17 @@ class HexBox: #this is the hex boxes which compose the map
             self.traits[5] = 'None'
         else:
             string = content[sixthTrait]
-            self.traits[5] = string[0:len(string)-1:1]
-            string = content[sixthTrait + FILEBUFFER]
             string = string[:-1]
-            self.traitDescription += string
-            self.traitDescription += ' '
+            self.traits[5] = string
+            i = 0
+            searchPhrase = '- ' + string
+            for words in content:
+                if searchPhrase in words:
+                    string = content[i]
+                    string = string[:-1]
+                    self.traitDescription += string
+                    self.traitDescription += ' '
+                i = i + 1
 
         file.close()
 

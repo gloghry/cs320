@@ -71,7 +71,7 @@ This water is drinkable
 This water has natural springs in it. It may or may not be safe to take a bath.
 - Whirlpool
 This water has a whirlpool in it.
--None
+- None
 .
 - Tomb
 Within the depths of this water, a long-lost tomb exists. What did it have?

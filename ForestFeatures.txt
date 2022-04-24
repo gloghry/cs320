@@ -25,15 +25,12 @@ Enchanted
 None
 ~
 @Descriptions
-- None
 - Dark
 This forest is dark, the leaves above cut out the sunlight.
 - Sunlit
 This forest is lit easily by the sun or moon above.
 - Jungle
 This forest is a jungle, the canopy is thick and it teems with life.
-- Oak
-This forest is filled with non-coniferous trees
 - Pine
 This forest is filled with coniferous trees
 - Ruined
@@ -43,21 +40,21 @@ This forest is thriving.
 - Green
 This forest is green.
 - Brown
-This forest appears brown
-- Snow
-This forest is covered in snow. Dress warmly!
+This forest appears brown.
 - Warm
 This forest is uncomfortably warm.
 - Cool
 This forest is comfortably cool.
-- Berries
-This forest has berries and other sources of safe food.
+- Food
+This forest has berries, mushrooms, and other sources of safe food.
+- Barren
+This forest seems barren of edible plants.
 - Village(s)
 This forest is populated by various villages and towns.
-- Mushrooms
-This forest has edible and non-edible mushrooms, be careful what you eat!
+- Uninhabited
+This forest seems completely uninhabited.
 - Mountain
-This forest has a mountain
+This forest has a large mountain range.
 - Plateau
 This forest has a large open plateau somewhere.
 - Stormy
@@ -72,10 +69,12 @@ This forest is inhabited by insects, which are making loud noises.
 This forest has rivers in it.
 - Lake
 This forest has a lake.
+- Monsters
+This forest is home to a large number of beasts.
+- None
+.
 - Fae Entrance
 This forest has an entrance to the faewilds.
-- Monster
-This forest is inhabited by a large, dangerous, monster.
 - Cave
 This forest is known for it's advanced cave system.
 - Ruin
@@ -84,6 +83,8 @@ This forest has a ruin of an ancient civilization in it.
 This forest has a villain's dungeon in it.
 - Enchanted
 This forest is known to be enchanted.
+- None
+.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

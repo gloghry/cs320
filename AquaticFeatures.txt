@@ -29,7 +29,6 @@ None
 This water is quite deep, from depths of 100 meters, to 1000 meters, many water creatures may live here, completely unseen by the land-based populace. The bottom is unreachable by non-magical or non-technological means.
 - Shallow
 This water is shallow, ranging from 1-100 meters in depth, the bottom is reachable to the adventurous person. Life thrives here, and plant or coral may be common.
-- None
 - Clear
 This water is clear, with visibility up to 30 meters.
 - Murky
@@ -42,14 +41,14 @@ This water is calm, almost inviting.
 This water looks to be polluted by a nearby settlement.
 - Clean
 This water is clean, absent any debris.
+- Blue
+The water is blue in color.
+- Green
+The water appears green in color.
 - Salt
 This is saltwater.
 - Fresh
 This is freshwater.
-- Blue
-This water is blue in color.
-- Green
-This water appears green in color.
 - Boiling
 This water is warmer than normal, whether a comfortable heat or a rolling boil.
 - Cold
@@ -72,6 +71,8 @@ This water is drinkable
 This water has natural springs in it. It may or may not be safe to take a bath.
 - Whirlpool
 This water has a whirlpool in it.
+-None
+.
 - Tomb
 Within the depths of this water, a long-lost tomb exists. What did it have?
 - Ship
@@ -82,6 +83,8 @@ This water is known for sending ships to it's doom. What treasures might these w
 This water is riddled with caves, what could be in these?
 - Monster
 This water is inhabited by a great beast.
+- None
+.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

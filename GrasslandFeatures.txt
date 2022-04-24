@@ -1,12 +1,12 @@
 Savannah,Plains
 Rainy,Sunny
 Green,Brown
-Breezy,
-Stormy,
-Town(s),
-Mount,
+Breezy,Stagnant
+Fertile,Barren
+Town(s),Mounts
+Mountainous,Plains
 Valley
-
+Stormy
 ~
 Rivers
 Lake(s)
@@ -14,10 +14,10 @@ Marsh
 City(s)
 Fires
 Overgrown
+Burrowing Animals
 None
-
 ~
-
+Mists
 Sinkhole
 Ruins
 Dungeon
@@ -25,7 +25,6 @@ Monster
 None
 ~
 @Descriptions
-- None
 - Savannah
 This is a savannah, with warmer temperatures and a variety of life.
 - Plains
@@ -40,30 +39,38 @@ This grassland is green.
 This grassland is brown.
 - Breezy
 This grassland is breezy, with wind whipping through unobstructed.
-- Stormy
-This grassland is known for it's powerful storms.
+- Stagnant
+This area is known to have very little wind, the air is almost heavy with how little it moves.
 - Town(s)
 This grassland has multiple villages and towns.
-- Mount
-This grassland is known for having wild animals ready to be turned into mounts, from horses to large direwolves.
-- Mountain
+- Mounts
+This area is known to have large populations of mountable animals.
+- Mountainous
 This grassland has a mountain range.
+- Plains
+This place is very flat, a large plainland.
 - Valley
 This grassland has lowlands and valleys
+- Stormy
+This area experiences a lot of storms.
 - Rivers
 This grassland has rivers.
 - Lake(s)
 This grassland has a lake or lakes.
 - Marsh
-This grassland is partially marsh.
-- Swamp
-This grassland is partially swamp.
+This grassland is mostly marsh, with sticky clinging mud.
 - City(s)
 This grassland is home to a large city.
 - Fires
 This grassland is prone to deadly fires.
 - Overgrown
 This grassland is overgrown, filled with grasses taller than any person.
+- Burrowing Animals
+This grassland is field with burrowing animals, big and small.
+- None
+.
+- Mists
+This whole area is regularly shrouded in mists.
 - Sinkhole
 This grassland is known for it's sinkholes, tread carefully!
 - Ruins
@@ -72,6 +79,8 @@ This grassland has ruins of an ancient civilization.
 This grassland has a villain's lair.
 - Monster
 This grassland is inhabited by a large monster.
+- None
+.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

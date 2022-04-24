@@ -2,6 +2,7 @@ import pygame
 import sys
 import random
 from math import *
+from textwrap import fill
 
 pygame.init()
 
@@ -12,6 +13,7 @@ random.seed(None) #initializes random number generator, with a seed of the curre
 #have 2028 tiles.
 WATERTOTAL = random.randrange(200, 1500) #min of about 10% water, to a maximum of about 75%
 RUNBEFORE = False
+FILEBUFFER = 51
 
 clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
@@ -55,8 +57,9 @@ textTFiveBox = (1500/2, 640)
 textTFiveBoxResponse = (1500/2, 655)
 textTSixBox = (1500/2, 680)
 textTSixBoxResponse = (1500/2, 695)
-textDescBox = (10, 680)
-textDescBoxResponse = (10, 695)
+textDescBox = (10, 700)
+textDescBoxResponse = (10, 715)
+textDescBoxResponseTwo = (10, 730)
 
 #define the text that is static and unchanging
 textTitle = titleFont.render('Info Pane', True, BLACK, None)
@@ -80,7 +83,7 @@ class HexBox: #this is the hex boxes which compose the map
         self.y = y
         self.xPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
         self.yPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
-        self.traits = ['TraitOne','TraitTwo','TraitThree','TraitFour','TraitFive','TraitSix'] #empty list ready to hold the traits that compose the hex
+        self.traits = ['','','','','',''] #empty list ready to hold the traits that compose the hex
         self.traitDescription = ''
         self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
         self.biome = '' #string to hold the biome name
@@ -143,126 +146,164 @@ class HexBox: #this is the hex boxes which compose the map
                 self.color = WHITECOLOR
 
         #now that biome is assigned, we need to read in the biome text file & assign traits
-        if(self.biome = 'Aquatic'):
+        if(self.biome == 'Aquatic'):
             #open file
-            file = open(AquaticFeatures.txt, r)
-        elif(self.biome = 'Beach'):
+            file = open('AquaticFeatures.txt', 'r')
+        elif(self.biome == 'Beach'):
             #open file
-            file = open(BeachFeatures.txt, r)
-        elif(self.biome = 'Grassland'):
+            file = open('BeachFeatures.txt', 'r')
+        elif(self.biome == 'Grassland'):
             #open file
-            file = open(GrasslandFeatures.txt, r)
-        elif(self.biome = 'Forest'):
+            file = open('GrasslandFeatures.txt', 'r')
+        elif(self.biome == 'Forest'):
             #open file
-            file = open(ForestFeatures.txt, r)
-        elif(self.biome = 'Desert'):
+            file = open('ForestFeatures.txt', 'r')
+        elif(self.biome == 'Desert'):
             #open file
-            file = open(DesertFeatures.txt, r)
+            file = open('DesertFeatures.txt', 'r')
         else:
             #open file
-            file = open(TundraFeatures.txt, r)
+            file = open('TundraFeatures.txt', 'r')
         content = file.readlines()
 
         #first 10 lines describe the first 3 traits, use 3 random numbers to pick the traits, ensure they don't match
-        firstTrait = randomrange(10)
-        secondTrait = randomrange(10)
-        while(secondTrait == firstTrait):
-            secondTrait = randomrange(10)
-
-        thirdTrait = randomrange(10)
-        while(thirdTrait == firstTrait or thirdTrait == secondTrait):
-            thirdTrait = randomrange(10)
+        firstTrait = random.randrange(10)
+        secondTrait = random.randrange(10)
+        thirdTrait = random.randrange(10)
 
         #First 7 of these have 2 options each
         if(firstTrait > 7):
-            self.traits[1] = content[firstTrait]
-            self.traitDescription += content[firstTrait + 50]
+            string = content[firstTrait]
+            self.traits[0] = string[0:len(string)-1:1]
+            string = content[firstTrait + 50]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
         else:
-            flip = randomrange(2)
+            flip = random.randrange(1,2)
             list = content[firstTrait].split(',')
             if(flip == 1):
-                self.traits[1] = list[0]
+                self.traits[0] = list[0]
                 i = 0
-                for(words in content):
-                    if(words == '- ' + list[1]):
-                        self.traitDescription += content[i + 1]
+                for words in content:
+                    if(words == '- ' + list[0]):
+                        string = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
-            else:
-                self.traits[1] = list[1]
+            elif(flip == 2):
+                string = list[1]
+                self.traits[0] = string[0:len(string)-1:1]
                 i = 0
-                for(words in content):
+                for words in content:
                     if(words == '- ' + list[1]):
-                        self.traitDescription += content[i + 1]
+                        string = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
 
         if(secondTrait > 7):
-            self.traits[2] = content[secondTrait]
-            self.traitDescription += content[secondTrait + 50]
+            string = content[secondTrait]
+            self.traits[1] = string[0:len(string)-1:1]
+            string = content[secondTrait + 50]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
         else:
-            flip = randomrange(2)
+            flip = random.randrange(1,2)
             list = content[secondTrait].split(',')
             if(flip == 1):
-                self.traits[2] = list[0]
+                self.traits[1] = list[0]
                 i = 0
-                for(words in content):
+                for words in content:
                     if(words == '- ' + list[0]):
-                        self.traitDescription += content[i + 1]
+                        string = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
-            else:
-                self.traits[2] = list[1]
+            elif(flip == 2):
+                string = list[1]
+                self.traits[1] = string[0:len(string)-1:1]
                 i = 0
-                for(words in content):
+                for words in content:
                     if(words == '- ' + list[1]):
-                        self.traitDescription += content[i + 1]
+                        sstring = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
 
         if(thirdTrait > 7):
-            self.traits[3] = content[thirdTrait]
-            self.traitDescription += content[thirdTrait + 50]
+            string = content[thirdTrait]
+            self.traits[2] = string[0:len(string)-1:1]
+            string = content[thirdTrait + 50]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
         else:
-            flip = randomrange(2)
+            flip = random.randrange(1,2)
             list = content[thirdTrait].split(',')
             if(flip == 1):
-                self.traits[3] = list[0]
+                self.traits[2] = list[0]
                 i = 0
-                for(words in content):
+                for words in content:
                     if(words == '- ' + list[0]):
-                        self.traitDescription += content[i + 1]
+                        string = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
-            else:
-                self.traits[3] = list[1]
+            elif(flip == 2):
+                string = list[1]
+                self.traits[2] = string[0:len(string)-1:1]
                 i = 0
-                for(words in content):
+                for words in content:
                     if(words == '- ' + list[1]):
-                        self.traitDescription += content[i + 1]
+                        string = content[i + 1]
+                        string = string[:-1]
+                        self.traitDescription += string
+                        self.traitDescription += ' '
                     i = i + 1
 
         #13 - 20 describe the next 2
-        fourthTrait = randomrange(11,20)
-        fifthTrait = randomrange(11,20)
-        while(fifthTrait == fourthTrait):
-            secondTrait = randomrange(11,20)
+        fourthTrait = random.randrange(11,20)
+        fifthTrait = random.randrange(11,20)
 
         if(fourthTrait > 17):
-            self.traits[4] = 'None'
+            self.traits[3] = 'None'
         else:
-            self.traits[4] = content[fourthTrait]
-            self.traitDescription += content[fourthTrait + 50]
+            string = content[fourthTrait]
+            self.traits[3] = string[0:len(string)-1:1]
+            string = content[fourthTrait + FILEBUFFER]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
 
         if(fifthTrait > 17):
-            self.traits[5] = 'None'
+            self.traits[4] = 'None'
         else:
-            self.traits[5] = content[fifthTrait]
-            self.traitDescription += content[fifthTrait + 50]
+            string = content[fifthTrait]
+            self.traits[4] = string[0:len(string)-1:1]
+            string = content[fifthTrait + FILEBUFFER]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
 
         #22-28 describe last one
-        sixthTrait = randomrange(20, 40)
+        sixthTrait = random.randrange(20, 40)
 
         if(sixthTrait > 24):
-            self.traits[6] = 'None'
+            self.traits[5] = 'None'
         else:
-            self.traits[6] = content[sixthTrait]
-            self.traitDescription += content[sixthTrait + 50]
+            string = content[sixthTrait]
+            self.traits[5] = string[0:len(string)-1:1]
+            string = content[sixthTrait + FILEBUFFER]
+            string = string[:-1]
+            self.traitDescription += string
+            self.traitDescription += ' '
 
         file.close()
 
@@ -341,6 +382,8 @@ def cleanScreen():
     screen.fill(GREY, (1500/2, 615, 600, 26))
     screen.fill(GREY, (1500/2, 655, 600, 26))
     screen.fill(GREY, (1500/2, 695, 600, 26))
+    screen.fill(GREY, (10, 715, 1000, 26))
+    screen.fill(GREY, (10, 730, 1000, 26))
 
 #main stuff below here
 screen.fill(GREY)
@@ -413,7 +456,8 @@ while active: #while the program is running...
                     textTFourResponse = otherFont.render(hex.traits[3] , True, BLUECOLOR, None)
                     textTFiveResponse = otherFont.render(hex.traits[4] , True, BLUECOLOR, None)
                     textTSixResponse = otherFont.render(hex.traits[5] , True, BLUECOLOR, None)
-                    textDescResponse  = otherFont.render('-' , True, BLUECOLOR, None)
+                    textDescResponse  = otherFont.render(hex.traitDescription[:100] , True, BLUECOLOR, None)
+                    textDescResponseTwo = otherFont.render(hex.traitDescription[100:len(hex.traitDescription)] , True, BLUECOLOR, None)
 
                     #put the text on screen
                     screen.blit(textLocResponse, textLocBoxResponse)
@@ -425,6 +469,7 @@ while active: #while the program is running...
                     screen.blit(textTFiveResponse, textTFiveBoxResponse)
                     screen.blit(textTSixResponse, textTSixBoxResponse)
                     screen.blit(textDescResponse, textDescBoxResponse)
+                    screen.blit(textDescResponseTwo, textDescBoxResponseTwo)
                 else:
                     continue
 

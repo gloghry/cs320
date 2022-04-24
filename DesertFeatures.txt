@@ -7,7 +7,7 @@ Reptiles,Mammals
 Auroras,Empty Skies
 Rocky
 Sandstorms
-~
+
 Sandworms
 Traversable
 Trading Route
@@ -15,15 +15,15 @@ Scattered Oasis
 Tomb
 Tornados
 Mirages
-None
-~
+
+
 Monster
 Cataclysmic Event
 Ruins
 Temple
 Underground Passages
-None
-~
+
+
 @Descriptions
 - Dunes
 This desert is covered in sand dunes, some as tall as skyscrapers.
@@ -71,8 +71,6 @@ This desert is known to house ancient tombs.
 This place is prone to tornados.
 - Mirages
 Mirages are common here, sometimes they seem natural, such as a lake. Other times... not so much.
-- None
-.
 - Monster
 A great beast makes it's home here.
 - Cataclysmic Event
@@ -83,4 +81,3 @@ This place is covered in ruins of civilizations long gone.
 This place has a secret temple in it.
 - Underground Passages
 Deep underneath the sand, span thousands of miles of passages, in which people may live, or travel. The passages are large enough for countless armies to pass.
-- None

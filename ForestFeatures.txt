@@ -7,7 +7,7 @@ Food,Barren
 Village(s),Uninhabited
 Mountain
 Plateau
-~
+
 Stormy
 City(s)
 Traversable
@@ -15,15 +15,15 @@ Buzzing
 Rivers
 Lake
 Monsters
-None
-~
+
+
 Fae Entrance
 Cave
 Ruin
 Dungeon
 Enchanted
-None
-~
+
+
 @Descriptions
 - Dark
 This forest is dark, the leaves above cut out the sunlight.
@@ -71,8 +71,6 @@ This forest has rivers in it.
 This forest has a lake.
 - Monsters
 This forest is home to a large number of beasts.
-- None
-.
 - Fae Entrance
 This forest has an entrance to the faewilds.
 - Cave
@@ -83,8 +81,6 @@ This forest has a ruin of an ancient civilization in it.
 This forest has a villain's dungeon in it.
 - Enchanted
 This forest is known to be enchanted.
-- None
-.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

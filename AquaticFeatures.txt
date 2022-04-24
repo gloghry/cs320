@@ -7,7 +7,7 @@ Salt,Fresh
 Boiling,Cold
 Sparkling
 Sulfurous
-~
+
 Geyser
 Marsh
 Waterway
@@ -15,15 +15,15 @@ Traversable
 Potable
 Springs
 Whirlpool
-None
-~
+
+
 Tomb
 Ship
 Wreck
 Cave
 Monster
-None
-~
+
+
 @Descriptions
 - Deep
 This water is quite deep, from depths of 100 meters, to 1000 meters, many water creatures may live here, completely unseen by the land-based populace. The bottom is unreachable by non-magical or non-technological means.
@@ -71,8 +71,6 @@ This water is drinkable
 This water has natural springs in it. It may or may not be safe to take a bath.
 - Whirlpool
 This water has a whirlpool in it.
-- None
-.
 - Tomb
 Within the depths of this water, a long-lost tomb exists. What did it have?
 - Ship
@@ -83,8 +81,6 @@ This water is known for sending ships to it's doom. What treasures might these w
 This water is riddled with caves, what could be in these?
 - Monster
 This water is inhabited by a great beast.
-- None
-.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

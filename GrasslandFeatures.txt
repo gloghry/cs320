@@ -7,7 +7,7 @@ Town(s),Mounts
 Mountainous,Plains
 Valley
 Stormy
-~
+
 Rivers
 Lake(s)
 Marsh
@@ -15,15 +15,15 @@ City(s)
 Fires
 Overgrown
 Burrowing Animals
-None
-~
+
+
 Mists
 Sinkhole
 Ruins
 Dungeon
 Monster
-None
-~
+
+
 @Descriptions
 - Savannah
 This is a savannah, with warmer temperatures and a variety of life.
@@ -67,8 +67,6 @@ This grassland is prone to deadly fires.
 This grassland is overgrown, filled with grasses taller than any person.
 - Burrowing Animals
 This grassland is field with burrowing animals, big and small.
-- None
-.
 - Mists
 This whole area is regularly shrouded in mists.
 - Sinkhole
@@ -79,8 +77,6 @@ This grassland has ruins of an ancient civilization.
 This grassland has a villain's lair.
 - Monster
 This grassland is inhabited by a large monster.
-- None
-.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

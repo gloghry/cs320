@@ -167,12 +167,12 @@ class HexBox: #this is the hex boxes which compose the map
         content = file.readlines()
 
         #first 10 lines describe the first 3 traits, use 3 random numbers to pick the traits, ensure they don't match
-        firstTrait = random.randrange(9)
-        secondTrait = random.randrange(9)
-        thirdTrait = random.randrange(9)
+        firstTrait = random.randrange(8)
+        secondTrait = random.randrange(8)
+        thirdTrait = random.randrange(8)
 
         #First 7 of these have 2 options each
-        if(firstTrait > 7):
+        if(firstTrait > 6):
             string = content[firstTrait]
             string = string[:-1]
             self.traits[0] = string
@@ -180,7 +180,7 @@ class HexBox: #this is the hex boxes which compose the map
             searchPhrase = '- ' + string
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
@@ -193,7 +193,7 @@ class HexBox: #this is the hex boxes which compose the map
                 i = 0
                 for words in content:
                     if(words == '- ' + list[0]):
-                        string = content[i + 1]
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
@@ -205,13 +205,13 @@ class HexBox: #this is the hex boxes which compose the map
                 i = 0
                 for words in content:
                     if(words == '- ' + list[1]):
-                        string = content[i + 1]
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
                     i = i + 1
 
-        if(secondTrait > 7):
+        if(secondTrait > 6):
             string = content[secondTrait]
             string = string[:-1]
             self.traits[1] = string
@@ -219,7 +219,7 @@ class HexBox: #this is the hex boxes which compose the map
             searchPhrase = '- ' + string
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
@@ -232,7 +232,7 @@ class HexBox: #this is the hex boxes which compose the map
                 i = 0
                 for words in content:
                     if(words == '- ' + list[0]):
-                        string = content[i + 1]
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
@@ -243,13 +243,13 @@ class HexBox: #this is the hex boxes which compose the map
                 i = 0
                 for words in content:
                     if(words == '- ' + list[1]):
-                        sstring = content[i + 1]
+                        sstring = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
                     i = i + 1
 
-        if(thirdTrait > 7):
+        if(thirdTrait > 6):
             string = content[thirdTrait]
             string = string[:-1]
             self.traits[2] = string
@@ -257,7 +257,7 @@ class HexBox: #this is the hex boxes which compose the map
             searchPhrase = '- ' + string
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
@@ -281,17 +281,17 @@ class HexBox: #this is the hex boxes which compose the map
                 i = 0
                 for words in content:
                     if(words == '- ' + list[1]):
-                        string = content[i + 1]
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
                     i = i + 1
 
         #13 - 20 describe the next 2
-        fourthTrait = random.randrange(11,20)
-        fifthTrait = random.randrange(11,20)
+        fourthTrait = random.randrange(10,20)
+        fifthTrait = random.randrange(10,20)
 
-        if(fourthTrait > 17):
+        if(fourthTrait > 16):
             self.traits[3] = 'None'
         else:
             string = content[fourthTrait]
@@ -301,13 +301,13 @@ class HexBox: #this is the hex boxes which compose the map
             searchPhrase = '- ' + string
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
                 i = i + 1
 
-        if(fifthTrait > 17):
+        if(fifthTrait > 16):
             self.traits[4] = 'None'
         else:
             string = content[fifthTrait]
@@ -317,16 +317,17 @@ class HexBox: #this is the hex boxes which compose the map
             searchPhrase = '- ' + string
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
                 i = i + 1
 
         #22-28 describe last one
-        sixthTrait = random.randrange(20, 40)
+        sixthTrait = random.randrange(19, 40)
+        #sixthTrait = 20
 
-        if(sixthTrait > 24):
+        if(sixthTrait > 23):
             self.traits[5] = 'None'
         else:
             string = content[sixthTrait]
@@ -334,9 +335,10 @@ class HexBox: #this is the hex boxes which compose the map
             self.traits[5] = string
             i = 0
             searchPhrase = '- ' + string
+            print(searchPhrase)
             for words in content:
                 if searchPhrase in words:
-                    string = content[i]
+                    string = content[(i+1)]
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '

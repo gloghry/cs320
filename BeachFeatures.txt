@@ -7,23 +7,23 @@ Warm,Cold
 White,Yellow
 Spawning
 Riptide
+
 Shark Infested
-~
 Lighthouse
 City
 Reef
 Fishery
 Stormy
 Tidepools
-None
-~
+
+
 Wreck
 Cave
 Abyss
 Carcass
 Ruin
-None
-~
+
+
 @Descriptions
 - Cliff
 This beach backs up to large cliffs.
@@ -71,8 +71,6 @@ This beach hosts a fishery.
 This beach is known for it's storms, turning the sky dark grey and whipping up waves within minutes.
 - Tidepools
 This beach has a variety of tidepools.
-- None
-.
 - Wreck
 This beach has many large wrecks dotting the coastline.
 - Cave
@@ -83,8 +81,6 @@ The waters here hide a secret hole, descending far farther than any person has e
 This beach regularly has large carcasses washed up on it.
 - Ruin
 This beach hosts an ancient ruin.
-- None
-.
 
 ~~~~~~~~~Explanations
 This is a list of traits assigned by biome. Each hex will be given a biome, and will gain additional traits based on that.

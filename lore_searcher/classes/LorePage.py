@@ -68,7 +68,8 @@ class Page(object):
 		for topic in self.topics:
 			printTopic(topic, bound)
 
-		print("Matched Terms:", ", ".join(self.termHits))
+		if len(self.termHits) > 0:
+			print("Matched Terms:", ", ".join(self.termHits))
 		print(textwrap.fill(f"Source-URL: {self.srcURL}", width=bound))
 		print(textwrap.fill(f"Img-URL: {self.imgURL}", width=bound))
 		print("\n" + bound*"*")

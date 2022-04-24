@@ -184,7 +184,7 @@ class HexBox: #this is the hex boxes which compose the map
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
-                i = i + 1
+                i = i+1
         else:
             flip = random.randrange(1,2)
             list = content[firstTrait].split(',')

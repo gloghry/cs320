@@ -41,6 +41,10 @@ This grassland is brown.
 This grassland is breezy, with wind whipping through unobstructed.
 - Stagnant
 This area is known to have very little wind, the air is almost heavy with how little it moves.
+- Fertile
+This area is perfect for growing crops and things here seem to thrive with very little effort.
+- Barren
+Plants struggle to survive here, due a limited supply of nutrients. It's not uncommon to see large areas of dead or dying plants.
 - Town(s)
 This grassland has multiple villages and towns.
 - Mounts

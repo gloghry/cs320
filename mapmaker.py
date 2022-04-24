@@ -60,6 +60,7 @@ textTSixBoxResponse = (1500/2, 695)
 textDescBox = (10, 700)
 textDescBoxResponse = (10, 715)
 textDescBoxResponseTwo = (10, 730)
+textDescBoxResponseThree = (10, 745)
 
 #define the text that is static and unchanging
 textTitle = titleFont.render('Info Pane', True, BLACK, None)
@@ -184,27 +185,30 @@ class HexBox: #this is the hex boxes which compose the map
                     string = string[:-1]
                     self.traitDescription += string
                     self.traitDescription += ' '
-                i = i+1
+                i = i + 1
         else:
             flip = random.randrange(1,2)
             list = content[firstTrait].split(',')
             if(flip == 1):
                 self.traits[0] = list[0]
                 i = 0
+                searchPhrase = '- ' + list[0]
                 for words in content:
-                    if(words == '- ' + list[0]):
+                    if searchPhrase in words:
                         string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
                     i = i + 1
+
             elif(flip == 2):
                 string = list[1]
                 self.traits[0] = string[0:len(string)-1:1]
                 list[1] = string[0:len(string)-1:1]
                 i = 0
+                searchPhrase = '- ' + list[1]
                 for words in content:
-                    if(words == '- ' + list[1]):
+                    if searchPhrase in words:
                         string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
@@ -230,8 +234,9 @@ class HexBox: #this is the hex boxes which compose the map
             if(flip == 1):
                 self.traits[1] = list[0]
                 i = 0
+                searchPhrase = '- ' + list[0]
                 for words in content:
-                    if(words == '- ' + list[0]):
+                    if searchPhrase in words:
                         string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
@@ -240,10 +245,12 @@ class HexBox: #this is the hex boxes which compose the map
             elif(flip == 2):
                 string = list[1]
                 self.traits[1] = string[0:len(string)-1:1]
+                list[1] = string[0:len(string)-1:1]
                 i = 0
+                searchPhrase = '- ' + list[1]
                 for words in content:
-                    if(words == '- ' + list[1]):
-                        sstring = content[(i+1)]
+                    if searchPhrase in words:
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
@@ -268,9 +275,10 @@ class HexBox: #this is the hex boxes which compose the map
             if(flip == 1):
                 self.traits[2] = list[0]
                 i = 0
+                searchPhrase = '- ' + list[0]
                 for words in content:
-                    if(words == '- ' + list[0]):
-                        string = content[i + 1]
+                    if searchPhrase in words:
+                        string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
                         self.traitDescription += ' '
@@ -278,9 +286,11 @@ class HexBox: #this is the hex boxes which compose the map
             elif(flip == 2):
                 string = list[1]
                 self.traits[2] = string[0:len(string)-1:1]
+                list[1] = string[0:len(string)-1:1]
                 i = 0
+                searchPhrase = '- ' + list[1]
                 for words in content:
-                    if(words == '- ' + list[1]):
+                    if searchPhrase in words:
                         string = content[(i+1)]
                         string = string[:-1]
                         self.traitDescription += string
@@ -335,7 +345,7 @@ class HexBox: #this is the hex boxes which compose the map
             self.traits[5] = string
             i = 0
             searchPhrase = '- ' + string
-            print(searchPhrase)
+            #print(searchPhrase)
             for words in content:
                 if searchPhrase in words:
                     string = content[(i+1)]
@@ -421,128 +431,139 @@ def cleanScreen():
     screen.fill(GREY, (1500/2, 615, 600, 26))
     screen.fill(GREY, (1500/2, 655, 600, 26))
     screen.fill(GREY, (1500/2, 695, 600, 26))
-    screen.fill(GREY, (10, 715, 1000, 26))
-    screen.fill(GREY, (10, 730, 1000, 26))
+    screen.fill(GREY, (10, 715, 1490, 26))
+    screen.fill(GREY, (10, 730, 1490, 26))
+    screen.fill(GREY, (10, 745, 1490, 26))
 
 #main stuff below here
-screen.fill(GREY)
-mapDraw(39, 26, 12.5)
+def main():
+    global active
+    global map
+    global screen
 
-while active: #while the program is running...
-    #textBox1 = TextBox(100, 100, 140, 32)
-    #textBox2 = TextBox(100, 300, 140, 32)
-    #textBoxes = [textBox1, textBox2]
-    debug = 100,100
+    screen.fill(GREY)
+    mapDraw(39, 26, 12.5)
 
-    #now add in all the static text
-    screen.blit(textTitle, textTitleBox)
-    screen.blit(textLoc, textLocBox)
-    screen.blit(textBiome, textBiomeBox)
-    screen.blit(textTOne, textTOneBox)
-    screen.blit(textTTwo, textTTwoBox)
-    screen.blit(textTThree, textTThreeBox)
-    screen.blit(textTFour, textTFourBox)
-    screen.blit(textTFive, textTFiveBox)
-    screen.blit(textTSix, textTSixBox)
-    screen.blit(textDesc, textDescBox)
+    while active: #while the program is running...
+        #textBox1 = TextBox(100, 100, 140, 32)
+        #textBox2 = TextBox(100, 300, 140, 32)
+        #textBoxes = [textBox1, textBox2]
+        debug = 100,100
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            active = False
+        #now add in all the static text
+        screen.blit(textTitle, textTitleBox)
+        screen.blit(textLoc, textLocBox)
+        screen.blit(textBiome, textBiomeBox)
+        screen.blit(textTOne, textTOneBox)
+        screen.blit(textTTwo, textTTwoBox)
+        screen.blit(textTThree, textTThreeBox)
+        screen.blit(textTFour, textTFourBox)
+        screen.blit(textTFive, textTFiveBox)
+        screen.blit(textTSix, textTSixBox)
+        screen.blit(textDesc, textDescBox)
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            #i = 0
-            cleanScreen()
-            mousePosX, mousePosY = pygame.mouse.get_pos()
-            unroundedRow = mousePosY/11
-            column = round(mousePosX/18)
-            row = round(mousePosY/11)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                active = False
 
-            #parse the column and row variable to match the way it's parsed in my map
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                #i = 0
+                cleanScreen()
+                mousePosX, mousePosY = pygame.mouse.get_pos()
+                unroundedRow = mousePosY/11
+                column = round(mousePosX/18)
+                row = round(mousePosY/11)
 
-            if(column % 2 == 0 and row % 2 != 0):
-                #The row cannot be odd
-                if(unroundedRow > row):
+                #parse the column and row variable to match the way it's parsed in my map
+
+                if(column % 2 == 0 and row % 2 != 0):
+                    #The row cannot be odd
+                    if(unroundedRow > row):
+                        row = row + 1
+                    else:
+                        row = row - 1
+                elif(column % 2 != 0 and row % 2 == 0):
+                    #This row cannot be even
+                    if(unroundedRow > row):
+                        row = row + 1
+                    else:
+                        row = row - 1
+
+
+                if column <= 0:
+                    column = column + 1
+                if row <= 0:
                     row = row + 1
-                else:
-                    row = row - 1
-            elif(column % 2 != 0 and row % 2 == 0):
-                #This row cannot be even
-                if(unroundedRow > row):
-                    row = row + 1
-                else:
-                    row = row - 1
 
+                #print(str(column) + " " + str(row)) #DEBUG
+                tester = (column, row)
 
-            if column <= 0:
-                column = column + 1
-            if row <= 0:
-                row = row + 1
+                for hex in map: #now we've identified that mouse is over a specific hex.
+                    #print(hex.location)
+                    if(str(tester) == hex.location):
+                        #render the text
+                        #print(str(hex.location))
+                        textLocResponse = otherFont.render(hex.location , True, BLUECOLOR, None)
+                        textBiomeResponse = otherFont.render(hex.biome, True, BLUECOLOR, None)
+                        textTOneResponse = otherFont.render(hex.traits[0] , True, BLUECOLOR, None)
+                        textTTwoResponse = otherFont.render(hex.traits[1] , True, BLUECOLOR, None)
+                        textTThreeResponse = otherFont.render(hex.traits[2] , True, BLUECOLOR, None)
+                        textTFourResponse = otherFont.render(hex.traits[3] , True, BLUECOLOR, None)
+                        textTFiveResponse = otherFont.render(hex.traits[4] , True, BLUECOLOR, None)
+                        textTSixResponse = otherFont.render(hex.traits[5] , True, BLUECOLOR, None)
+                        textDescResponse  = otherFont.render(hex.traitDescription[:150] , True, BLUECOLOR, None)
+                        if(len(hex.traitDescription) > 149):
+                            textDescResponseTwo = otherFont.render(hex.traitDescription[150:300] , True, BLUECOLOR, None)
+                            screen.blit(textDescResponseTwo, textDescBoxResponseTwo)
+                        if(len(hex.traitDescription) > 299):
+                            textDescResponseThree = otherFont.render(hex.traitDescription[300:450] , True, BLUECOLOR, None)
+                            screen.blit(textDescResponseThree, textDescBoxResponseThree)
+                        #put the text on screen
+                        screen.blit(textLocResponse, textLocBoxResponse)
+                        screen.blit(textBiomeResponse, textBiomeBoxResponse)
+                        screen.blit(textTOneResponse, textTOneBoxResponse)
+                        screen.blit(textTTwoResponse, textTTwoBoxResponse)
+                        screen.blit(textTThreeResponse, textTThreeBoxResponse)
+                        screen.blit(textTFourResponse, textTFourBoxResponse)
+                        screen.blit(textTFiveResponse, textTFiveBoxResponse)
+                        screen.blit(textTSixResponse, textTSixBoxResponse)
+                        screen.blit(textDescResponse, textDescBoxResponse)
+                    else:
+                        continue
 
-            print(str(column) + " " + str(row)) #DEBUG
-            tester = (column, row)
-
-            for hex in map: #now we've identified that mouse is over a specific hex.
-                #print(hex.location)
-                if(str(tester) == hex.location):
-                    #render the text
-                    print(str(hex.location))
-                    textLocResponse = otherFont.render(hex.location , True, BLUECOLOR, None)
-                    textBiomeResponse = otherFont.render(hex.biome, True, BLUECOLOR, None)
-                    textTOneResponse = otherFont.render(hex.traits[0] , True, BLUECOLOR, None)
-                    textTTwoResponse = otherFont.render(hex.traits[1] , True, BLUECOLOR, None)
-                    textTThreeResponse = otherFont.render(hex.traits[2] , True, BLUECOLOR, None)
-                    textTFourResponse = otherFont.render(hex.traits[3] , True, BLUECOLOR, None)
-                    textTFiveResponse = otherFont.render(hex.traits[4] , True, BLUECOLOR, None)
-                    textTSixResponse = otherFont.render(hex.traits[5] , True, BLUECOLOR, None)
-                    textDescResponse  = otherFont.render(hex.traitDescription[:100] , True, BLUECOLOR, None)
-                    textDescResponseTwo = otherFont.render(hex.traitDescription[100:len(hex.traitDescription)] , True, BLUECOLOR, None)
-
-                    #put the text on screen
-                    screen.blit(textLocResponse, textLocBoxResponse)
-                    screen.blit(textBiomeResponse, textBiomeBoxResponse)
-                    screen.blit(textTOneResponse, textTOneBoxResponse)
-                    screen.blit(textTTwoResponse, textTTwoBoxResponse)
-                    screen.blit(textTThreeResponse, textTThreeBoxResponse)
-                    screen.blit(textTFourResponse, textTFourBoxResponse)
-                    screen.blit(textTFiveResponse, textTFiveBoxResponse)
-                    screen.blit(textTSixResponse, textTSixBoxResponse)
-                    screen.blit(textDescResponse, textDescBoxResponse)
-                    screen.blit(textDescResponseTwo, textDescBoxResponseTwo)
-                else:
-                    continue
-
-        #for box in textBoxes:
-            #box.handle_event(event)
             #for box in textBoxes:
-                #box.update()
-                #screen.fill((255, 211, 211))
-            #for box in textBoxes:
-                #box.draw(screen)
-                #pygame.display.flip()
-                #clock.tick(30)
+                #box.handle_event(event)
+                #for box in textBoxes:
+                    #box.update()
+                    #screen.fill((255, 211, 211))
+                #for box in textBoxes:
+                    #box.draw(screen)
+                    #pygame.display.flip()
+                    #clock.tick(30)
 
-        #if event.type == pygame.MOUSEBUTTONDOWN:
-            #if textBox.collidepoint(event.pos):
-            #    active = True
-            #else:
-            #    active = False
+            #if event.type == pygame.MOUSEBUTTONDOWN:
+                #if textBox.collidepoint(event.pos):
+                #    active = True
+                #else:
+                #    active = False
 
-        #if event.type == pygame.KEYDOWN:
-        #    if event.key == pygame.K_BACKSPACE:
-        #        userInput = userInput[:-1]
-        #    else:
-        #        userInput += event.unicode
+            #if event.type == pygame.KEYDOWN:
+            #    if event.key == pygame.K_BACKSPACE:
+            #        userInput = userInput[:-1]
+            #    else:
+            #        userInput += event.unicode
 
-    #screen.fill((211, 211, 211)) #fills background with a nice grey
+        #screen.fill((211, 211, 211)) #fills background with a nice grey
 
-    #pygame.draw.rect(screen, color, textBox)
-    #textSurface = baseFont.render(userInput, True, (255, 255, 255))
+        #pygame.draw.rect(screen, color, textBox)
+        #textSurface = baseFont.render(userInput, True, (255, 255, 255))
 
-    #screen.blit(textSurface, (textBox.x+5, textBox.y+5))
+        #screen.blit(textSurface, (textBox.x+5, textBox.y+5))
 
-    #textBox.w = max(100, textSurface.get_width()+10)
-    #pygame.display.flip()
-    #refreshes screen, to show any updates
-    pygame.display.flip()
-pygame.quit()
+        #textBox.w = max(100, textSurface.get_width()+10)
+        #pygame.display.flip()
+        #refreshes screen, to show any updates
+        pygame.display.flip()
+    pygame.quit()
+
+main()

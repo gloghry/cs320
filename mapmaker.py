@@ -178,6 +178,12 @@ class HexBox: #this is the hex boxes which compose the map
         secondTrait = random.randrange(8)
         thirdTrait = random.randrange(8)
 
+        if(secondTrait == firstTrait):
+            secondTrait = random.randrange(8)
+
+        if(thirdTrait == firstTrait or thirdTrait == secondTrait):
+            thirdTrait = random.randrange(8)
+
         #First 7 of these have 2 options each
         if(firstTrait > 6):
             string = content[firstTrait]
@@ -306,6 +312,9 @@ class HexBox: #this is the hex boxes which compose the map
         #13 - 20 describe the next 2
         fourthTrait = random.randrange(10,20)
         fifthTrait = random.randrange(10,20)
+
+        if(fourthTrait == fifthTrait):
+            fifthTrait = random.randrange(10,20)
 
         if(fourthTrait > 16):
             self.traits[3] = 'None'

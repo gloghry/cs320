@@ -61,6 +61,10 @@ textDescBox = (10, 700)
 textDescBoxResponse = (10, 715)
 textDescBoxResponseTwo = (10, 730)
 textDescBoxResponseThree = (10, 745)
+exitButton = (1200, 570, 100, 50)
+refreshButton = (1200, 630, 100, 50)
+exitButtonText = (1220, 582)
+refreshButtonText = (1200, 642)
 
 #define the text that is static and unchanging
 textTitle = titleFont.render('Info Pane', True, BLACK, None)
@@ -73,6 +77,8 @@ textTFour = otherFont.render('Trait Four:', True, BLACK, None)
 textTFive = otherFont.render('Trait Five:', True, BLACK, None)
 textTSix = otherFont.render('Trait Six:', True, BLACK, None)
 textDesc = otherFont.render('Description', True, BLACK, None)
+textExit = titleFont.render('Exit', True, BLACK, None)
+textRefresh = titleFont.render('Restart', True, BLACK, None)
 
 active = True #declares that the program is actively running
 trigger = False
@@ -435,11 +441,17 @@ def cleanScreen():
     screen.fill(GREY, (10, 730, 1490, 26))
     screen.fill(GREY, (10, 745, 1490, 26))
 
+    pygame.draw.rect(screen, RED, exitButton)
+    pygame.draw.rect(screen, RED, refreshButton)
+    screen.blit(textExit, exitButtonText)
+    screen.blit(textRefresh, refreshButtonText)
+
 #main stuff below here
 def main():
     global active
     global map
     global screen
+    global WATERTOTAL
 
     screen.fill(GREY)
     mapDraw(39, 26, 12.5)
@@ -461,10 +473,29 @@ def main():
         screen.blit(textTFive, textTFiveBox)
         screen.blit(textTSix, textTSixBox)
         screen.blit(textDesc, textDescBox)
+        pygame.draw.rect(screen, RED, exitButton)
+        pygame.draw.rect(screen, RED, refreshButton)
+        screen.blit(textExit, exitButtonText)
+        screen.blit(textRefresh, refreshButtonText)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 active = False
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                mousePosX, mousePosY = pygame.mouse.get_pos()
+                #(1200, 570, 100, 50)
+                #refreshButton = (1200, 630, 100, 50)
+
+                #check if within exit exitButton
+                if(mousePosX <= 1300 and mousePosX >= 1200 and mousePosY <= 620 and mousePosY >= 570):
+                    active = False
+
+                #check if within refresh Button
+                if(mousePosX <= 1300 and mousePosX >= 1200 and mousePosY <= 680 and mousePosY >= 630):
+                    map = []
+                    WATERTOTAL = random.randrange(200, 1500) #min of about 10% water, to a maximum of about 75%
+                    main()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 #i = 0
@@ -501,6 +532,10 @@ def main():
                 for hex in map: #now we've identified that mouse is over a specific hex.
                     #print(hex.location)
                     if(str(tester) == hex.location):
+                        pygame.draw.rect(screen, RED, exitButton)
+                        pygame.draw.rect(screen, RED, refreshButton)
+                        screen.blit(textExit, exitButtonText)
+                        screen.blit(textRefresh, refreshButtonText)
                         #render the text
                         #print(str(hex.location))
                         textLocResponse = otherFont.render(hex.location , True, BLUECOLOR, None)

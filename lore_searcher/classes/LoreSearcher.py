@@ -48,7 +48,7 @@ class Searcher(object):
 				return None
 			return Page(result['docText'])
 
-	def search(self, userQuery, limit=10, searchType="AND"):
+	def search(self, userQuery, pageNum=1, limit=10, searchType="AND"):
 		resultDict = {"query": userQuery, "results": []}
 
 		with self.ix.searcher() as searcher:
@@ -64,7 +64,7 @@ class Searcher(object):
 
 			# parse query and search the database
 			query = parser.parse(userQuery.strip())
-			results = searcher.search(query, limit=limit, terms=True)
+			results = searcher.search_page(query, pagenum=pageNum, pagelen=limit, terms=True)
 
 			numResults = len(results)
 			# no results found, suggest a different query
@@ -82,6 +82,8 @@ class Searcher(object):
 
 			# total number of relevant docs in database
 			resultDict['total-results'] = numResults
+			# total pages available for search query (keeping same limit)
+			resultDict['total-pages'] = numResults/limit
 			# how many results were returned
 			resultDict['topN'] = len(resultDict['results'])
 

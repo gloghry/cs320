@@ -12,7 +12,7 @@ results = searcher.search('tower twilight', limit=3)
 # if no results were found (results = None), searcher will attempt to fix query and offer a suggested query 
 # saved under the 'corrected' key
 print("------------------ summary print --------------------")
-results = searcher.search('tower twilight', limit=3)
+results = searcher.search('tower twilight', pageNum=1, limit=3)
 if results['results'] == None:
     print(f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
 else:
@@ -21,7 +21,7 @@ else:
 
 # prints full pages
 print("\n------------------ full page print --------------------")
-results = searcher.search('tower twilight', limit=3)
+results = searcher.search('tower twilight', pageNum=2, limit=3)
 if results['results'] == None:
 	print(f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
 else:

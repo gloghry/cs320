@@ -155,22 +155,22 @@ class HexBox: #this is the hex boxes which compose the map
         #now that biome is assigned, we need to read in the biome text file & assign traits
         if(self.biome == 'Aquatic'):
             #open file
-            file = open('AquaticFeatures.txt', 'r')
+            file = open('MapMaker\AquaticFeatures.txt', 'r')
         elif(self.biome == 'Beach'):
             #open file
-            file = open('BeachFeatures.txt', 'r')
+            file = open('MapMaker\BeachFeatures.txt', 'r')
         elif(self.biome == 'Grassland'):
             #open file
-            file = open('GrasslandFeatures.txt', 'r')
+            file = open('MapMaker\GrasslandFeatures.txt', 'r')
         elif(self.biome == 'Forest'):
             #open file
-            file = open('ForestFeatures.txt', 'r')
+            file = open('MapMaker\ForestFeatures.txt', 'r')
         elif(self.biome == 'Desert'):
             #open file
-            file = open('DesertFeatures.txt', 'r')
+            file = open('MapMaker\DesertFeatures.txt', 'r')
         else:
             #open file
-            file = open('TundraFeatures.txt', 'r')
+            file = open('MapMaker\TundraFeatures.txt', 'r')
         content = file.readlines()
 
         #first 10 lines describe the first 3 traits, use 3 random numbers to pick the traits, ensure they don't match

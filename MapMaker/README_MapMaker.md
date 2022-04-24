@@ -40,13 +40,13 @@
 </br> The traits are picked randomly and get a single check for whether they match or not. While this doesn't prevent the traits from matching up, it does ensure that most won't match up. When I tried to use a while loop on this, it broke.
 
 </br> The traits, when sorted, have the last character removed (the \n) and are then searched for in the document to gather their descriptions.</p>
-<p>draw</p>
+<p>draw: Draw creates the hexes on the screen. It first creates the colored hex, and then creates the black outline for it.</p>
 
 <h4>mapDraw Function</h4>
-<p></p>
+<p>mapDraw is the function which draws the initial map, calls the HexBox functions, and controls it's creation. This is called before the while loop in the game so it's only called once unless the restart button is hit. It draws the hexes based on the gridding system, and assigns them their column and row.</p>
 
 <h4>cleanScreen Function</h4>
-<p></p>
+<p>cleanScreen is what is run between hexes being clicked on, it will hide the previous text with grey boxes. It also redraws the exit and refresh buttons over those boxes.</p>
 
 <h4>main</h4>
-<p></p>
+<p> Main is the function that calls everything we need to run. It checks what the user is doing (whether clicking on exit or a box, or a button), and if the user interacts with the program, it calls all the needed parts and will blit text to the screen for the user.</p>

@@ -81,6 +81,7 @@ class HexBox: #this is the hex boxes which compose the map
         self.xPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
         self.yPoint = [0,0,0,0,0,0] #list of the points that make up the hexagon
         self.traits = ['TraitOne','TraitTwo','TraitThree','TraitFour','TraitFive','TraitSix'] #empty list ready to hold the traits that compose the hex
+        self.traitDescription = ''
         self.number = 0 #blank identifier for the number of the hex, assigned when the hex is drawn.
         self.biome = '' #string to hold the biome name
         self.active = False #not current active (clicked on)
@@ -141,10 +142,129 @@ class HexBox: #this is the hex boxes which compose the map
                 self.biome = 'Tundra'
                 self.color = WHITECOLOR
 
-    #now that biome is assigned, we need to read in the biome text file & assign traits
+        #now that biome is assigned, we need to read in the biome text file & assign traits
+        if(self.biome = 'Aquatic'):
+            #open file
+            file = open(AquaticFeatures.txt, r)
+        elif(self.biome = 'Beach'):
+            #open file
+            file = open(BeachFeatures.txt, r)
+        elif(self.biome = 'Grassland'):
+            #open file
+            file = open(GrasslandFeatures.txt, r)
+        elif(self.biome = 'Forest'):
+            #open file
+            file = open(ForestFeatures.txt, r)
+        elif(self.biome = 'Desert'):
+            #open file
+            file = open(DesertFeatures.txt, r)
+        else:
+            #open file
+            file = open(TundraFeatures.txt, r)
+        content = file.readlines()
 
-    #change trait text of this biome
+        #first 10 lines describe the first 3 traits, use 3 random numbers to pick the traits, ensure they don't match
+        firstTrait = randomrange(10)
+        secondTrait = randomrange(10)
+        while(secondTrait == firstTrait):
+            secondTrait = randomrange(10)
 
+        thirdTrait = randomrange(10)
+        while(thirdTrait == firstTrait or thirdTrait == secondTrait):
+            thirdTrait = randomrange(10)
+
+        #First 7 of these have 2 options each
+        if(firstTrait > 7):
+            self.traits[1] = content[firstTrait]
+            self.traitDescription += content[firstTrait + 50]
+        else:
+            flip = randomrange(2)
+            list = content[firstTrait].split(',')
+            if(flip == 1):
+                self.traits[1] = list[0]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[1]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+            else:
+                self.traits[1] = list[1]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[1]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+
+        if(secondTrait > 7):
+            self.traits[2] = content[secondTrait]
+            self.traitDescription += content[secondTrait + 50]
+        else:
+            flip = randomrange(2)
+            list = content[secondTrait].split(',')
+            if(flip == 1):
+                self.traits[2] = list[0]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[0]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+            else:
+                self.traits[2] = list[1]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[1]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+
+        if(thirdTrait > 7):
+            self.traits[3] = content[thirdTrait]
+            self.traitDescription += content[thirdTrait + 50]
+        else:
+            flip = randomrange(2)
+            list = content[thirdTrait].split(',')
+            if(flip == 1):
+                self.traits[3] = list[0]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[0]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+            else:
+                self.traits[3] = list[1]
+                i = 0
+                for(words in content):
+                    if(words == '- ' + list[1]):
+                        self.traitDescription += content[i + 1]
+                    i = i + 1
+
+        #13 - 20 describe the next 2
+        fourthTrait = randomrange(11,20)
+        fifthTrait = randomrange(11,20)
+        while(fifthTrait == fourthTrait):
+            secondTrait = randomrange(11,20)
+
+        if(fourthTrait > 17):
+            self.traits[4] = 'None'
+        else:
+            self.traits[4] = content[fourthTrait]
+            self.traitDescription += content[fourthTrait + 50]
+
+        if(fifthTrait > 17):
+            self.traits[5] = 'None'
+        else:
+            self.traits[5] = content[fifthTrait]
+            self.traitDescription += content[fifthTrait + 50]
+
+        #22-28 describe last one
+        sixthTrait = randomrange(20, 40)
+
+        if(sixthTrait > 24):
+            self.traits[6] = 'None'
+        else:
+            self.traits[6] = content[sixthTrait]
+            self.traitDescription += content[sixthTrait + 50]
+
+        file.close()
 
     def draw(self, screen, x, y, q):
         self.location = q

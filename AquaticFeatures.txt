@@ -1,33 +1,29 @@
-#Pick any 3
-50/Deep/Shallow
-50/Clear/Murky
-50/Rough/Calm
-50/Polluted/Clean
-50/Blue/Green
-33/Salt/Fresh/Brackish
-50/Boiling/Cold
-10/Sparkling
-10/Sulfurous
-/None
-
-#Pick any 2 Notable
-20/None
-5/Geyser
-4/Marsh
-20/Waterway
-40/Traversable
-12/Potable
-10/Springs
-15/Whirlpool
-
-#Pick 1 below
-75/None
-5/Tomb
-5/Ship
-5/Wreck
-5/Cave
-5/Monster
-
+Deep,Shallow
+Clear,Murky
+Rough,Calm
+Polluted,Clean
+Blue,Green
+Salt,Fresh
+Boiling,Cold
+Sparkling
+Sulfurous
+~
+Geyser
+Marsh
+Waterway
+Traversable
+Potable
+Springs
+Whirlpool
+None
+~
+Tomb
+Ship
+Wreck
+Cave
+Monster
+None
+~
 @Descriptions
 - Deep
 This water is quite deep, from depths of 100 meters, to 1000 meters, many water creatures may live here, completely unseen by the land-based populace. The bottom is unreachable by non-magical or non-technological means.
@@ -50,8 +46,6 @@ This water is clean, absent any debris.
 This is saltwater.
 - Fresh
 This is freshwater.
-- Brackish
-This water is a mix of freshwater and salt.
 - Blue
 This water is blue in color.
 - Green

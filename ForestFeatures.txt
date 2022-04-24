@@ -1,34 +1,29 @@
-#Pick any 3
-50/Dark/Sunlit
-33/Jungle/Pine/Oak
-2/Ruined/Thriving
-50/Green/Brown
-33/Snow/Warm/Cool
-20/Berries
-50/Village(s)
-80/Mushrooms
-20/Mountain
-20/Plateau
-/None
-
-#Pick any 2 Notable
-20/None
-10/Stormy
-15/City(s)
-30/Traversable
-50/Buzzing
-20/Rivers
-10/Lake
-
-#Pick 1 below
-75/None
-5/Fae Entrance
-5/Monster
-5/Cave
-5/Ruin
-5/Dungeon
-5/Enchanted
-
+Dark,Sunlit
+Jungle,Pine
+Ruined,Thriving
+Green,Brown
+Warm,Cool
+Food,Barren
+Village(s),Uninhabited
+Mountain
+Plateau
+~
+Stormy
+City(s)
+Traversable
+Buzzing
+Rivers
+Lake
+Monsters
+None
+~
+Fae Entrance
+Cave
+Ruin
+Dungeon
+Enchanted
+None
+~
 @Descriptions
 - None
 - Dark

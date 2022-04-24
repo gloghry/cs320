@@ -1,7 +1,13 @@
-#Pick any 3
+,
+,
+,
+,
+,
+,
+,
 
 
-
+~
 
 
 
@@ -10,25 +16,14 @@
 
 
 None
+~
 
-#Pick any 2 Notable
+
+
+
+
 None
-
-
-
-
-
-
-
-#Pick 1 below
-None
-
-
-
-
-
-
-
+~
 @Descriptions
 
 ~~~~~~~~~Explanations

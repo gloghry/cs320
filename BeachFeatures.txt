@@ -1,17 +1,14 @@
-#Pick any 3
-Cliff
-Rocky/Sandy
-Village
-Fish
-Bay
-Warm/Cold
-White/Yellow/Brown
+Cliff,Flat
+Rocky,Sandy
+Village,Uninhabited
+Fish,No Fish
+Bay,Simple
+Warm,Cold
+White,Yellow
 Spawning
 Riptide
-Smooth/Rough
-None
-
-#Pick any 2 Notable
+Sharks
+~
 None
 Lighthouse
 City
@@ -19,15 +16,14 @@ Reef
 Fishery
 Stormy
 Tidepools
-
-#Pick 1 below
+~
 None
 Wreck
 Cave
 Abyss
 Carcass
 Ruin
-
+~
 @Descriptions
 - None
 - Cliff

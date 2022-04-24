@@ -1,32 +1,29 @@
-#Pick any 3
-50/Savannah/Plains
-Rainy/Sunny
-Green/Brown
-Breezy
-Stormy
-Town(s)
-Mount
-Mountain
+Savannah,Plains
+Rainy,Sunny
+Green,Brown
+Breezy,
+Stormy,
+Town(s),
+Mount,
 Valley
-None
 
-#Pick any 2 Notable
-None
+~
 Rivers
 Lake(s)
 Marsh
-Swamp
 City(s)
 Fires
 Overgrown
-
-#Pick 1 below
 None
+
+~
+
 Sinkhole
 Ruins
 Dungeon
 Monster
-
+None
+~
 @Descriptions
 - None
 - Savannah

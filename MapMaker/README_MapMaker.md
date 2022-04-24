@@ -37,7 +37,9 @@
 - fifthTrait: a random number, picking the fifth trait
 - sixthTrait: a random number, picking the sixth trait
 
-</br> The traits are picked randomly and get a single check for whether they match or not. While this doesn't prevent the traits from matching up, it does ensure that most won't match up. When I tried to use a while loop on this, it broke</p>
+</br> The traits are picked randomly and get a single check for whether they match or not. While this doesn't prevent the traits from matching up, it does ensure that most won't match up. When I tried to use a while loop on this, it broke.
+
+</br> The traits, when sorted, have the last character removed (the \n) and are then searched for in the document to gather their descriptions.</p>
 <p>draw</p>
 
 <h4>mapDraw Function</h4>

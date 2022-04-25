@@ -1,5 +1,6 @@
 import textwrap
 import os
+import sys
 import json
 from functools import reduce
 from .LorePage import Page
@@ -100,5 +101,16 @@ class Master:
                 tmpPage = Searcher.searchID()
 
 
-    def prettySave(self, path) -> bool:
-        pass
+    def prettySave(self, path, bound=80) -> bool:
+        try:
+            # redirecting stdout to file
+            sys.stdout = open(path, 'w+')
+            self.printLore(bound)
+
+            # closing file pointer and restoring stdout
+            sys.stdout.close()
+            sys.stdout = sys.__stdout__
+            
+            return True
+        except:
+            return False

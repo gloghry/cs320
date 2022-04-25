@@ -18,8 +18,9 @@ class Section:
             self.totalPages -= 1
 
     def printSection(self, bound=80):
-        print(self.sectionName.title())
-        print(len(self.sectionName)*"-")
+        title = f"\nSection: {self.sectionName.title()}"
+        print(title)
+        print(len(title)*"-")
         for id, page in self.pageDict.items():
             page.printSummary(bound)
 

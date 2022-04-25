@@ -1,37 +1,6 @@
 searcher.py:
 	figure out the paging shiz
 
-LoreSection.py:
-	possible methods:
-		init(section_name: string)
-		print(section)
-		add(pageID)
-		del(pageID)
-
-	possible fields:
-		sectionName: string
-		pageList: <Page>List or Dict with pageID as key
-		pageIDs: <int>List
-		totalPages: int
-
-LoreMaster.py:
-	possible methods:
-		init(cName, cClass)
-		print(timelineList)
-		save(path, timelineList)
-		load(path, timelineList)
-		add(sectionName)
-		del(sectionName)
-	
-	possible fields:
-		sectionList: <Section>List or dict with sectionName as key
-		characterName: string
-		characterClass: string
-		numSections: int
-		totalPages: int
-		sectionNames: <String>List
-		bio: str
-
 		
 LoreBuilder.py
 	interactive console program uses searcher, page, and timeline

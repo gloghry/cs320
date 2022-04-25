@@ -1,7 +1,6 @@
 import textwrap
 
-class Page(object):
-	
+class Page:
 	def __init__(self, doc, termHits=[]):
 		tmp = doc.split('<>')
 		self.termHits = set(termHits)
@@ -14,30 +13,34 @@ class Page(object):
 		self.topics = parseTopics(tmp[6])
 
 	def getSummary(self):
-		return {
+		tmpdict = {
 			'id': self.id,
 			'name': self.pageName,
 			'img': self.imgURL,
 			'url': self.srcURL,
 			'blurb': self.blurb,
-			'topics': self.toc,
-			'matched-terms': self.termHits
+			'topics': self.toc
 		}
+		if len(self.termHits) > 0:
+			tmpdict['matched-terms'] = self.termHits
+		return tmpdict
 
 	def getFull(self):
-		return {
+		tmpdict = {
 			'id': self.id,
 			'name': self.pageName,
 			'img': self.imgURL,
 			'url': self.srcURL,
 			'blurb': self.blurb,
 			'topics': self.toc,
-			'matched-terms': self.termHits,
 			'topic-list': self.topics
 		}
+		if len(self.termHits) > 0:
+			tmpdict['matched-terms'] = self.termHits
+		return tmpdict
 
 	# bound = max amount of characters per line
-	def printSummary(self, bound):
+	def printSummary(self, bound=80):
 		print(bound*"*" + "\n")
 		title = f"{self.pageName.title()} (id: {self.id})\n"
 		print(title.center(bound) + '\n')
@@ -46,16 +49,12 @@ class Page(object):
 		topicStr = tmpTopics[:bound - (len("Topics Included:") + 3)] + "..." if len(tmpTopics) > bound else tmpTopics
 		print("Topics Included:", topicStr)
 
-		blurb = self.blurb[:bound - 3] + "..." if len(self.blurb) > bound else self.blurb
+		blurb = self.blurb[:(bound*2) - 3] + "..." if len(self.blurb) > (bound*2) else self.blurb
 		print(textwrap.fill(f"Description: {blurb}", width=bound))
 
-		print("\nMatched Terms:", ", ".join(self.termHits))
-		print(textwrap.fill(f"Source-URL: {self.srcURL}", width=bound))
-		print(textwrap.fill(f"Img-URL: {self.imgURL}", width=bound))
-		print("\n" + bound*"*")
+		self.printFooter(bound)
 
-
-	def printFull(self, bound):
+	def printFull(self, bound=80):
 		print(bound*"*" + "\n")
 		title = f"{self.pageName.title()} (id: {self.id})\n"
 		print(title.center(bound))
@@ -68,13 +67,18 @@ class Page(object):
 		for topic in self.topics:
 			printTopic(topic, bound)
 
+		self.printFooter(bound)
+
+	def printFooter(self, bound):
+		print()
 		if len(self.termHits) > 0:
 			print("Matched Terms:", ", ".join(self.termHits))
 		print(textwrap.fill(f"Source-URL: {self.srcURL}", width=bound))
 		print(textwrap.fill(f"Img-URL: {self.imgURL}", width=bound))
 		print("\n" + bound*"*")
 
-def printTopic(topic, bound):
+
+def printTopic(topic, bound=80):
 	topicName = topic['topic-name']
 	topicParas = topic['paras'].strip() + "\n" if 'paras' in topic else ""
 	topicLists = topic['lists'] if 'lists' in topic else []

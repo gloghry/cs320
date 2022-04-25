@@ -1,0 +1,121 @@
+{
+    "character-name": "drizzt",
+    "cBio": "Drizzt Do'Urden was a drow. He stood about 5\u202ffeet and 4\u202finches (1.6\u202fmeters) tall and weighed about 130\u202fpounds (59\u202fkilograms).[13] His handsome features were sharp and well proportioned and, like other drow, Drizzt's skin was black and his stark white hair was long, thick, and flowing. His eyes were a lavender hue (quite different from the drow race's typical red, even when he used his infravision, which normally caused eyes to glow red) and seemed to glow fiercely when he was angry or determined.[20]",
+    "cClass": "skirmisher",
+    "cRace": "drow",
+    "cOrigin": "underdark",
+    "cSex": "male",
+    "page-total": 3,
+    "section-names": [
+        "inspiration",
+        "bruh",
+        "yo"
+    ],
+    "sections": [
+        {
+            "name": "inspiration",
+            "total-pages": 1,
+            "ids": [
+                "4269"
+            ],
+            "page-list": [
+                {
+                    "id": "4269",
+                    "name": "Alakbar bin Alad bin Alaq",
+                    "img": "default.png",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Alakbar_bin_Alad_bin_Alaq",
+                    "blurb": "Alakbar bin Alad bin Alaq\n\nBasic Information\n\nTitles\nPrince\n\n\nHome\nMedina al-Afyal\n\n\nSex\nMale\n\n\nRace\nHuman\n\n\nEthnicity\nZakharan\n\n\nKnownlanguage(s)\nMidani\n\n\n\nFamily\n\nParent(s)\nAlad bin Alaq bin Alonka\n\n\n\nAlakbar bin Alad bin Alaq, or Alakbar for short, was the only male heir of the Padishah of Medina al-Afyal in 1367 DR.[note 1]",
+                    "topics": [
+                        "relationships",
+                        "activities"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "relationships",
+                            "paras": "Alakbar was the firstborn son of Alad bin Alaq bin Alonka, the Padishah of Medina al-Afyal. He was a member of the House of Alon, the historical ruling family."
+                        },
+                        {
+                            "topic-name": "activities",
+                            "paras": "Alakbar left for a voyage over the Crowded Sea in 1363 DR and was not seen since."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "bruh",
+            "total-pages": 1,
+            "ids": [
+                "69"
+            ],
+            "page-list": [
+                {
+                    "id": "69",
+                    "name": "Beldenshyn",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/c/ca/Beldenshyn.png/revision/latest/scale-to-width-down/350?cb=20190324231313",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Beldenshyn",
+                    "blurb": "Beldenshyn, nicknamed \"the Bell\" and derogatorily called \"Goatreek\" and \"the Goatstink\", was a gnome village in the Fields of the Dead, circa the Year of the Tankard, 1370 DR.",
+                    "topics": [
+                        "geography",
+                        "trade",
+                        "defenses",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "geography",
+                            "paras": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river."
+                        },
+                        {
+                            "topic-name": "trade",
+                            "paras": "This community manufactured and sold crossbows and bolts."
+                        },
+                        {
+                            "topic-name": "defenses",
+                            "paras": "The village was surrounded by a stockade, and the residents were sure-shots with crossbows."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "The residents of Beldenshyn raised long-haired goats that grazed around the village, both inside and outside the walls. Unfortunately, these hirsute ungulates had an odor that most humans found disgusting, thus giving the village the disparaging nicknames that were bandied about in places like Scornubel."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "yo",
+            "total-pages": 1,
+            "ids": [
+                "420"
+            ],
+            "page-list": [
+                {
+                    "id": "420",
+                    "name": "Yuji Takaesu",
+                    "img": "default.png",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Yuji_Takaesu",
+                    "blurb": "Yuji Takaesu\n\nBasic Information\n\nHome\nAru, Wa\n\n\nSex\nMale\n\n\nRace\nHuman\n\n\nEthnicity\nWanese\n\n\nAge\n62\n\n\nRules Information\n\n\n\n\n\n\t\t\t\t\t\t\t\t2e\n\t\t\t\t\t\t\t\n\n\n\n\n\n2nd Edition Statistics\n\nAlignment\nLawful good\n\n\nClass\n Samurai  12  \n\n\n\n\n\nYuji Takaesu was a samurai in the town of Aru in Wa.",
+                    "topics": [
+                        "personality",
+                        "activities",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "personality",
+                            "paras": "Yuji was totally loyal to his daimyo. He loved music and outside his government dutieshe  was an introspective and intellectual individual."
+                        },
+                        {
+                            "topic-name": "activities",
+                            "paras": "Yuji was the right-hand man of the daimyo Benju Matsutomo. His hobbies were acting in noh plays with Benju and playing go."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "Yuji met Benju Matsutomo when he was a simple samurai general. From that day, Yuji was his closest advisor and best friend."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

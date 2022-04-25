@@ -25,7 +25,7 @@ Description: Map creation tool. The program pulls from several .txt files to bui
 ## Peter
 Name: Peter Wanner  
 Contact: peter.wanner@wsu.edu  
-Description: tbd  
+Description: The goal with this item database system was to create a database system from scratch using python. It should eventualy have the ability to support multiple inventory systems as well. The end goal was to create a database in which you can add, delete, and edit items. All public methods of the itemDB class should return a python dict/json format. And it should start with a success flag, resulting in true if it succeded or false otherwise. It it results in false it should then have a reason flag which you can query for why it failed.
 
 ## Jared
 Name: Jared Diamond  

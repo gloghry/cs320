@@ -11,40 +11,51 @@ def add(itemName):
         masterManifest = json.load(outfile)
 
     if itemName in masterManifest:
-        print("Item already exists in the itembase")
-        return
+        #print("Item already exists in the itembase")
+        return False
 
-    print(itemName)
-    print("Creating an item with the name: " + itemName)
-    isMagic = input("Is this item magical?(Enter yes or no)\n\t>")
-    acNum = input("What is the ac of this item?(Enter a number)\n\t>")
-    damageNum = input("What the is the damage of the item?(Enter 0 if there is no damage done)\n\t>")
-    try:
-        isZero = int(damageNum)
+    #print(itemName)
+    #print("Creating an item with the name: " + itemName)
+    #isMagic = input("Is this item magical?(Enter yes or no)\n\t>")
+    #acNum = input("What is the ac of this item?(Enter a number)\n\t>")
+    #damageNum = input("What the is the damage of the item?(Enter 0 if there is no damage done)\n\t>")
+    #try:
+    #    isZero = int(damageNum)
 
-        if isZero != 0:
-            damageType = input("What is the damage type?\n\t>")
-        else:
-            damageType = "none"
+    #    if isZero != 0:
+    #        damageType = input("What is the damage type?\n\t>")
+    #    else:
+    #        damageType = "none"
 
-    except ValueError:
-        damageType = "none"
-    print("Enter a discription:")
-    x = ''
-    discription = ''
-    for line in iter(input, x):
-        pass
-        discription = discription + line + " "
+    #except ValueError:
+    #    damageType = "none"
+    #print("Enter a discription:")
+    #x = ''
+    #discription = ''
+    #for line in iter(input, x):
+    #    pass
+    #    discription = discription + line + " "
         
+    #item = {
+
+    #    "itemName": itemName,
+    #    "isMagic": isMagic,
+    #    "damage": damageNum,
+    #    "ac": acNum,
+    #    "damageType": damageType,
+    #    "isHomebrew": "yes",
+    #    "discription": discription
+
+    #}
     item = {
 
         "itemName": itemName,
-        "isMagic": isMagic,
-        "damage": damageNum,
-        "ac": acNum,
-        "damageType": damageType,
+        "isMagic": "yes",
+        "damage": 0,
+        "ac": 0,
+        "damageType": "none",
         "isHomebrew": "yes",
-        "discription": discription
+        "discription": "blank"
 
     }
 
@@ -57,25 +68,25 @@ def add(itemName):
 
     with open("manifestisMagic.json", "r") as outfile:
         masterManifest = json.load(outfile)
-    masterManifest[itemName] = isMagic
+    masterManifest[itemName] = "yes"
     with open("manifestisMagic.json", "w") as outfile:
         json.dump(masterManifest, outfile)
 
     with open("manifestdamage.json", "r") as outfile:
         masterManifest = json.load(outfile)
-    masterManifest[itemName] = damageNum
+    masterManifest[itemName] = 0
     with open("manifestdamage.json", "w") as outfile:
         json.dump(masterManifest, outfile)
 
     with open("manifestac.json", "r") as outfile:
         masterManifest = json.load(outfile)
-    masterManifest[itemName] = acNum
+    masterManifest[itemName] = 0
     with open("manifestac.json", "w") as outfile:
         json.dump(masterManifest, outfile)
 
     with open("manifestdamageType.json", "r") as outfile:
         masterManifest = json.load(outfile)
-    masterManifest[itemName] = damageType
+    masterManifest[itemName] = "none"
     with open("manifestdamageType.json", "w") as outfile:
         json.dump(masterManifest, outfile)
 
@@ -87,19 +98,30 @@ def add(itemName):
     
     jsonItem = json.dumps(item)
 
-    print(item)
-    print(jsonItem)
+    #print(item)
+    #print(jsonItem)
+
+##    returnStatement = {
+
+##        "printType" : "add"
+##        "data" : item
+
+##    }
     
-    return
+##    return returnStatement
+    return True
+
+def edit(itemName):
+    return "yet to be implemented"
 
 def delete(itemName):
     with open("manifestMaster.json", "r") as outfile:
         masterManifest = json.load(outfile)
 
     if itemName in masterManifest:
-        print("I am useless")
+        result = True
     else:
-        return
+        return False
 
     with open("manifestisMagic.json", "r") as outfile:
         masterManifest = json.load(outfile)
@@ -139,7 +161,15 @@ def delete(itemName):
 
     os.remove("items/" + itemName + ".json")
 
-    return
+#    returnStatement = {
+
+#        "printType" = "delete"
+#        "data" = "Deleted Successfully"
+
+#    }
+
+#    return returnStatement
+    return result
 
 def search(parameters):
     result = list(filter(lambda x: parameters[0] in x, parameterList))
@@ -214,6 +244,9 @@ def printItem(itemName):
         print(value, ": ", key)
     return
 
+def printManifest(whichManifest):
+    return "Not yet implemented"
+
 def printHistory():
     with open("history", "r") as outfile:
         historyContents = outfile.read()
@@ -231,6 +264,8 @@ def commandParser(commandInput):
     command = commandInput[0]
     args = commandInput[1:]
     argsString = ' '.join(args)
+
+    returnBool = True
     
     if command == "search":
         search(args)
@@ -247,8 +282,9 @@ def commandParser(commandInput):
     elif command == "history":
         printHistory()
     else:
+        returnBool = False
         print("Error!! " + command + " is not a valid command!")
-    return
+    return returnBool
 
 def storeToHistory(commandLineInput):
     
@@ -263,15 +299,15 @@ def storeToHistory(commandLineInput):
         print(historyContentsListCorrectedString)
         with open("history", "w") as outfile:
             outfile.write(historyContentsListCorrectedString)
-    return
+    return True
 
-print("Welcome to the commandLine itemDMBS tool!")
-printHelp()
+#print("Welcome to the commandLine itemDMBS tool!")
+#printHelp()
 
-commandInput = ["DNE"]
+#commandInput = ["DNE"]
 
-while commandInput[0] != "exit":
-    commandInputRaw = input(">")
-    commandInput = re.split(" ", commandInputRaw)
-    commandParser(commandInput)
-    storeToHistory(commandInputRaw)
+#while commandInput[0] != "exit":
+#    commandInputRaw = input(">")
+#    commandInput = re.split(" ", commandInputRaw)
+#    commandParser(commandInput)
+#    storeToHistory(commandInputRaw)

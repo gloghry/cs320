@@ -1,6 +1,6 @@
 # Cool Cams
-Hello! This repository is a group project for the CS 320 class at Washington State University Vancouver campus. There are 4 memebers: 
-**Garett Loghry**, **Julion Oddy**, **Peter**, and **Levicy Radeleff**. In this term project is supposed to be a display of "Cool Cams" or interesting projects that catch the users eye. Each member has their own distict, though related, Cool Cam. Our Cool Cams are D&D related. Each member will have their own section here for what they worked on and contributed to the project, please see below. The project was started on January 17th 2022 as part of the Spring Semester.
+Hello! This repository is a group project for the CS 320 class at Washington State University Vancouver campus. There are 5 memebers: 
+**Garett Loghry**, **Julion Oddy**, **Peter**, **Jared Diamond**, and **Levicy Radeleff**. In this term project is supposed to be a display of "Cool Cams" or interesting projects that catch the users eye. Each member has their own distict, though related, Cool Cam. Our Cool Cams are D&D related. Each member will have their own section here for what they worked on and contributed to the project, please see below. The project was started on January 17th 2022 as part of the Spring Semester.
 
 ## Garett
 Name: Garett Loghry  
@@ -30,7 +30,8 @@ Description: tbd
 ## Jared
 Name: Jared Diamond  
 Contact: jared.diamond@wsu.edu  
-Description: tbd  
+Description: The goal of the lore builder is to give users the ability to easily develop lore for their characters / campaigns by offering a list of relevant suggestions based on prompts, or simply letting them enter custom information. For example, a user has created a new bard character. When this new character is input into the lore builder program, the user will be provided a list of relevant facts about bards, such as famous bards, bard colleges, and common instruments. With this information, the user can then be inspired (or not) to add interesting tidbits about their characters that they did not know existed before using the lore builder. The lore builder will go beyond characters though, as it will also allow campaign creators the ability to search for relevant information on their campaign settings. Overall, the lore builder will function as more of a 5E lore explorer, a source of inspiration for character or campaign lore creation. All searchable data came from the [Forgotten Realms Fandom Wiki](https://forgottenrealms.fandom.com/wiki/Main_Page).
+See the [README](https://github.com/gloghry/cs320/tree/master/lore_searcher) in the lore_searcher directory for instructions on how to run it.  
 
 ### Thanks!
 Thanks for checking out our project! We hope you enjoyed your stay :)

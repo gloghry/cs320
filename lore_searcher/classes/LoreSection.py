@@ -1,37 +1,39 @@
-#from .LorePage import Page
-
 class Section:
     def __init__(self, sectionName):
         self.sectionName = sectionName
-        self.pageList = {}
+        self.pageDict = {}
         self.pageIDs = []
         self.totalPages = 0
 
     def addPage(self, page):
-        if page.id not in self.pageList:
-            self.pageList[page.id] = page
+        if page.id not in self.pageDict:
+            self.pageDict[page.id] = page
             self.pageIDs.append(page.id)
             self.totalPages += 1
 
     def delPage(self, pageID):
-        if pageID in self.pageList:
-            del self.pageList[pageID]
-            del self.pageIDs[self.pageIDs.indexOf(pageID)]
+        if pageID in self.pageDict:
+            del self.pageDict[pageID]
+            del self.pageIDs[self.pageIDs.index(pageID)]
             self.totalPages -= 1
 
-    def printSection(self, bound):
+    def printSection(self, bound=80):
         print(self.sectionName.title())
         print(len(self.sectionName)*"-")
-        for id, page in self.pageList.items():
-            page.printFull(bound)
+        for id, page in self.pageDict.items():
+            page.printSummary(bound)
+
+    def getSection(self):
+        return {
+            "name": self.sectionName,
+            "total-pages": self.totalPages,
+            "ids": self.pageIDs,
+            "page-list": list(map(lambda x: self.pageDict[x].getFull(), self.pageIDs))
+        }
 
     def listSection(self):
-        print(self.sectionName.title())
+        print("\n" + self.sectionName.title())
         print(len(self.sectionName)*"-")
-        for id, page in self.pageList.items():
+        for id, page in self.pageDict.items():
             print(f"|- {page.pageName} (id:{id})")
-        print("\n")
-    
-    def printPage(self, pageID, bound):
-        if pageID in self.pageList:
-            self.pageList[pageID].printFull(bound)
+        print()

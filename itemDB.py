@@ -6,7 +6,13 @@ class itemDB:
         self.itemList = []
         self.validKeys = [
             "name",
-            "homebrew"
+            "homebrew",
+            "description",
+            "range",
+            "ac",
+            "damage",
+            "rarity",
+            "weight"
         ]
         
     def updateList(self):#Updates the current list of items in the database

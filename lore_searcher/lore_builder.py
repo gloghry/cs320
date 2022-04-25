@@ -96,7 +96,7 @@ def saveLore(args):
     filename = master.cName.replace(' ', '_').lower()
     path = f"lore_files/{filename}.lore"
     if len(args) != 0:
-        print("Invalid save command: <save_lore>")
+        print("Invalid save command: <save>")
         return
     if master.saveLore(path) == False:
         print("An error occured while trying to save, aborting..")
@@ -104,7 +104,15 @@ def saveLore(args):
         print("Lore saved successfully")
 
 def prettySave(args):
-    pass
+    filename = master.cName.replace(' ', '_').lower()
+    path = f"lore_files/{filename}.txt"
+    if len(args) != 0:
+        print("Invalid pretty save command: <pretty_save>")
+        return
+    if master.prettySave(path, textBound) == False:
+        print("An error occured while trying to save, aborting..")
+    else:
+        print("Lore saved successfully")
 
 def loadLore(args):
         if len(args) != 1:

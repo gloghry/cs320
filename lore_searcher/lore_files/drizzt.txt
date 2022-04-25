@@ -1,0 +1,49 @@
+                                     Drizzt                                     
+
+Class: Skirmisher
+Race: Drow
+Sex: Male
+Origin: Underdark 
+
+Drizzt Do'Urden was a drow. He stood about 5 feet and 4 inches (1.6 meters) tall
+and weighed about 130 pounds (59 kilograms).[13] His handsome features were
+sharp and well proportioned and, like other drow, Drizzt's skin was black and
+his stark white hair was long, thick, and flowing. His eyes were a lavender hue
+(quite different from the drow race's typical red, even when he used his
+infravision, which normally caused eyes to glow red) and seemed to glow fiercely
+when he was angry or determined.[20]
+
+
+Section: Inspiration
+---------------------
+********************************************************************************
+
+                     Alakbar Bin Alad Bin Alaq (id: 4269)
+                      
+
+Topics Included: relationships, activities
+Description: Alakbar bin Alad bin Alaq  Basic Information  Titles Prince   Home
+Medina al-Afyal   Sex Male   Race Human   Ethnicity Zakharan   Knownlanguage(s)
+Midani    ...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Alakbar_bin_Alad_bin_Alaq
+Img-URL: default.png
+
+********************************************************************************
+
+Section: Yo
+------------
+********************************************************************************
+
+                            Yuji Takaesu (id: 420)
+                             
+
+Topics Included: personality, activities, history
+Description: Yuji Takaesu  Basic Information  Home Aru, Wa   Sex Male   Race
+Human   Ethnicity Wanese   Age 62   Rules Information
+2e                                                               2nd Editio...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Yuji_Takaesu
+Img-URL: default.png
+
+********************************************************************************

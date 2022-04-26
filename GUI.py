@@ -391,5 +391,5 @@ def generate_background():
 
 
 if __name__ == "__main__":
-    # opening_window()
+    opening_window()
     main()

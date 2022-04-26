@@ -1,0 +1,20 @@
+{
+    "character-name": "new lore",
+    "cBio": "aimless walker",
+    "cClass": "researcher",
+    "cRace": "none",
+    "cOrigin": "the void",
+    "cSex": "none",
+    "page-total": 0,
+    "section-names": [
+        "inspiration"
+    ],
+    "sections": [
+        {
+            "name": "inspiration",
+            "total-pages": 0,
+            "ids": [],
+            "page-list": []
+        }
+    ]
+}

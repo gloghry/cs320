@@ -14,25 +14,67 @@ infravision, which normally caused eyes to glow red) and seemed to glow fiercely
 when he was angry or determined.[20]
 
 
-Section: Inspiration
----------------------
+Section: Bruh
+--------------
 ********************************************************************************
 
-                     Alakbar Bin Alad Bin Alaq (id: 4269)
-                      
+                         Zelraun Roaringhorn (id: 80)
+                          
 
-Topics Included: relationships, activities
-Description: Alakbar bin Alad bin Alaq  Basic Information  Titles Prince   Home
-Medina al-Afyal   Sex Male   Race Human   Ethnicity Zakharan   Knownlanguage(s)
-Midani    ...
+Topics Included: appearance, personality, possession, history
+Description: Zelraun Roaringhorn  Basic Information  Titles Lord   Home
+Waterdeep, Sword Coast North   Sex Male   Race Human   Occupation Noble   Age
+50s (c.1485 DR)   Ru...
 
-Source-URL: https://forgottenrealms.fandom.com/wiki/Alakbar_bin_Alad_bin_Alaq
-Img-URL: default.png
+Source-URL: https://forgottenrealms.fandom.com/wiki/Zelraun_Roaringhorn
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/6/60/Zelraun.p
+ng/revision/latest/scale-to-width-down/350?cb=20190306154444
 
 ********************************************************************************
+********************************************************************************
 
-Section: Yo
-------------
+                           Tower Of Twilight (id: 0)
+                           
+
+Topics Included: structure, exterior, interior, malchor's museum, history
+Description: The Tower of Twilight was home to Malchor Harpell and was located
+on the eastern edge of the Neverwinter Wood, a day's ride west of Longsaddle.
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Tower_of_Twilight
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/8/80/Tower_of_
+Twilight.jpg/revision/latest/scale-to-width-down/238?cb=20110920172626
+
+********************************************************************************
+********************************************************************************
+
+                             Mount Pojah (id: 90)
+                              
+
+Topics Included: history, notable inhabitants
+Description: A map of Tabot; Mount Pojah is not marked.  Mount Pojah  Geography
+Aliases Pojah Mountain   Type Mountain   Region Tabot    Mount Pojah was a
+mountain somew...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Mount_Pojah
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/f/fe/Tabot.jpg
+/revision/latest/scale-to-width-down/350?cb=20211210151550
+
+********************************************************************************
+********************************************************************************
+
+                              Beldenshyn (id: 69)
+                              
+
+Topics Included: geography, trade, defenses, history
+Description: Beldenshyn, nicknamed "the Bell" and derogatorily called "Goatreek"
+and "the Goatstink", was a gnome village in the Fields of the Dead, circa the
+Year of the...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Beldenshyn
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/c/ca/Beldenshy
+n.png/revision/latest/scale-to-width-down/350?cb=20190324231313
+
+********************************************************************************
 ********************************************************************************
 
                             Yuji Takaesu (id: 420)

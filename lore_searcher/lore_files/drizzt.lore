@@ -5,50 +5,109 @@
     "cRace": "drow",
     "cOrigin": "underdark",
     "cSex": "male",
-    "page-total": 3,
+    "page-total": 5,
     "section-names": [
-        "inspiration",
-        "bruh",
-        "yo"
+        "bruh"
     ],
     "sections": [
         {
-            "name": "inspiration",
-            "total-pages": 1,
+            "name": "bruh",
+            "total-pages": 5,
             "ids": [
-                "4269"
+                "80",
+                "0",
+                "90",
+                "69",
+                "420"
             ],
             "page-list": [
                 {
-                    "id": "4269",
-                    "name": "Alakbar bin Alad bin Alaq",
-                    "img": "default.png",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Alakbar_bin_Alad_bin_Alaq",
-                    "blurb": "Alakbar bin Alad bin Alaq\n\nBasic Information\n\nTitles\nPrince\n\n\nHome\nMedina al-Afyal\n\n\nSex\nMale\n\n\nRace\nHuman\n\n\nEthnicity\nZakharan\n\n\nKnownlanguage(s)\nMidani\n\n\n\nFamily\n\nParent(s)\nAlad bin Alaq bin Alonka\n\n\n\nAlakbar bin Alad bin Alaq, or Alakbar for short, was the only male heir of the Padishah of Medina al-Afyal in 1367 DR.[note 1]",
+                    "id": "80",
+                    "name": "Zelraun Roaringhorn",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/6/60/Zelraun.png/revision/latest/scale-to-width-down/350?cb=20190306154444",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Zelraun_Roaringhorn",
+                    "blurb": "Zelraun Roaringhorn\n\nBasic Information\n\nTitles\nLord\n\n\nHome\nWaterdeep, Sword Coast North\n\n\nSex\nMale\n\n\nRace\nHuman\n\n\nOccupation\nNoble\n\n\nAge\n50s (c.1485 DR)\n\n\nRules Information\n\n\n\n\n\n\t\t\t\t\t\t\t\t5e\n\t\t\t\t\t\t\t\n\n\n\n\n\n5th Edition Statistics\n\nAlignment\nLawful neutral\n\n\nClass\nArchmage\n\n\n\n\n\nZelraun Roaringhorn was a wizard member of the Harpers during the late 15th century DR.",
                     "topics": [
-                        "relationships",
-                        "activities"
+                        "appearance",
+                        "personality",
+                        "possession",
+                        "history"
                     ],
                     "topic-list": [
                         {
-                            "topic-name": "relationships",
-                            "paras": "Alakbar was the firstborn son of Alad bin Alaq bin Alonka, the Padishah of Medina al-Afyal. He was a member of the House of Alon, the historical ruling family."
+                            "topic-name": "appearance",
+                            "paras": "Despite being in his 50s in the years following the War of the Silver Marches, Zelraun appeared to be about 30 years old. He maintained his youthful look by means of potions of longevity."
                         },
                         {
-                            "topic-name": "activities",
-                            "paras": "Alakbar left for a voyage over the Crowded Sea in 1363 DR and was not seen since."
+                            "topic-name": "personality",
+                            "paras": "Zelraun always maintained an attitude of self-assurance and pride that derived from his family. He never forgot his roots and used the money of his family on the finer things in life. He lived to gamble."
+                        },
+                        {
+                            "topic-name": "possession",
+                            "paras": "He always had with him a shield guardian."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "Zelraun hailed from the noble Roaringhorn family and trained as a wizard.\n\nDuring the Rage of Demons, Zelraun was the Harper delegate to King Bruenor Battlehammer of Gauntlgrym to discuss the madness spreading in the Underdark."
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "bruh",
-            "total-pages": 1,
-            "ids": [
-                "69"
-            ],
-            "page-list": [
+                },
+                {
+                    "id": "0",
+                    "name": "Tower of Twilight",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/8/80/Tower_of_Twilight.jpg/revision/latest/scale-to-width-down/238?cb=20110920172626",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Tower_of_Twilight",
+                    "blurb": "The Tower of Twilight was home to Malchor Harpell and was located on the eastern edge of the Neverwinter Wood, a day's ride west of Longsaddle.",
+                    "topics": [
+                        "structure",
+                        "exterior",
+                        "interior",
+                        "malchor's museum",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "structure"
+                        },
+                        {
+                            "topic-name": "exterior",
+                            "paras": "The enchanted emerald tower with two twisted spires rested on an island within a small lake that drained into the woods to the west. It was invisible in the sunlight, but in starlight, the twisting spires twinkled and an emerald-green bridge appeared spanning the water to the island. The tower was reached by an invisible (although it could glow green, if needed) bridge."
+                        },
+                        {
+                            "topic-name": "interior",
+                            "paras": "Upon entering, visitors discovered a wide, round chamber lined with stalls for steeds along one wall. A corridor from the chamber gradually turned upward along the tower's inner circumference, growing steeper, and tightening as it wound to the top. The second level housed the dining room and above that was Malchor's study, which occupied the whole upper level; its door opened directly from the spiraling corridor. The passageway continued past the study to serve the turret chambers.[note 1]"
+                        },
+                        {
+                            "topic-name": "malchor's museum",
+                            "paras": "Being a former aide of Khelben \"Blackstaff\" Arunsun, Malchor trained other wizards, like himself, and spent most of his time researching the creation of magical items, potions, and elixirs. Malchor's Museum was a fine treasure room behind a heavy door past an intersecting passage on the second level. Malchor often lent aid in the form of both mundane and magical items taken from this room. A teleportation ward allowed someone to enter the museum, but not to escape by magic or planar means. The door to the museum was designed to be opened only from the outside, making it nearly foolproof against the tools and guile of rogues."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "In 1356 DR, the Companions of the Hall Drizzt Do'Urden and Wulfgar visited the Tower of Twilight to seek the knowledge of Malchor. During the encounter, Harpell awarded Drizzt a magical scimitar called Twinkle.\n\nAs of 1372 DR, Malchor Harpell was still residing in the Tower.\n\nDuring the Spellplague of 1385 DR, the tower and its inhabitants vanished from Neverwinter Wood. It was theorized that the tower was just expelled from the normal timeline.\n\nThe tower reappeared after the eruption of Mount Hotenow, in 1451 DR. At first, the tower began making infrequent and uncertain returns, however it was uncertain if the lives of those who lived inside had returned with it."
+                        }
+                    ]
+                },
+                {
+                    "id": "90",
+                    "name": "Mount Pojah",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/f/fe/Tabot.jpg/revision/latest/scale-to-width-down/350?cb=20211210151550",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Mount_Pojah",
+                    "blurb": "A map of Tabot; Mount Pojah is not marked.\n\nMount Pojah\n\nGeography\n\nAliases\nPojah Mountain\n\n\nType\nMountain\n\n\nRegion\nTabot\n\n\n\nMount Pojah was a mountain somewhere in Tabot near the Shou Lung border.[note 1]",
+                    "topics": [
+                        "history",
+                        "notable inhabitants"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "history",
+                            "paras": "In Shou Year\u00a02607 (1357\u00a0DR), a tortoise-shell divination at U'Chan Gompa promised the finding of a very rich gold mine east of Mount Pojah."
+                        },
+                        {
+                            "topic-name": "notable inhabitants",
+                            "paras": "It was the home of the Forgotten One, a hermit and oracle, around 2607."
+                        }
+                    ]
+                },
                 {
                     "id": "69",
                     "name": "Beldenshyn",
@@ -79,16 +138,7 @@
                             "paras": "The residents of Beldenshyn raised long-haired goats that grazed around the village, both inside and outside the walls. Unfortunately, these hirsute ungulates had an odor that most humans found disgusting, thus giving the village the disparaging nicknames that were bandied about in places like Scornubel."
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "yo",
-            "total-pages": 1,
-            "ids": [
-                "420"
-            ],
-            "page-list": [
+                },
                 {
                     "id": "420",
                     "name": "Yuji Takaesu",

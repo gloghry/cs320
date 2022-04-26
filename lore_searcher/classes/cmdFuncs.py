@@ -1,15 +1,28 @@
 import os
 import json
 from .LoreSection import Section
-from .LoreMaster import Master
+
+
+def helpErrorMsg():
+    print("Enter 'help' or 'h' for more details")
+
+
+def tmpSave(master):
+    path = os.path.join("lore_files", "tmp.lore")
+    if master.saveLore(path) == False:
+        print("An error occured while attempting to save to tmp.lore")
+
 
 def addSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments: <add_section, sectionName>")
+        print("Invalid number of arguments\nUsage: <add_section / mks, sectionName>")
+        helpErrorMsg()
         return
     newSection = Section(args[0])
     if master.addSection(newSection) == False:
-        print(f"Section '{args[0]}' already exists, aborting...")
+        print(f"ERROR: Section '{args[0]}' already exists")
+        return
+    tmpSave(master)
 
 
 def printPage(searcher, args):
@@ -24,15 +37,19 @@ def printPage(searcher, args):
 
 def deleteSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments: <del_section, sectionName>")
+        print("Invalid number of arguments\nUsage: <del_section / rms, sectionName>")
+        helpErrorMsg()
         return
     if master.delSection(args[0]) == False:
-        print(f"No '{args[0]}' section found, aborting...")
+        print(f"ERROR: No '{args[0]}' section found")
+        return
+    tmpSave(master)
 
 
 def listSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments: <list_section,sectionName>")
+        print("Invalid number of arguments\nUsage: <list_section / ls, sectionName>")
+        helpErrorMsg()
         return
     if master.listSection(args[0]) == False:
         print(f"Section '{args[0]}' was not found")
@@ -49,26 +66,32 @@ def search(searcher, args):
             print(
                 f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
             break
-        
+
         pageTot = results['total-pages']
         for result in results['results']:
             result.printSummary()
         if pageno == pageTot:
             print(f"No more results for {query}")
             break
-        uinput = input("Would you like to view next page (y/n): ")
-        if uinput.lower() == 'y' or uinput.lower() == "":
+        uinput = input(
+            "Press [Enter] for more results, or [n] to stop: ").lower()
+        while uinput not in ['', 'n']:
+            uinput = input(
+                "Press [Enter] for more results, or [n] to stop: ").lower()
+        if uinput == "":
             pageno += 1
         else:
             break
 
+
 def addPage(master, searcher, args):
     if len(args) != 2:
-        print("Invalid number of arguments: <del_page,sectionName,pageID>")
+        print("Invalid number of arguments\nUsage: <add_page / mkp, sectionName, pageID>")
+        helpErrorMsg()
         return
     sName = args[0]
     if sName not in master.sectionDict:
-        print(f"No section titled '{sName}' found")
+        print(f"ERROR: No section titled '{sName}' found")
         return
 
     pageID = args[1]
@@ -78,59 +101,63 @@ def addPage(master, searcher, args):
         return
 
     master.sectionDict[sName].addPage(page)
+    tmpSave(master)
 
 
 def delPage(master, args):
     if len(args) != 2:
-        print("Invalid number of arguments: <del_page,sectionName,pageID>")
+        print("Invalid number of arguments\nUsage: <del_page / rmp, sectionName, pageID>")
+        helpErrorMsg()
         return
     sName = args[0]
     if sName not in master.sectionDict:
-        print(f"No section titled '{sName}' found")
+        print(f"ERROR: No section titled '{sName}' found")
         return
     pageID = args[1]
     if pageID not in master.sectionDict[sName].pageIDs:
-        print(f"'{sName}' does not have that page")
+        print(f"ERROR: '{sName}' does not have that page")
         return
 
     master.sectionDict[sName].delPage(pageID)
+    tmpSave(master)
 
 
 def saveLore(master, args):
     filename = master.cName.replace(' ', '_').lower()
-    path = f"lore_files/{filename}.lore"
+    path = os.path.join("lore_files", f"{filename}.lore")
     if len(args) != 0:
-        print("Invalid save command: <save>")
+        print("Invalid save command\nUsage: <save_lore / save>")
+        helpErrorMsg()
         return
     if master.saveLore(path) == False:
-        print("An error occured while trying to save, aborting..")
-    else:
-        print("Lore saved successfully")
+        print(f"An error occured while attempting save to '{path}'")
 
 
 def prettySave(master, textBound, args):
     filename = master.cName.replace(' ', '_').lower()
-    path = f"lore_files/{filename}.txt"
+    path = os.path.join("lore_files", f"{filename}.txt")
     if len(args) != 0:
-        print("Invalid pretty save command: <pretty_save>")
+        print("Invalid pretty save command\nUsage: <pretty_save / psave>")
+        helpErrorMsg()
         return
     if master.prettySave(path, textBound) == False:
-        print("An error occured while trying to save, aborting..")
-    else:
-        print("Lore saved successfully")
+        print(f"An error occured while attempting save to '{path}'")
 
 
 def loadLore(master, searcher, args):
     if len(args) != 1:
-        print("Invalid number of arguments: <load_lore,path_to_file>")
+        print("Invalid number of arguments\nUsage: <load_lore / load, path_to_file>")
+        helpErrorMsg()
         return False
 
     filePath = args[0]
     if not os.path.exists(filePath):
-        print(f"File path '{filePath}' could not be found, aborting...")
+        print(f"ERROR: '{filePath}' could not be found")
         return False
 
-    newMaster = Master()
+    if os.path.isdir(filePath):
+        print(f"ERROR: '{filePath}' is a directory")
+        return False
 
     with open(filePath, 'r') as fd:
         data = json.load(fd)
@@ -143,6 +170,8 @@ def loadLore(master, searcher, args):
     master.cSex = data['cSex']
     master.sectionNames = data['section-names']
 
+    sectionDict = {}
+
     for section in data['sections']:
         newSection = Section(section['name'])
         for page in section['page-list']:
@@ -152,21 +181,24 @@ def loadLore(master, searcher, args):
                     f"Sorry, a page with id:{page['id']} could not be found, skipping...")
                 continue
             newSection.addPage(tmpPage)
-        master.sectionDict[section['name']] = newSection
+        sectionDict[section['name']] = newSection
 
+    master.sectionDict = sectionDict
     print("Lore loaded successfully")
     return True
 
 
 def printSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments: <print_section,sectionName>")
+        print("Invalid number of arguments\nUsage: <print_section / ps, sectionName>")
+        helpErrorMsg()
         return
     sName = args[0]
     if sName not in master.sectionDict:
         print(f"Section '{sName}' not found")
         return
     master.sectionDict[sName].printSection()
+
 
 def printHelp():
     print("You have made it to help")

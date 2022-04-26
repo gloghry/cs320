@@ -6,21 +6,25 @@ Hello! This repository is a group project for the CS 320 class at Washington Sta
 Name: Garett Loghry  
 Contact: garett.loghry@wsu.edu  
 Description:  
-My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It is made with Python using the pygame library. Pygame is an excellent Free and Open Source Python library typically used in game development. I work in the pycharm IDE and will make system calls to Julion and Levicy's Cool Cams (see below!)  
-   TO RUN:  
-      make garett  
-   NOTE:
-      An asset is included in the repo. Can be removed if cumbersome. The Assets/ dir is mine also  
+My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It is made with Python using the pygame library. Pygame is an excellent Free and Open Source Python library typically used in game development. I work in the pycharm IDE and will make system calls to Julion and Levicy's Cool Cams (see below!  
+> TO RUN:  
+make garett  
+> 
+
+> NOTE:  
+An asset image is included in the repo. Can be removed if cumbersome. The gui/ dir is mine and all of its
+> sub directories belong to this project.
+> 
 
 ## Julion
 Name: Julion Oddy  
 Contact: julion.oddy@wsu.edu  
-Description: Character Generator and Creator. The program/tool will pull from a .txt database and place created character in a new, seperate, .txt file. Random effects so far are Stats, Class, and Race. Planning on Archetypes, Stat allocation to better stats per class, and editing.
+Description: tbd  
 
 ## Levicy
 Name: Levicy Radeleff  
 Contact: levicy.radeleff@wsu.edu  
-Description: Map creation tool. The program pulls from several .txt files to build a random map, which includes colors signifying biomes and up to 6 features. Each feature has  a description. The map is clickable, and by clicking on a hexbox the user can see the information on a specific hex.   
+Description: tbd  
 
 ## Peter
 Name: Peter Wanner  

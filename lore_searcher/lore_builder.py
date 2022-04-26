@@ -15,7 +15,7 @@ master.cRace = "drow"
 master.cBio = """Drizzt Do'Urden was a drow. He stood about 5 feet and 4 inches (1.6 meters) tall and weighed about 130 pounds (59 kilograms).[13] His handsome features were sharp and well proportioned and, like other drow, Drizzt's skin was black and his stark white hair was long, thick, and flowing. His eyes were a lavender hue (quite different from the drow race's typical red, even when he used his infravision, which normally caused eyes to glow red) and seemed to glow fiercely when he was angry or determined.[20]"""
 
 textBound = 80
-searcher = Searcher("data/index")
+searcher = Searcher("data/index", "data/pages.json")
 
 
 def cmdFuncs(cmd, args):

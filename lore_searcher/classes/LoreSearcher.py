@@ -27,7 +27,7 @@ class Searcher(object):
                 id=str(page['id']),
                 title=page['topic-name'],
                 docText=doc[0],
-                blurb=page['blurb'],
+                blurb=doc[1].split('<>')[5],
                 toc=getToc(page['toc']),
                 link=page['source-url'],
                 img=page['img-url'],
@@ -127,15 +127,12 @@ def getDoc(page):
     if 'toc' not in page or page['toc'] == None:
         return None
 
-    doc += str(page['id']) + "<>"
-    doc += page['topic-name'] + "<>"
-    doc += page['source-url'] + "<>"
-    doc += page['img-url'] + "<>"
-    doc += ','.join(page['toc']) + "<>"
-    if page['blurb']:
-        doc += page['blurb'] + "<>"
-    else:
-        doc += firstPara(page) + "<>"
+    doc += str(page['id']) + "<>"  # page id
+    doc += page['topic-name'] + "<>"  # page name
+    doc += page['source-url'] + "<>"  # src url
+    doc += page['img-url'] + "<>"  # image url
+    doc += ','.join(page['toc']) + "<>"  # table of contents
+    doc += firstPara(page) + "<>"  # blurb
 
     for topic in page['toc']:
         rawDoc += topic + ' '

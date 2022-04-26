@@ -19,8 +19,8 @@ FPS = 30
 
 DEFAULT_FONT = 32
 
-WIDTH_SPACER = 1.1
-HEIGHT_SPACER = 1.4
+WIDTH_SPACER = 12
+HEIGHT_SPACER = 10
 
 # rename the window
 pygame.display.set_caption("D&D Cool Cam")
@@ -50,34 +50,6 @@ COLOR_INACTIVE = BLACK
 COLOR_ACTIVE = WHITE
 
 
-def generate_quirk():
-    quirk_path = os.path.join('gui', "Quirks/Quirks.txt")
-    try:
-        with open(quirk_path, 'r+') as quirk_file:
-            all_quirks = quirk_file.readlines()  # store the entire file in mem (should be small)
-            count = len(all_quirks)  # line count
-            quirk = all_quirks[(random.randint(1, count) - 1)].rsplit('\n', 1)[
-                0]  # get one of the random lines
-    except FileNotFoundError:
-        print("Class file moved, deleted, or otherwise changed. Check position")
-        quirk = 'You stare into the void... Often...'
-
-    return quirk
-
-
-def generate_new_character():
-    gender = generate_gender()
-    race = generate_race()
-    name = generate_name(race, gender)
-    _class = generate_class()
-    background = generate_background()
-    quirk = generate_quirk()
-
-    print(name, race, gender, _class, background, quirk)
-
-    return race, gender
-
-
 class Button:
     def __init__(self, x, y, w, h, text='', font_size=DEFAULT_FONT):
         if w < 0 or h < 0:
@@ -89,7 +61,7 @@ class Button:
         self.txt_surface = self.font.render(text, True, WHITE)
         if not text == '':
             w, h = self.font.size(self.text)
-            self.rect = pygame.Rect(x, y, (w * WIDTH_SPACER), (h * HEIGHT_SPACER))
+            self.rect = pygame.Rect(x, y, (w + WIDTH_SPACER), (h + HEIGHT_SPACER))
         else:
             self.rect = pygame.Rect(x, y, w, h)
 
@@ -99,10 +71,11 @@ class Button:
                 if self.text == 'Generate Map ':
                     print("Not implemented yet, sorry!")
                 elif self.text == 'Generate Character ':
-                    print("Loading files....")
-                    generate_new_character()
+                    print('Loading files....')
+                    return generate_new_character()
                 else:
                     print("That button isn't recognized...")
+                    return None
 
     def draw(self, screen):
         # Background of the box
@@ -118,6 +91,8 @@ class TextBox:
     def __init__(self, x, y, w, h, text='', editable=False, font_size=DEFAULT_FONT):
         if w < 0 or h < 0:
             raise ValueError("Not a valid window size!")
+        self.x_pos = x
+        self.y_pos = y
         self.color = COLOR_INACTIVE
         self.text = text
         self.font_size = font_size
@@ -129,7 +104,7 @@ class TextBox:
             w, h = self.font.size(self.text)
             # definitely some magic numbers below. The font.size needs to have extra padding to fit the box.
             # this is what I found works the best.
-            self.rect = pygame.Rect(x, y, (w * WIDTH_SPACER), (h * HEIGHT_SPACER))
+            self.rect = pygame.Rect(x, y, (w + WIDTH_SPACER), (h + HEIGHT_SPACER))
         else:
             self.rect = pygame.Rect(x, y, w, h)
 
@@ -166,6 +141,19 @@ class TextBox:
         # Text formatted inside the box
         screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
 
+    def update(self, screen):
+        if not self.text == '':
+            # Need to re-draw with text var, text may be updated by another function
+            w, h = self.font.size(self.text)
+            self.rect = pygame.Rect(self.x_pos, self.y_pos, (w + WIDTH_SPACER), (h + HEIGHT_SPACER))
+
+            self.txt_surface = self.font.render(self.text, True, self.color)
+            # Black text is sort of hard to read, white looks worse. Considered filling the Rectangle
+            # And having a border, but that's two boxes and could have collision problems
+            # pygame.draw.rect(screen, WHITE, self.rect, 0)
+            pygame.draw.rect(screen, self.color, self.rect, 2)
+            screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
+
 
 def opening_window():
     if not pygame.display.get_init():
@@ -173,7 +161,6 @@ def opening_window():
 
     clock = pygame.time.Clock()
     MAIN_WINDOW.fill(BLACK)
-    timer = clock.tick()
     run = True
 
     all_boxes = []
@@ -193,7 +180,7 @@ def opening_window():
 
     x = (WIN_WIDTH / 2) - (BOX_WIDTH / 2)
     y = WIN_HEIGHT - (BOX_HEIGHT * 8)
-    credits_box = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, "Credits", True, 52)
+    credits_box = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, "Credits", False, 52)
     all_boxes.append(credits_box)
 
     our_names = []
@@ -208,7 +195,7 @@ def opening_window():
     x = 30
 
     for name in names:
-        cur_person = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, name, True, DEFAULT_FONT)
+        cur_person = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, name, False, DEFAULT_FONT)
         x += cur_person.rect.width
         our_names.append(cur_person)
         all_boxes.append(cur_person)
@@ -284,13 +271,13 @@ def main():
     # manually find the size of the font, so we can move it away from the edge of the screen
     button_text = 'Generate Character '
     w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
-    w, h = (w * WIDTH_SPACER), (h * HEIGHT_SPACER)
+    w, h = (w + WIDTH_SPACER), (h + HEIGHT_SPACER)
     generate_char = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (5 * h), w, h, button_text, DEFAULT_FONT)
 
     # manually find the size of the font, so we can move it away from the edge of the screen
     button_text = 'Generate Map '
     w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
-    w, h = (w * WIDTH_SPACER), (h * HEIGHT_SPACER)
+    w, h = (w + WIDTH_SPACER), (h + HEIGHT_SPACER)
     generate_map = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (6 * h), w, h, button_text, DEFAULT_FONT)
 
     buttons.append(generate_map)
@@ -304,7 +291,13 @@ def main():
             for box in input_boxes:
                 box.handle_event(event)
             for button in buttons:
-                button.handle_event(event)
+                ret = button.handle_event(event)
+                if ret is not None:
+                    # THIS ALGORITHM SUCKS MAJOR YOU KNOW WHAT, BUT I CAN'T FIGURE OUT HOW TO MAKE IT BETTER???
+                    for i in range(len(input_boxes)):
+                        input_boxes[i].text = box_texts[i] + ret[i]
+                        input_boxes[i].update(MAIN_WINDOW)
+
             if event.type == pygame.QUIT:
                 run = False
 
@@ -318,8 +311,21 @@ def main():
         clock.tick(FPS)
 
 
+def generate_new_character():
+    gender = generate_gender()
+    race = generate_race()
+    name = generate_name(race, gender)
+    _class = generate_class()
+    background = generate_background()
+    quirk = generate_quirk()
+
+    # print(name, race, gender, _class, background, quirk)
+
+    return name, race, gender, _class, background, quirk
+
+
 def generate_gender():
-    _gender = random.randint(1, 2)      # Range should be increased to 3 for NB
+    _gender = random.randint(1, 2)  # Range should be increased to 3 for NB
     if _gender == 2:
         gender = 'Male'
     elif _gender == 1:
@@ -348,16 +354,32 @@ def generate_race():
 
 def generate_name(race, gender):
     if race == 'ERR': return "ERR"
-    name_filename = '' + str(race) + '_' + str(gender) + '.txt'
-    name_path = os.path.join("gui", ("Names" + name_filename))
 
+    if random.randint(1, 4) == 1:
+        use_title = True
+    else:
+        use_title = False
+
+    name_filename = '' + str(race) + '_' + str(gender) + '.txt'
+    name_path = os.path.join("gui", ("Names/" + name_filename))
     try:
         with open(name_path, 'r+') as name_file:
-            all_names = name_file.readlines()       # store the entire file in mem. I won't have more than maybe 15 names per file
+            all_names = name_file.readlines()  # store the entire file in mem. I won't have more than maybe 15 names per file
             count = len(all_names)
             name = all_names[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]
     except FileNotFoundError:
         name = "Boaty McBoatface"
+
+    if use_title:
+        title_path = os.path.join("gui", "Titles/Titles")
+        try:
+            with open(title_path, 'r+') as title_file:
+                all_titles = title_file.readlines()
+                count = len(all_titles)
+                title = all_titles[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]
+                name += " " + title
+        except FileNotFoundError:
+            print("Titles file moved, or otherwise unreadable")
 
     return name
 
@@ -382,7 +404,8 @@ def generate_background():
         with open(background_path, 'r+') as background_file:
             all_backgrounds = background_file.readlines()  # store the entire file in mem (should be small)
             count = len(all_backgrounds)  # line count
-            background = all_backgrounds[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]  # get one of the random lines
+            background = all_backgrounds[(random.randint(1, count) - 1)].rsplit('\n', 1)[
+                0]  # get one of the random lines
     except FileNotFoundError:
         print("Class file moved, deleted, or otherwise changed. Check position")
         background = 'ERR'
@@ -390,6 +413,20 @@ def generate_background():
     return background
 
 
+def generate_quirk():
+    quirk_path = os.path.join('gui', "Quirks/Quirks.txt")
+    try:
+        with open(quirk_path, 'r+') as quirk_file:
+            all_quirks = quirk_file.readlines()  # store the entire file in mem (should be small)
+            count = len(all_quirks)  # line count
+            quirk = all_quirks[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]  # get one of the random lines
+    except FileNotFoundError:
+        print("Class file moved, deleted, or otherwise changed. Check position")
+        quirk = 'You stare into the void... Often...'
+
+    return quirk
+
+
 if __name__ == "__main__":
-    opening_window()
+    # opening_window()
     main()

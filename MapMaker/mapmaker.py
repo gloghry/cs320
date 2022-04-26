@@ -162,7 +162,7 @@ class HexBox: #this is the hex boxes which compose the map
             file = open('MapMaker\BeachFeatures.txt', 'r')
         elif(self.biome == 'Grassland'):
             #open file
-            file = open('MapMaker\GrasslandFeatures.txt', 'r')
+            file = open('MapMaker/GrasslandFeatures.txt', 'r')
         elif(self.biome == 'Forest'):
             #open file
             file = open('MapMaker\ForestFeatures.txt', 'r')

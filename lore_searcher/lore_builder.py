@@ -29,38 +29,29 @@ else:
 
 def cmdFuncs(cmd, args):
     funcs = {
-        "add_section": lambda: cmdf.addSection(master, args),
-        "mks": lambda: cmdf.addSection(master, args),
-        "print_page": lambda: cmdf.printPage(searcher, args),
-        "pp": lambda: cmdf.printPage(searcher, args),
-        "del_section": lambda: cmdf.deleteSection(master, args),
-        "rms": lambda: cmdf.deleteSection(master, args),
-        "ls": lambda: cmdf.listSection(master, args),
-        "search": lambda: cmdf.search(searcher, args),
-        "s": lambda: cmdf.search(searcher, args),
-        "add_page": lambda: cmdf.addPage(master, searcher, args),
-        "mkp": lambda: cmdf.addPage(master, searcher, args),
-        "del_page": lambda: cmdf.delPage(master, args),
-        "rmp": lambda: cmdf.delPage(master, args),
-        "la": lambda: master.listAllSections(),
-        "save": lambda: cmdf.saveLore(master, args),
-        "pretty_save": lambda: cmdf.prettySave(master, textBound, args),
-        "psave": lambda: cmdf.prettySave(master, textBound, args),
-        "load": lambda: cmdf.loadLore(master, searcher, args),
-        "print_lore": lambda: master.printLore(textBound),
-        "pl": lambda: master.printLore(textBound),
-        "print_section": lambda: cmdf.printSection(master, args),
-        "ps": lambda: cmdf.printSection(master, args),
-        "clear": lambda: system('clear'),
-        "help": lambda: cmdf.printHelp()
+        ("add_section", "mks"): lambda: cmdf.addSection(master, args),
+        ("print_page", "pp"): lambda: cmdf.printPage(searcher, args),
+        ("del_section", "rms"): lambda: cmdf.deleteSection(master, args),
+        ("list_section", "ls"): lambda: cmdf.listSection(master, args),
+        ("search", "s"): lambda: cmdf.search(searcher, args),
+        ("add_page", "mkp"): lambda: cmdf.addPage(master, searcher, args),
+        ("del_page", "rmp"): lambda: cmdf.delPage(master, args),
+        ("list_all", "la"): lambda: master.listAllSections(),
+        ("save_lore", "save"): lambda: cmdf.saveLore(master, args),
+        ("pretty_save", "psave"): lambda: cmdf.prettySave(master, textBound, args),
+        ("load_lore", "load"): lambda: cmdf.loadLore(master, searcher, args),
+        ("print_lore", "pl"): lambda: master.printLore(textBound),
+        ("print_section", "ps"): lambda: cmdf.printSection(master, args),
+        ("clear", "clr"): lambda: system('clear'),
+        ("help", "h"): lambda: cmdf.printHelp()
     }
 
-    if cmd not in funcs:
-        print(
-            f"Command '{cmd}' not recognized. Enter 'help' to see available commands")
-        return
-
-    funcs[cmd]()
+    for pair in funcs:
+        if cmd in pair:
+            funcs[pair]()
+            return
+    print(
+        f"Command '{cmd}' not recognized. Enter 'help' to see available commands")
 
 
 def finalSave():

@@ -4,7 +4,7 @@ from .LoreSection import Section
 
 
 def helpErrorMsg():
-    print("Enter 'help' for more details")
+    print("Enter 'help' or 'h' for more details")
 
 
 def tmpSave(master):
@@ -126,7 +126,7 @@ def saveLore(master, args):
     filename = master.cName.replace(' ', '_').lower()
     path = os.path.join("lore_files", f"{filename}.lore")
     if len(args) != 0:
-        print("Invalid save command\nUsage: <save>")
+        print("Invalid save command\nUsage: <save_lore / save>")
         helpErrorMsg()
         return
     if master.saveLore(path) == False:
@@ -146,7 +146,7 @@ def prettySave(master, textBound, args):
 
 def loadLore(master, searcher, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <load, path_to_file>")
+        print("Invalid number of arguments\nUsage: <load_lore / load, path_to_file>")
         helpErrorMsg()
         return False
 

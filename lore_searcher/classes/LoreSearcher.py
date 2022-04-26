@@ -1,6 +1,7 @@
 from .LorePage import Page
 import os.path
 import json
+from math import ceil
 from whoosh.index import create_in, open_dir
 from whoosh.qparser import MultifieldParser as mfp
 from whoosh.qparser import OrGroup
@@ -82,7 +83,7 @@ class Searcher(object):
             # total number of relevant docs in database
             resultDict['total-results'] = numResults
             # total pages available for search query (keeping same limit)
-            resultDict['total-pages'] = numResults/limit
+            resultDict['total-pages'] = ceil(numResults/limit)
             # how many results were returned
             resultDict['topN'] = len(resultDict['results'])
 

@@ -8,13 +8,13 @@ from .LoreSection import Section
 from .LoreSearcher import Searcher
 
 class Master:
-    def __init__(self, characterName):
+    def __init__(self, characterName="new lore"):
         self.cName = characterName
-        self.cBio = ""
-        self.cClass = ""
-        self.cRace = ""
-        self.cOrigin = ""
-        self.cSex = ""
+        self.cBio = "aimless walker"
+        self.cClass = "researcher"
+        self.cRace = "none"
+        self.cOrigin = "the void"
+        self.cSex = "none"
         self.sectionDict = {}
         self.sectionNames = []
 
@@ -41,7 +41,7 @@ class Master:
         return reduce(lambda x,y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
     def printLore(self, bound=80):
-        print(self.cName.title().center(bound) + "\n")
+        print(f"<{{{{  {self.cName.title()}  }}}}>\n".center(bound))
         print("Class:", self.cClass.title())
         print("Race:", self.cRace.title())
         print("Sex:", self.cSex.title())

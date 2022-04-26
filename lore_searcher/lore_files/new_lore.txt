@@ -1,0 +1,12 @@
+                              <{{  New Lore  }}>
+                               
+Class: Researcher
+Race: None
+Sex: None
+Origin: The Void 
+
+aimless walker
+
+
+Section: Inspiration
+---------------------

@@ -1,6 +1,0 @@
-searcher.py:
-	figure out the paging shiz
-
-		
-LoreBuilder.py
-	interactive console program uses searcher, page, and timeline

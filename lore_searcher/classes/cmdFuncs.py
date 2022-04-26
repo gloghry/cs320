@@ -1,7 +1,7 @@
 import os
 import json
 from .LoreSection import Section
-
+from .LoreMaster import Master
 
 def addSection(master, args):
     if len(args) != 1:
@@ -33,6 +33,7 @@ def deleteSection(master, args):
 def listSection(master, args):
     if len(args) != 1:
         print("Invalid number of arguments: <list_section,sectionName>")
+        return
     if master.listSection(args[0]) == False:
         print(f"Section '{args[0]}' was not found")
 
@@ -41,14 +42,25 @@ def search(searcher, args):
     if len(args) < 1:
         return
     query = args[0]
-    results = searcher.search(query)
-    if results['results'] == None:
-        print(
-            f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
-    else:
+    pageno = 1
+    while True:
+        results = searcher.search(query, pageNum=pageno)
+        if results['results'] == None:
+            print(
+                f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
+            break
+        
+        pageTot = results['total-pages']
         for result in results['results']:
             result.printSummary()
-
+        if pageno == pageTot:
+            print(f"No more results for {query}")
+            break
+        uinput = input("Would you like to view next page (y/n): ")
+        if uinput.lower() == 'y' or uinput.lower() == "":
+            pageno += 1
+        else:
+            break
 
 def addPage(master, searcher, args):
     if len(args) != 2:
@@ -111,12 +123,14 @@ def prettySave(master, textBound, args):
 def loadLore(master, searcher, args):
     if len(args) != 1:
         print("Invalid number of arguments: <load_lore,path_to_file>")
-        return
+        return False
 
     filePath = args[0]
     if not os.path.exists(filePath):
-        print(f"File path '{filePath}' could not be found, aborting")
-        return
+        print(f"File path '{filePath}' could not be found, aborting...")
+        return False
+
+    newMaster = Master()
 
     with open(filePath, 'r') as fd:
         data = json.load(fd)
@@ -141,6 +155,7 @@ def loadLore(master, searcher, args):
         master.sectionDict[section['name']] = newSection
 
     print("Lore loaded successfully")
+    return True
 
 
 def printSection(master, args):
@@ -152,3 +167,6 @@ def printSection(master, args):
         print(f"Section '{sName}' not found")
         return
     master.sectionDict[sName].printSection()
+
+def printHelp():
+    print("You have made it to help")

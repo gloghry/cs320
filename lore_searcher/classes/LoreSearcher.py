@@ -37,11 +37,6 @@ class Searcher(object):
         # commit changes additions to whoosh database
         writer.commit()
 
-    def testing(self):
-        with self.ix.searcher() as searcher:
-            tmp = list(searcher.documents())
-            print(len(tmp))
-
     def searchID(self, pageID):
         with self.ix.searcher() as searcher:
             result = searcher.document(id=str(pageID))

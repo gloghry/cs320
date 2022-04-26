@@ -1,6 +1,6 @@
 from sys import argv
 import classes.cmdFuncs as cmdf
-from os import system, path
+from os import system, path, remove
 from classes.LoreSearcher import Searcher
 from classes.LorePage import Page
 from classes.LoreSection import Section
@@ -9,10 +9,9 @@ from classes.LoreMaster import Master
 """
 
 Todo:
- - write finalSave()
-    * remove 'lore_files/tmp.lore' on successful final save
- - save to 'lore_files/tmp.lore' in any function that changes lore state
  - write help function
+ - write setup
+ - write editLore
  - update readme
 
 """
@@ -43,7 +42,8 @@ def cmdFuncs(cmd, args):
         ("print_lore", "pl"): lambda: master.printLore(textBound),
         ("print_section", "ps"): lambda: cmdf.printSection(master, args),
         ("clear", "clr"): lambda: system('clear'),
-        ("help", "h"): lambda: cmdf.printHelp()
+        ("help", "h"): lambda: cmdf.printHelp(),
+        ("edit_lore", "elore"): lambda: cmdf.editLore(master)
     }
 
     for pair in funcs:
@@ -55,7 +55,25 @@ def cmdFuncs(cmd, args):
 
 
 def finalSave():
-    print("made it to final save point")
+    print("Would you like to save your current session?")
+    uinput = input("Press [y] for yes, anything else for no: ")
+    if uinput == 'y':
+        filename = master.cName.replace(' ', '_').lower()
+        lorePath = path.join("lore_files", f"{filename}.lore")
+        if master.saveLore(lorePath) == False:
+            return
+
+    uinput = input("Would you like to PRETTY save your current session (y): ")
+    if uinput == 'y':
+        filename = master.cName.replace(' ', '_').lower()
+        lorePath = path.join("lore_files", f"{filename}.txt")
+        if master.prettySave(lorePath) == False:
+            return
+
+    # session ended normally, remove tmp.lore file
+    tmpPath = path.join("lore_files", "tmp.lore")
+    if path.exists(tmpPath):
+        remove(tmpPath)
 
 
 def setupPrompts():
@@ -106,6 +124,7 @@ def main(args):
 
     mainPrompts()
     finalSave()
+    print("Goodbye!")
 
 
 if __name__ == '__main__':

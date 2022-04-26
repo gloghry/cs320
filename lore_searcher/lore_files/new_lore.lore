@@ -5,47 +5,21 @@
     "cRace": "none",
     "cOrigin": "the void",
     "cSex": "none",
-    "page-total": 2,
+    "page-total": 4,
     "section-names": [
-        "inspiration",
         "bruh"
     ],
     "sections": [
         {
-            "name": "inspiration",
-            "total-pages": 0,
-            "ids": [],
-            "page-list": []
-        },
-        {
             "name": "bruh",
-            "total-pages": 2,
+            "total-pages": 4,
             "ids": [
-                "95",
-                "0"
+                "0",
+                "69",
+                "678",
+                "458"
             ],
             "page-list": [
-                {
-                    "id": "95",
-                    "name": "Dlatha Faenar",
-                    "img": "default.png",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Dlatha_Faenar",
-                    "blurb": "Though advanced in age by 1367\u00a0DR, Dlatha was kept beautiful by powerful magic.",
-                    "topics": [
-                        "description",
-                        "activities"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "description",
-                            "paras": "Though advanced in age by 1367\u00a0DR, Dlatha was kept beautiful by powerful magic."
-                        },
-                        {
-                            "topic-name": "activities",
-                            "paras": "Dlatha advanced over her rivals by slaying and outwitting them at every instance, rising through Beshaba's ranks for nearly a century. She was believed to wield magic that most mortals could not use or understand."
-                        }
-                    ]
-                },
                 {
                     "id": "0",
                     "name": "Tower of Twilight",
@@ -78,6 +52,98 @@
                         {
                             "topic-name": "history",
                             "paras": "In 1356 DR, the Companions of the Hall Drizzt Do'Urden and Wulfgar visited the Tower of Twilight to seek the knowledge of Malchor. During the encounter, Harpell awarded Drizzt a magical scimitar called Twinkle.\n\nAs of 1372 DR, Malchor Harpell was still residing in the Tower.\n\nDuring the Spellplague of 1385 DR, the tower and its inhabitants vanished from Neverwinter Wood. It was theorized that the tower was just expelled from the normal timeline.\n\nThe tower reappeared after the eruption of Mount Hotenow, in 1451 DR. At first, the tower began making infrequent and uncertain returns, however it was uncertain if the lives of those who lived inside had returned with it."
+                        }
+                    ]
+                },
+                {
+                    "id": "69",
+                    "name": "Beldenshyn",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/c/ca/Beldenshyn.png/revision/latest/scale-to-width-down/350?cb=20190324231313",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Beldenshyn",
+                    "blurb": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river.",
+                    "topics": [
+                        "geography",
+                        "trade",
+                        "defenses",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "geography",
+                            "paras": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river."
+                        },
+                        {
+                            "topic-name": "trade",
+                            "paras": "This community manufactured and sold crossbows and bolts."
+                        },
+                        {
+                            "topic-name": "defenses",
+                            "paras": "The village was surrounded by a stockade, and the residents were sure-shots with crossbows."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "The residents of Beldenshyn raised long-haired goats that grazed around the village, both inside and outside the walls. Unfortunately, these hirsute ungulates had an odor that most humans found disgusting, thus giving the village the disparaging nicknames that were bandied about in places like Scornubel."
+                        }
+                    ]
+                },
+                {
+                    "id": "678",
+                    "name": "Firble",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/1/13/Firble.jpg/revision/latest/scale-to-width-down/260?cb=20081023210615",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Firble",
+                    "blurb": "The deep gnome had stubby fingers and was going bald. Firble stood about 3 feet, 6 inches (1.1 meters) tall and weighed around 80 pounds (36 kilograms).",
+                    "topics": [
+                        "description",
+                        "personality",
+                        "possessions",
+                        "history",
+                        "death"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "description",
+                            "paras": "The deep gnome had stubby fingers and was going bald. Firble stood about 3 feet, 6 inches (1.1 meters) tall and weighed around 80 pounds (36 kilograms)."
+                        },
+                        {
+                            "topic-name": "personality",
+                            "paras": "Firble could be impatient, and though he feared Jarlaxle, he was willing to press the mercenary for information, even if the dark elf pressed back. The deep gnome hated all types of light sources, including torchlight."
+                        },
+                        {
+                            "topic-name": "possessions",
+                            "paras": "Instead of wearing metal armor, Firble dressed in long smooth robes."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "Around 1357 DR, Firble grew more and more suspicious and fearful of the drow creeping around in the Underdark. After \"prompting\" from Belwar Dissengulp, Firble agreed to escort Catti-brie to the drow city of Menzoberranzan."
+                        },
+                        {
+                            "topic-name": "death",
+                            "paras": "After the Battle of Keeper's Dale, Belwar Dissengulp carried Firble's body away from the battlefield."
+                        }
+                    ]
+                },
+                {
+                    "id": "458",
+                    "name": "Ferronni%C3%A8re",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/5/5f/Ferronni%C3%A8re.png/revision/latest/scale-to-width-down/350?cb=20220128023332",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Ferronni%C3%A8re",
+                    "blurb": "A ferronni\u00e8re was a thin, delicate chain of precious metal worn on a person's head, displaying one or more gemstones on their foreheads. Ferronni\u00e8re were considered to be a tasteful sign of wealth and elegance.",
+                    "topics": [
+                        "description",
+                        "notable owners"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "description",
+                            "paras": "A ferronni\u00e8re was a thin, delicate chain of precious metal worn on a person's head, displaying one or more gemstones on their foreheads. Ferronni\u00e8re were considered to be a tasteful sign of wealth and elegance."
+                        },
+                        {
+                            "topic-name": "notable owners",
+                            "lists": [
+                                [
+                                    "Anorrweyn Evensong, a wizard and the leader of the Sisterhood of Silver Fire from the days of ancient Myth Drannor. She wore a beautiful emerald ferronni\u00e8re in her mortal days, and through the centuries that followed, in her ghostly form."
+                                ]
+                            ]
                         }
                     ]
                 }

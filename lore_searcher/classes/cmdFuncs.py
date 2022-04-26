@@ -9,8 +9,7 @@ def helpErrorMsg():
 
 def tmpSave(master):
     path = os.path.join("lore_files", "tmp.lore")
-    if master.saveLore(path) == False:
-        print("An error occured while attempting to save to tmp.lore")
+    master.saveLore(path)
 
 
 def addSection(master, args):
@@ -198,6 +197,9 @@ def printSection(master, args):
         print(f"Section '{sName}' not found")
         return
     master.sectionDict[sName].printSection()
+
+def editLore(master):
+    pass
 
 
 def printHelp():

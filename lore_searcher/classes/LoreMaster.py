@@ -39,6 +39,8 @@ class Master:
             self.sectionDict[sectionName].printSection(bound)
 
     def getPageTotal(self) -> int:
+        if len(self.sectionNames) == 0:
+            return 0
         return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
     def printLore(self, bound=80):

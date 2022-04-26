@@ -15,12 +15,12 @@ My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It
 ## Julion
 Name: Julion Oddy  
 Contact: julion.oddy@wsu.edu  
-Description: tbd  
+Description: Character Generator and Creator. The program/tool will pull from a .txt database and place created character in a new, seperate, .txt file. Random effects so far are Stats, Class, and Race. Planning on Archetypes, Stat allocation to better stats per class, and editing.
 
 ## Levicy
 Name: Levicy Radeleff  
 Contact: levicy.radeleff@wsu.edu  
-Description: tbd  
+Description: Map creation tool. The program pulls from several .txt files to build a random map, which includes colors signifying biomes and up to 6 features. Each feature has  a description. The map is clickable, and by clicking on a hexbox the user can see the information on a specific hex.   
 
 ## Peter
 Name: Peter Wanner  

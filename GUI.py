@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 
 pygame.init()
 pygame.display.init()
@@ -41,12 +42,40 @@ MAIN_WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
 # Import background image
 BACKGROUND_LARGE = pygame.image.load(
-    os.path.join('Assets', 'desert.jpg'))
+    os.path.join('gui', 'Assets/desert.jpg'))
 BACKGROUND_SCALED = pygame.transform.scale(
     BACKGROUND_LARGE, (WIN_WIDTH, WIN_HEIGHT))
 
 COLOR_INACTIVE = BLACK
 COLOR_ACTIVE = WHITE
+
+
+def generate_quirk():
+    quirk_path = os.path.join('gui', "Quirks/Quirks.txt")
+    try:
+        with open(quirk_path, 'r+') as quirk_file:
+            all_quirks = quirk_file.readlines()  # store the entire file in mem (should be small)
+            count = len(all_quirks)  # line count
+            quirk = all_quirks[(random.randint(1, count) - 1)].rsplit('\n', 1)[
+                0]  # get one of the random lines
+    except FileNotFoundError:
+        print("Class file moved, deleted, or otherwise changed. Check position")
+        quirk = 'You stare into the void... Often...'
+
+    return quirk
+
+
+def generate_new_character():
+    gender = generate_gender()
+    race = generate_race()
+    name = generate_name(race, gender)
+    _class = generate_class()
+    background = generate_background()
+    quirk = generate_quirk()
+
+    print(name, race, gender, _class, background, quirk)
+
+    return race, gender
 
 
 class Button:
@@ -71,6 +100,7 @@ class Button:
                     print("Not implemented yet, sorry!")
                 elif self.text == 'Generate Character ':
                     print("Loading files....")
+                    generate_new_character()
                 else:
                     print("That button isn't recognized...")
 
@@ -232,7 +262,7 @@ def main():
 
     input_boxes = []
     # occupation not used yet/ever
-    box_texts = ['Name: ', 'Race: ', 'Gender: ', 'Class: ', 'Quirks: ', 'Background: ']  # , 'Occupation: ']
+    box_texts = ['Name: ', 'Race: ', 'Gender: ', 'Class: ', 'Quirk: ', 'Background: ']  # , 'Occupation: ']
 
     for text in box_texts:
         input_box = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, text, True, DEFAULT_FONT)
@@ -286,6 +316,78 @@ def main():
         # update should always be last (other than clock tick)
         pygame.display.update()
         clock.tick(FPS)
+
+
+def generate_gender():
+    _gender = random.randint(1, 2)      # Range should be increased to 3 for NB
+    if _gender == 2:
+        gender = 'Male'
+    elif _gender == 1:
+        gender = 'Female'
+    else:
+        gender = 'NB'
+        # Used for error checking right now, could be used for NB in the future
+        # files not implemented for NB
+    return gender
+
+
+def generate_race():
+    race_path = os.path.join('Code Work-Julion', 'CharDatabase/Race/$List.txt')
+    try:
+        with open(race_path, 'r+') as race_file:
+            all_races = race_file.readlines()  # store the entire file in mem (should be small)
+            count = len(all_races)  # line count
+            race = all_races[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]  # get one of the random lines
+            if 'Human' in race:  # Remove whether standard or variant human subtype
+                race = 'Human'
+    except FileNotFoundError:
+        print("Race file moved, deleted, or otherwise changed. Check position")
+        race = 'ERR'
+    return race
+
+
+def generate_name(race, gender):
+    if race == 'ERR': return "ERR"
+    name_filename = '' + str(race) + '_' + str(gender) + '.txt'
+    name_path = os.path.join("gui", ("Names" + name_filename))
+
+    try:
+        with open(name_path, 'r+') as name_file:
+            all_names = name_file.readlines()       # store the entire file in mem. I won't have more than maybe 15 names per file
+            count = len(all_names)
+            name = all_names[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]
+    except FileNotFoundError:
+        name = "Boaty McBoatface"
+
+    return name
+
+
+def generate_class():
+    _class_path = os.path.join('Code Work-Julion', 'CharDatabase/Class/$List.txt')
+    try:
+        with open(_class_path, 'r+') as _class_file:
+            all_classes = _class_file.readlines()  # store the entire file in mem (should be small)
+            count = len(all_classes)  # line count
+            _class = all_classes[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]  # get one of the random lines
+    except FileNotFoundError:
+        print("Class file moved, deleted, or otherwise changed. Check position")
+        _class = 'ERR'
+
+    return _class
+
+
+def generate_background():
+    background_path = os.path.join('Code Work-Julion', 'CharDatabase/Background/$List.txt')
+    try:
+        with open(background_path, 'r+') as background_file:
+            all_backgrounds = background_file.readlines()  # store the entire file in mem (should be small)
+            count = len(all_backgrounds)  # line count
+            background = all_backgrounds[(random.randint(1, count) - 1)].rsplit('\n', 1)[0]  # get one of the random lines
+    except FileNotFoundError:
+        print("Class file moved, deleted, or otherwise changed. Check position")
+        background = 'ERR'
+
+    return background
 
 
 if __name__ == "__main__":

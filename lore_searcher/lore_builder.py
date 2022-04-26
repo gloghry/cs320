@@ -9,7 +9,6 @@ from classes.LoreMaster import Master
 """
 
 Todo:
- - change up some of the error messages (remove 'aborting')
  - write finalSave()
     * remove 'lore_files/tmp.lore' on successful final save
  - save to 'lore_files/tmp.lore' in any function that changes lore state
@@ -21,11 +20,12 @@ Todo:
 master = Master()
 
 textBound = 80
-ixPath = "data/index"
+ixPath = path.join("data", "index")
 if not path.exists(ixPath):
-    searcher = Searcher(ixPath, "data/pages.json")
+    searcher = Searcher(ixPath, path.join("data", "pages.json"))
 else:
     searcher = Searcher(ixPath)
+
 
 def cmdFuncs(cmd, args):
     funcs = {
@@ -62,11 +62,14 @@ def cmdFuncs(cmd, args):
 
     funcs[cmd]()
 
+
 def finalSave():
     print("made it to final save point")
 
+
 def setupPrompts():
     print("yoooooo, you made it!")
+
 
 def mainPrompts():
     while True:
@@ -77,32 +80,35 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
-    
+
 
 def main(args):
     argc = len(args)
     isNew = True
-    
+
     # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
     if argc > 1 and args[1] == '-l':
-       if argc != 3:
-           print("Invalid amount of arguments\nUsage: python(3) lore_builder.py -l some_file")
-           return
-       if cmdf.loadLore(master, searcher, args[2:]) == False:
-           return
-       isNew = False
+        if argc != 3:
+            print(
+                "Invalid amount of arguments\nUsage: python(3) lore_builder.py -l some_file")
+            return
+        if cmdf.loadLore(master, searcher, args[2:]) == False:
+            return
+        isNew = False
 
     # last session closed before final save, ask if user wants to cached lore tmp.lore
-    if path.exists('lore_files/tmp.lore'):
-            uinput = input("tmp.lore file detected from a previous session\nWould you like to load it (y/n): ").lower()
-            while uinput not in ['n', 'y']:
-                uinput = input("Please enter 'y' or 'n': ").lower()
-            if uinput == 'y':
-                if cmdf.loadLore(master, searcher, ["lore_files/tmp.lore"]) == False:
-                    return
-                isNew = False
+    tmpPath = path.join("lore_files", "tmp.lore")
+    if path.exists(tmpPath):
+        uinput = input(
+            "tmp.lore file detected from a previous session\nWould you like to load it (y/n): ").lower()
+        while uinput not in ['n', 'y']:
+            uinput = input("Please enter 'y' or 'n': ").lower()
+        if uinput == 'y':
+            if cmdf.loadLore(master, searcher, [tmpPath]) == False:
+                return
+            isNew = False
 
-    # no lore file loaded on startup, create new lore 
+    # no lore file loaded on startup, create new lore
     if isNew:
         master.addSection(Section("inspiration"))
         setupPrompts()

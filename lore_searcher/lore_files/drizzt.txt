@@ -14,9 +14,6 @@ infravision, which normally caused eyes to glow red) and seemed to glow fiercely
 when he was angry or determined.[20]
 
 
-Section: Inspiration
----------------------
-
 Section: Bruh
 --------------
 ********************************************************************************
@@ -87,6 +84,19 @@ Description: Yuji was totally loyal to his daimyo. He loved music and outside
 his government dutieshe  was an introspective and intellectual individual.
 
 Source-URL: https://forgottenrealms.fandom.com/wiki/Yuji_Takaesu
+Img-URL: default.png
+
+********************************************************************************
+********************************************************************************
+
+                            Dlatha Faenar (id: 95)
+                             
+
+Topics Included: description, activities
+Description: Though advanced in age by 1367 DR, Dlatha was kept beautiful by
+powerful magic.
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Dlatha_Faenar
 Img-URL: default.png
 
 ********************************************************************************

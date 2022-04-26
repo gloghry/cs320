@@ -7,6 +7,7 @@ from .LorePage import Page
 from .LoreSection import Section
 from .LoreSearcher import Searcher
 
+
 class Master:
     def __init__(self, characterName="new lore"):
         self.cName = characterName
@@ -38,7 +39,7 @@ class Master:
             self.sectionDict[sectionName].printSection(bound)
 
     def getPageTotal(self) -> int:
-        return reduce(lambda x,y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
+        return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
     def printLore(self, bound=80):
         print(f"<{{{{  {self.cName.title()}  }}}}>\n".center(bound))
@@ -79,7 +80,8 @@ class Master:
             data = self.getMaster()
             with open(filePath, 'w+') as fd:
                 json.dump(data, fd, indent=4)
-        except:
+        except Exception as e:
+            print(e)
             return False
 
     def loadLore(self, filePath) -> bool:
@@ -100,7 +102,6 @@ class Master:
             for page in section['page-list']:
                 tmpPage = Searcher.searchID()
 
-
     def prettySave(self, path, bound=80) -> bool:
         try:
             # redirecting stdout to file
@@ -110,7 +111,7 @@ class Master:
             # closing file pointer and restoring stdout
             sys.stdout.close()
             sys.stdout = sys.__stdout__
-            
+
             return True
         except:
             return False

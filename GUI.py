@@ -18,6 +18,9 @@ FPS = 30
 
 DEFAULT_FONT = 32
 
+WIDTH_SPACER = 1.1
+HEIGHT_SPACER = 1.4
+
 # rename the window
 pygame.display.set_caption("D&D Cool Cam")
 
@@ -46,6 +49,41 @@ COLOR_INACTIVE = BLACK
 COLOR_ACTIVE = WHITE
 
 
+class Button:
+    def __init__(self, x, y, w, h, text='', font_size=DEFAULT_FONT):
+        if w < 0 or h < 0:
+            raise ValueError("Not a valid window size!")
+        self.text = text
+        self.font_size = font_size
+        self.color = BLUE
+        self.font = pygame.font.Font(None, font_size)
+        self.txt_surface = self.font.render(text, True, WHITE)
+        if not text == '':
+            w, h = self.font.size(self.text)
+            self.rect = pygame.Rect(x, y, (w * WIDTH_SPACER), (h * HEIGHT_SPACER))
+        else:
+            self.rect = pygame.Rect(x, y, w, h)
+
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos):
+                if self.text == 'Generate Map ':
+                    print("Not implemented yet, sorry!")
+                elif self.text == 'Generate Character ':
+                    print("Loading files....")
+                else:
+                    print("That button isn't recognized...")
+
+    def draw(self, screen):
+        # Background of the box
+        # Width (last tuple value) 0 = fill
+        pygame.draw.rect(screen, self.color, self.rect, 0)
+        # Transparent box, would like to fill, but need the reverse color
+
+        # Text formatted inside the box
+        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
+
+
 class TextBox:
     def __init__(self, x, y, w, h, text='', editable=False, font_size=DEFAULT_FONT):
         if w < 0 or h < 0:
@@ -59,7 +97,9 @@ class TextBox:
         self.editable = editable
         if not text == '':
             w, h = self.font.size(self.text)
-            self.rect = pygame.Rect(x, y, w, h)
+            # definitely some magic numbers below. The font.size needs to have extra padding to fit the box.
+            # this is what I found works the best.
+            self.rect = pygame.Rect(x, y, (w * WIDTH_SPACER), (h * HEIGHT_SPACER))
         else:
             self.rect = pygame.Rect(x, y, w, h)
 
@@ -135,23 +175,17 @@ def opening_window():
     # Peter Wanner
     names = ["Jared Diamond,", "Garett Loghry,", "Julion Oddy,", "Levicy Radeleff,", "Peter Wanner"]
     y = WIN_HEIGHT - (BOX_HEIGHT * 6)
-    x = margin = WIN_HEIGHT / 25
-    width_offset = WIN_WIDTH - margin
-    increment = int(width_offset / len(names))
+    x = 30
 
-    height_offset = int(WIN_HEIGHT - margin)
     for name in names:
         cur_person = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, name, True, DEFAULT_FONT)
-        x += increment
+        x += cur_person.rect.width
         our_names.append(cur_person)
         all_boxes.append(cur_person)
 
+    timer = 0
+
     while run:
-        timer += clock.tick()
-
-        if timer > 4:
-            run = False
-
         for event in pygame.event.get():
             for box in all_boxes:
                 box.handle_event(event)
@@ -165,6 +199,15 @@ def opening_window():
         # update should always be last (other than clock tick)
         pygame.display.update()
         clock.tick(FPS)
+
+        # Check to see if it's been more than 4 seconds
+        if timer > 4:
+            # Close this window if > than timer
+            run = False
+        else:
+            # increment timer and wait 1 second
+            pygame.time.wait(1000)
+            timer += 1
 
 
 def main():
@@ -182,14 +225,14 @@ def main():
     # QUIRKS                        5
     # BACKGROUND                    6
     #   SUB BACKGROUND - OCCUPATION 7 ?
-    x = margin = WIN_HEIGHT/10
+    x = margin = WIN_HEIGHT / 10
     height_offset = int(WIN_HEIGHT - margin)
     # width_offset = WIN_WIDTH - margin
     y = increment = int(height_offset / 7)
 
     input_boxes = []
-
-    box_texts = ['Name', 'Race', 'Gender', 'Class', 'Quirks', 'Background', 'Occupation']
+    # occupation not used yet/ever
+    box_texts = ['Name: ', 'Race: ', 'Gender: ', 'Class: ', 'Quirks: ', 'Background: ']  # , 'Occupation: ']
 
     for text in box_texts:
         input_box = TextBox(x, y, BOX_WIDTH, BOX_HEIGHT, text, True, DEFAULT_FONT)
@@ -206,6 +249,23 @@ def main():
     input_boxes[6].text = 'Occupation'
     """
 
+    buttons = []
+
+    # manually find the size of the font, so we can move it away from the edge of the screen
+    button_text = 'Generate Character '
+    w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
+    w, h = (w * WIDTH_SPACER), (h * HEIGHT_SPACER)
+    generate_char = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (5 * h), w, h, button_text, DEFAULT_FONT)
+
+    # manually find the size of the font, so we can move it away from the edge of the screen
+    button_text = 'Generate Map '
+    w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
+    w, h = (w * WIDTH_SPACER), (h * HEIGHT_SPACER)
+    generate_map = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (6 * h), w, h, button_text, DEFAULT_FONT)
+
+    buttons.append(generate_map)
+    buttons.append(generate_char)
+
     run = True
     while run:
 
@@ -213,11 +273,15 @@ def main():
         for event in pygame.event.get():
             for box in input_boxes:
                 box.handle_event(event)
+            for button in buttons:
+                button.handle_event(event)
             if event.type == pygame.QUIT:
                 run = False
 
         for box in input_boxes:
             box.draw(MAIN_WINDOW)
+        for button in buttons:
+            button.draw(MAIN_WINDOW)
 
         # update should always be last (other than clock tick)
         pygame.display.update()
@@ -225,5 +289,5 @@ def main():
 
 
 if __name__ == "__main__":
-    opening_window()
-    # main()
+    # opening_window()
+    main()

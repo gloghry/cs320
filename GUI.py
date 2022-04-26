@@ -338,7 +338,7 @@ def generate_gender():
 
 
 def generate_race():
-    race_path = os.path.join('Code Work-Julion', 'CharDatabase/Race/$List.txt')
+    race_path = os.path.join('Code Work-Julion', 'CharDatabase', 'Race', '$List.txt')
     try:
         with open(race_path, 'r+') as race_file:
             all_races = race_file.readlines()  # store the entire file in mem (should be small)
@@ -361,7 +361,7 @@ def generate_name(race, gender):
         use_title = False
 
     name_filename = '' + str(race) + '_' + str(gender) + '.txt'
-    name_path = os.path.join("gui", ("Names/" + name_filename))
+    name_path = os.path.join('gui', 'Names', name_filename)
     try:
         with open(name_path, 'r+') as name_file:
             all_names = name_file.readlines()  # store the entire file in mem. I won't have more than maybe 15 names per file
@@ -371,7 +371,7 @@ def generate_name(race, gender):
         name = "Boaty McBoatface"
 
     if use_title:
-        title_path = os.path.join("gui", "Titles/Titles")
+        title_path = os.path.join('gui', 'Titles', 'Titles')
         try:
             with open(title_path, 'r+') as title_file:
                 all_titles = title_file.readlines()
@@ -385,7 +385,7 @@ def generate_name(race, gender):
 
 
 def generate_class():
-    _class_path = os.path.join('Code Work-Julion', 'CharDatabase/Class/$List.txt')
+    _class_path = os.path.join('Code Work-Julion', 'CharDatabase', 'Class', '$List.txt')
     try:
         with open(_class_path, 'r+') as _class_file:
             all_classes = _class_file.readlines()  # store the entire file in mem (should be small)
@@ -399,7 +399,7 @@ def generate_class():
 
 
 def generate_background():
-    background_path = os.path.join('Code Work-Julion', 'CharDatabase/Background/$List.txt')
+    background_path = os.path.join('Code Work-Julion', 'CharDatabase', 'Background', '$List.txt')
     try:
         with open(background_path, 'r+') as background_file:
             all_backgrounds = background_file.readlines()  # store the entire file in mem (should be small)
@@ -414,7 +414,7 @@ def generate_background():
 
 
 def generate_quirk():
-    quirk_path = os.path.join('gui', "Quirks/Quirks.txt")
+    quirk_path = os.path.join('gui', 'Quirks', 'Quirks.txt')
     try:
         with open(quirk_path, 'r+') as quirk_file:
             all_quirks = quirk_file.readlines()  # store the entire file in mem (should be small)

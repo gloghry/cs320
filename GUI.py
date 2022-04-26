@@ -69,10 +69,14 @@ class Button:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 if self.text == 'Generate Map ':
-                    print("Not implemented yet, sorry!")
+                    # print("Not implemented yet, sorry!")
+                    os.system("cd MapMaker; python3 mapmaker.py")
+                    os.system("pwd")
                 elif self.text == 'Generate Character ':
                     print('Loading files....')
                     return generate_new_character()
+                elif self.text == 'Search ':
+                    
                 else:
                     print("That button isn't recognized...")
                     return None
@@ -267,21 +271,18 @@ def main():
     """
 
     buttons = []
+    button_text_list = ['Generate Character ', 'Generate Map ', 'Search ']
+    last_button_height = 0
+    y_spacer = 15
 
     # manually find the size of the font, so we can move it away from the edge of the screen
-    button_text = 'Generate Character '
-    w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
-    w, h = (w + WIDTH_SPACER), (h + HEIGHT_SPACER)
-    generate_char = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (5 * h), w, h, button_text, DEFAULT_FONT)
-
-    # manually find the size of the font, so we can move it away from the edge of the screen
-    button_text = 'Generate Map '
-    w, h = pygame.font.Font(None, DEFAULT_FONT).size(button_text)
-    w, h = (w + WIDTH_SPACER), (h + HEIGHT_SPACER)
-    generate_map = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + (6 * h), w, h, button_text, DEFAULT_FONT)
-
-    buttons.append(generate_map)
-    buttons.append(generate_char)
+    for string in button_text_list:
+        w, h = pygame.font.Font(None, DEFAULT_FONT).size(string)
+        w, h = (w + WIDTH_SPACER), (h + HEIGHT_SPACER)
+        button = Button(WIN_WIDTH - w - 30, (WIN_HEIGHT / 2) + last_button_height, w, h, string, DEFAULT_FONT)
+        buttons.append(button)
+        last_button_height += h + y_spacer
+        print(last_button_height)
 
     run = True
     while run:
@@ -321,7 +322,7 @@ def generate_new_character():
 
     # print(name, race, gender, _class, background, quirk)
 
-    return name, race, gender, _class, background, quirk
+    return name, race, gender, _class, quirk, background
 
 
 def generate_gender():

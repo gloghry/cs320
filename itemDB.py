@@ -62,11 +62,11 @@ class itemDB:
             return self.jsonFormat(False, reason = "{key} is not a valid key")
 
         if(key == "name"):
-            with open(f'items/{self.fileName(data["name"])}.item', 'r') as file:
+            with open(f'items/{self.fileName(name)}.item', 'r') as file:
                 item = json.load(file)
                 item[key] = value
                 self.save(item)
-            os.remove("items/" + str(f'items/{self.fileName(name)}.item') + ".item")
+            os.remove(f'items/{self.fileName(name)}.item')
             self.updateList()
             return self.jsonFormat(True)                      
 

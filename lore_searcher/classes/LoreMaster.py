@@ -11,11 +11,12 @@ from .LoreSearcher import Searcher
 class Master:
     def __init__(self, characterName="new lore"):
         self.cName = characterName
-        self.cBio = "aimless walker"
-        self.cClass = "researcher"
-        self.cRace = "none"
-        self.cOrigin = "the void"
-        self.cSex = "none"
+        self.cBio = ""
+        self.cClass = ""
+        self.cRace = ""
+        self.cOrigin = ""
+        self.cSex = ""
+        self.isCamp = False
         self.sectionDict = {}
         self.sectionNames = []
 
@@ -44,12 +45,14 @@ class Master:
         return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
     def printLore(self, bound=80):
-        print(f"<{{{{  {self.cName.title()}  }}}}>\n".center(bound))
-        print("Class:", self.cClass.title())
-        print("Race:", self.cRace.title())
-        print("Sex:", self.cSex.title())
-        print("Origin:", self.cOrigin.title(), "\n")
-        print(textwrap.fill(f"{self.cBio}", width=bound))
+        cType = "Campaign:" if self.isCamp else "Character:"
+        print(f"<{{{{  {cType} {self.cName.title()}  }}}}>\n".center(bound))
+        if self.isCamp != True:
+            print("Class:", self.cClass.title())
+            print("Race:", self.cRace.title())
+            print("Sex:", self.cSex.title())
+            print("Origin:", self.cOrigin.title(), "\n")
+            print(textwrap.fill(f"{self.cBio}", width=bound))
         print()
         for name, section in self.sectionDict.items():
             section.printSection(bound)
@@ -61,6 +64,7 @@ class Master:
             "cClass": self.cClass,
             "cRace": self.cRace,
             "cOrigin": self.cOrigin,
+            "isCamp": self.isCamp,
             "cSex": self.cSex,
             "page-total": self.getPageTotal(),
             "section-names": self.sectionNames,
@@ -86,23 +90,42 @@ class Master:
             print(e)
             return False
 
-    def loadLore(self, filePath) -> bool:
+    def loadLore(self, filePath, searcher) -> bool:
         if not os.path.exists(filePath):
+            print(f"ERROR: '{filePath}' could not be found")
             return False
 
-        data = json.load(filePath)
+        if os.path.isdir(filePath):
+            print(f"ERROR: '{filePath}' is a directory")
+            return False
+
+        with open(filePath, 'r') as fd:
+            data = json.load(fd)
+
         self.cName = data['character-name']
         self.cBio = data['cBio']
         self.cClass = data['cClass']
         self.cOrigin = data['cOrigin']
         self.cRace = data['cRace']
+        self.isCamp = data['isCamp']
         self.cSex = data['cSex']
         self.sectionNames = data['section-names']
+
+        sectionDict = {}
 
         for section in data['sections']:
             newSection = Section(section['name'])
             for page in section['page-list']:
-                tmpPage = Searcher.searchID()
+                tmpPage = searcher.searchID(page['id'])
+                if tmpPage == None:
+                    print(
+                        f"Sorry, a page with id:{page['id']} could not be found, skipping...")
+                    continue
+                newSection.addPage(tmpPage)
+            sectionDict[section['name']] = newSection
+
+        self.sectionDict = sectionDict
+        return True
 
     def prettySave(self, path, bound=80) -> bool:
         try:

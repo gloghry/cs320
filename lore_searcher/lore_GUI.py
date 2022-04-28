@@ -1,8 +1,18 @@
-import pygame
 import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+import pygame
 import sys
 from classes.LoreSearcher import Searcher
 # from lore_searcher.classes.LorePage import Page
+
+# look, is it what I want to do? Change my python PATH? No
+# is it what I need to do? Probably also no
+# But here I go doing it.
+path_to_add = os.path.abspath('..') + '/'
+sys.path.append(path_to_add)
+import gui.Classes.gui_classes as gc
+sys.path.remove(path_to_add)
+
 
 pygame.init()
 pygame.display.init()
@@ -45,33 +55,123 @@ MAIN_WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 COLOR_INACTIVE = BLACK
 COLOR_ACTIVE = WHITE
 
-
+"""
+lore_GUI is a completely different GUI than what I worked on originally. It is very bare bones as time was a factor,
+    but as a proof of concept, I think it works well! The button in the bottom left of the corner should scroll
+    through entries, though only the first entry is shown right now.
+    
+    Text wrapping also proved to be an issue. Pygame has an 'easy' way to do this, but more work is needed to see
+    how that text is split and sent. Jared also showed me to a python module that may do this as well, but as of now,
+    the 'blurbs' is omitted until that can be figured out.
+"""
 def main():
     clock = pygame.time.Clock()
     path = os.path.join("data", "index")
     searcher = Searcher(path)
+    if len(sys.argv) < 2:
+        print("Error, not enough arguments sent. Are you sure you sent something?")
+        exit(1)
+
     results = searcher.search(sys.argv[1])
     """
     for result in results['results']:
         result.getPage()
     """
 
+    # x = WIN_WIDTH/2
+    # y = WIN_HEIGHT/2
+    # text = "TESTING"
+    # w, h = pygame.font.Font(None, DEFAULT_FONT).size(text)
+    # box = gc.TextBox(x, y, w, h, 'text', False, DEFAULT_FONT)
+
     data = []
 
-    for result in results['results']:
-        data = result.getSummary()
+    if results['results'] is None:
+        print('String not found in the database!')
+        exit(0)
 
-    for entry in data:
-        print(entry, data[entry])
+    for result in results['results']:
+        data.append(result.getSummary())
+        # result.printSummary()
+
+    # SHOW IN THIS ORDER
+    # id
+    # name
+    # blurb
+    # topic
+    # url
+
+    # blurb missing for demo. Need to recursively find where to wrap the text box. I just dont have time rn
+
+    tags_ordered = ['id', 'name', 'topics', 'url']
+
+    next_button_pressed = True
+    cur_box_index = 0
+    y_height = 20
+
+    all_boxes = []
+
+    font_size = DEFAULT_FONT
+
+    text = 'next entry '
+    w, h = pygame.font.Font(None, DEFAULT_FONT).size(text)
+    next_button = gc.Button((WIN_WIDTH - w - 20), (WIN_HEIGHT - h - 20), w, h, text)
 
     run = True
     while run:
 
         MAIN_WINDOW.fill(WHITE)
+
+        if next_button_pressed:
+            all_boxes = []
+            # need to change out the values of the boxes
+            for tag in tags_ordered:
+                info = data[cur_box_index][tag]
+                info = ' '.join(info)
+                text_field = tag + ': ' + info
+
+                w, h = pygame.font.Font(None, font_size).size(text_field)
+                if w > WIN_WIDTH:
+                    font_size = 25
+                    w, h = pygame.font.Font(None, font_size).size(text_field)
+                x = 25
+                if tag == 'url':
+                    info = info.replace(' ', '')
+                    text_field = tag + ': ' + info
+                    cur_box = gc.WebButton(x, y_height, w, h, text_field, info)
+                else:
+                    cur_box = gc.TextBox(x, y_height, w, h, text_field, False, font_size)
+
+                all_boxes.append(cur_box)
+                y_height += h + (WIN_HEIGHT / (len(tags_ordered) * 1.5))
+                font_size = DEFAULT_FONT
+
+            cur_box_index += 1
+
+            text = 'Page Number ' + str(cur_box_index) + ' of ' + str(results['total-results']) + ' '
+            w, h = pygame.font.Font(None, font_size).size(text)
+            page_num_box = gc.TextBox((WIN_WIDTH / 2) - (w / 2), WIN_HEIGHT - 75, w, h, text)
+
+            # revert the flag
+            next_button_pressed = False
+
         for event in pygame.event.get():
+            next_button.handle_event(event)
+            if page_num_box.handle_event(event):
+                # next_button_pressed = True
+                pass
+            for box in all_boxes:
+                box.handle_event(event)
 
             if event.type == pygame.QUIT:
                 run = False
+
+        next_button.draw(MAIN_WINDOW)
+
+        for box in all_boxes:
+            box.draw(MAIN_WINDOW)
+
+        page_num_box.draw(MAIN_WINDOW)
 
         # update should always be last (other than clock tick)
         pygame.display.update()

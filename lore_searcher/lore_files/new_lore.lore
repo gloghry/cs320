@@ -1,0 +1,153 @@
+{
+    "character-name": "new lore",
+    "cBio": "aimless walker",
+    "cClass": "researcher",
+    "cRace": "none",
+    "cOrigin": "the void",
+    "cSex": "none",
+    "page-total": 4,
+    "section-names": [
+        "bruh"
+    ],
+    "sections": [
+        {
+            "name": "bruh",
+            "total-pages": 4,
+            "ids": [
+                "0",
+                "69",
+                "678",
+                "458"
+            ],
+            "page-list": [
+                {
+                    "id": "0",
+                    "name": "Tower of Twilight",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/8/80/Tower_of_Twilight.jpg/revision/latest/scale-to-width-down/238?cb=20110920172626",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Tower_of_Twilight",
+                    "blurb": "The enchanted emerald tower with two twisted spires rested on an island within a small lake that drained into the woods to the west. It was invisible in the sunlight, but in starlight, the twisting spires twinkled and an emerald-green bridge appeared spanning the water to the island. The tower was reached by an invisible (although it could glow green, if needed) bridge.",
+                    "topics": [
+                        "structure",
+                        "exterior",
+                        "interior",
+                        "malchor's museum",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "structure"
+                        },
+                        {
+                            "topic-name": "exterior",
+                            "paras": "The enchanted emerald tower with two twisted spires rested on an island within a small lake that drained into the woods to the west. It was invisible in the sunlight, but in starlight, the twisting spires twinkled and an emerald-green bridge appeared spanning the water to the island. The tower was reached by an invisible (although it could glow green, if needed) bridge."
+                        },
+                        {
+                            "topic-name": "interior",
+                            "paras": "Upon entering, visitors discovered a wide, round chamber lined with stalls for steeds along one wall. A corridor from the chamber gradually turned upward along the tower's inner circumference, growing steeper, and tightening as it wound to the top. The second level housed the dining room and above that was Malchor's study, which occupied the whole upper level; its door opened directly from the spiraling corridor. The passageway continued past the study to serve the turret chambers.[note 1]"
+                        },
+                        {
+                            "topic-name": "malchor's museum",
+                            "paras": "Being a former aide of Khelben \"Blackstaff\" Arunsun, Malchor trained other wizards, like himself, and spent most of his time researching the creation of magical items, potions, and elixirs. Malchor's Museum was a fine treasure room behind a heavy door past an intersecting passage on the second level. Malchor often lent aid in the form of both mundane and magical items taken from this room. A teleportation ward allowed someone to enter the museum, but not to escape by magic or planar means. The door to the museum was designed to be opened only from the outside, making it nearly foolproof against the tools and guile of rogues."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "In 1356 DR, the Companions of the Hall Drizzt Do'Urden and Wulfgar visited the Tower of Twilight to seek the knowledge of Malchor. During the encounter, Harpell awarded Drizzt a magical scimitar called Twinkle.\n\nAs of 1372 DR, Malchor Harpell was still residing in the Tower.\n\nDuring the Spellplague of 1385 DR, the tower and its inhabitants vanished from Neverwinter Wood. It was theorized that the tower was just expelled from the normal timeline.\n\nThe tower reappeared after the eruption of Mount Hotenow, in 1451 DR. At first, the tower began making infrequent and uncertain returns, however it was uncertain if the lives of those who lived inside had returned with it."
+                        }
+                    ]
+                },
+                {
+                    "id": "69",
+                    "name": "Beldenshyn",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/c/ca/Beldenshyn.png/revision/latest/scale-to-width-down/350?cb=20190324231313",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Beldenshyn",
+                    "blurb": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river.",
+                    "topics": [
+                        "geography",
+                        "trade",
+                        "defenses",
+                        "history"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "geography",
+                            "paras": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river."
+                        },
+                        {
+                            "topic-name": "trade",
+                            "paras": "This community manufactured and sold crossbows and bolts."
+                        },
+                        {
+                            "topic-name": "defenses",
+                            "paras": "The village was surrounded by a stockade, and the residents were sure-shots with crossbows."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "The residents of Beldenshyn raised long-haired goats that grazed around the village, both inside and outside the walls. Unfortunately, these hirsute ungulates had an odor that most humans found disgusting, thus giving the village the disparaging nicknames that were bandied about in places like Scornubel."
+                        }
+                    ]
+                },
+                {
+                    "id": "678",
+                    "name": "Firble",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/1/13/Firble.jpg/revision/latest/scale-to-width-down/260?cb=20081023210615",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Firble",
+                    "blurb": "The deep gnome had stubby fingers and was going bald. Firble stood about 3 feet, 6 inches (1.1 meters) tall and weighed around 80 pounds (36 kilograms).",
+                    "topics": [
+                        "description",
+                        "personality",
+                        "possessions",
+                        "history",
+                        "death"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "description",
+                            "paras": "The deep gnome had stubby fingers and was going bald. Firble stood about 3 feet, 6 inches (1.1 meters) tall and weighed around 80 pounds (36 kilograms)."
+                        },
+                        {
+                            "topic-name": "personality",
+                            "paras": "Firble could be impatient, and though he feared Jarlaxle, he was willing to press the mercenary for information, even if the dark elf pressed back. The deep gnome hated all types of light sources, including torchlight."
+                        },
+                        {
+                            "topic-name": "possessions",
+                            "paras": "Instead of wearing metal armor, Firble dressed in long smooth robes."
+                        },
+                        {
+                            "topic-name": "history",
+                            "paras": "Around 1357 DR, Firble grew more and more suspicious and fearful of the drow creeping around in the Underdark. After \"prompting\" from Belwar Dissengulp, Firble agreed to escort Catti-brie to the drow city of Menzoberranzan."
+                        },
+                        {
+                            "topic-name": "death",
+                            "paras": "After the Battle of Keeper's Dale, Belwar Dissengulp carried Firble's body away from the battlefield."
+                        }
+                    ]
+                },
+                {
+                    "id": "458",
+                    "name": "Ferronni%C3%A8re",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/5/5f/Ferronni%C3%A8re.png/revision/latest/scale-to-width-down/350?cb=20220128023332",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Ferronni%C3%A8re",
+                    "blurb": "A ferronni\u00e8re was a thin, delicate chain of precious metal worn on a person's head, displaying one or more gemstones on their foreheads. Ferronni\u00e8re were considered to be a tasteful sign of wealth and elegance.",
+                    "topics": [
+                        "description",
+                        "notable owners"
+                    ],
+                    "topic-list": [
+                        {
+                            "topic-name": "description",
+                            "paras": "A ferronni\u00e8re was a thin, delicate chain of precious metal worn on a person's head, displaying one or more gemstones on their foreheads. Ferronni\u00e8re were considered to be a tasteful sign of wealth and elegance."
+                        },
+                        {
+                            "topic-name": "notable owners",
+                            "lists": [
+                                [
+                                    "Anorrweyn Evensong, a wizard and the leader of the Sisterhood of Silver Fire from the days of ancient Myth Drannor. She wore a beautiful emerald ferronni\u00e8re in her mortal days, and through the centuries that followed, in her ghostly form."
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

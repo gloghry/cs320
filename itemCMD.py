@@ -1,55 +1,75 @@
 from itemDB import *
-import re
 
-def commandParser(commandInput):
-    commandParsed = ["", ""]
+def commandParser(rawInput):
+    args = { 
+        "c": rawInput.split()
+    }
+    args.update({"v": len(args["c"])})
+    return args
 
-    try:
-        commandParsed[1] = str(re.search(r"\(([A-Za-z0-9_]+)\)", commandInput))
+def keyCreation(unformatedData):
+    keyValue = {}
+    for entry in unformatedData:
+        tmp = entry.split("=")
+        keyValue.update({str(tmp[0]): tmp[1]})
 
-        try:
-            commandParsed[0] = commandInput.replace("({commandArgs})", "")
-            #print("3", command)
-        except:
-            print("Couldn't figure out what you were saying")
-    except:
-        print("Couldn't figure out what you were saying")   
+    if "homebrew" in keyValue:
+        keyValue["homebrew"] = strToBool(keyValue["homebrew"])
 
-    return commandParsed
+    return keyValue
+
+def printResult(result):
+    if result["success"]:
+        for key, value in result:
+            if(not key == "success"):
+                print(value)
+
+    else:
+        print(f"Error!!", result["reason"], sep="\n")
+
+def strToBool(string):
+
+    return string.lower() in ['true']
 
 if __name__ == '__main__':
     items = itemDB()#Start the database
     items.updateList()#Must call this function, else you are fucked
 
-    #print("Welcome to the item database command line interface.\nThis the command line version of the database.\nType 'help()' to get a list of commands.\nType 'exit()' to exit the CMD inteface.")
+    print("Welcome to the item database command line interface.\nThis the command line version of the database.\nType 'help' to get a list of commands.\nType 'exit' to exit the CMD inteface.")
 
-    #command = ""
+    command = ""
 
-    #while command != "exit()":
-     #   commandInput = input(">")
-      #  commandParsed = commandParser(commandInput)
-       # command = commandParsed[0]
+    while command != "exit":
+        commandInput = input(">")
+        args = commandParser(commandInput)
+        command = args["c"][0]
 
-        #if(commandParsed[0] == "addItem()"):
-         #   items.addItem(**commandParsed[1])
+        print(args)
 
-    print("""\nAdding a new item non homebrew item to the data base.\nCommand sent: addItem("Longbow", homebrew = False, damage = "1d8 Piercing", rarity = "Standard", range = "150/600", weight = 2)\nResult: """, items.addItem("Longbow", homebrew = False, damage = "1d8 Piercing", rarity = "Standard", range = "150/600", weight = 2))
-    print("""\nTrying to edit that same non homebrew item.\nCommand sent: editItem("Longbow", "rarity", "Rare")\nResult: """, items.editItem("Longbow", "rarity", "Rare"))
-    print("""\nDeleting a non homebrew item.\nCommand sent: deleteItem("Longbow")\nResult: """, items.deleteItem("Longbow"))
+        if(command == "addItem" and args["v"] >= 3):
+            keyValue = keyCreation(args["c"][2:])
+            printResult(items.addItem(args["c"][1], **keyValue))
 
-    print("""\n\nNow we do the same except with a homebrew item\n""")
+        elif(command == "deleteItem" and args["v"] == 2):
+            printResult(items.deleteItem(args["c"][1]))
 
-    print("""\nAdding a new item non homebrew item to the data base.\nCommand sent: addItem("LongbowHB", homebrew = True, damage = "1d8 Piercing", rarity = "Standard", range = "150/600", weight = 2)\nResult: """, items.addItem("LongbowHB", homebrew = True, damage = "1d8 Piercing", rarity = "Standard", range = "150/600", weight = 2))
-    print("""\nTrying to edit that same non homebrew item.\nCommand sent: editItem("LongbowHB", "rarity", "Rare")\nResult: """, items.editItem("LongbowHB", "rarity", "Rare"))
-    print("""\nDeleting a non homebrew item.\nCommand sent: deleteItem("LongbowHB")\nResult: """, items.deleteItem("LongbowHB"))
+        elif(command == "editItem" and args["v"] == 4):
+            if "homebrew" == args["c"][2]:
+                args["c"][3] = strToBool(args["c"][3])
+            printResult(items.editItem(args["c"][1], args["c"][2], args["c"][3]))
 
+        elif(command == "printItem" and args["v"] == 2):
+            printResult(items.printItem(args["c"][1]))
 
-    items.addItem("LongbowHB", homebrew = True, damage = "1d8 Piercing", rarity = "Standard", range = "150/600", weight = 2)
-    print("""\n\nLets add back that item we just deleted back into the data base.\nNow lets print out the entire database, which you can do so by just calling items.\n""", items)
+        elif(command == "listItems" and args["v"] == 1):
+            print("List of all items in the database:")
+            print(items)
 
-    print("""\nNow lets just print out an individual item.\nCommand sent: printItem("Longbow")\nResult: """, items.printItem("Longbow"))
-    print("""\nLets do the same with the other item.\nCommand sent: printItem("LongbowHB")\nResult: """, items.printItem("LongbowHB"))
+        elif(command == "help" and args["v"] == 1):
+            print("Hasn't been implemented yet")
 
-    items.deleteItem("LongbowHB")
+        elif(command == "exit"):
+            print("Have a good day!")
 
-    print("""\n\nI am now going to delete the homebrew item and try to print it again.\n""", items.printItem("LongbowHB"))
+        else:
+            print("No such command exists or not enough arguments.\nRun 'help' to get help")

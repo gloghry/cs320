@@ -1,6 +1,6 @@
-from sys import argv
+from sys import argv, stdin
 import classes.cmdFuncs as cmdf
-from os import system, path, remove
+from os import system, path
 from classes.LoreSearcher import Searcher
 from classes.LoreSection import Section
 from classes.LoreMaster import Master
@@ -8,12 +8,6 @@ from classes.LoreMaster import Master
 """
 
 Todo:
-<<<<<<< HEAD
-=======
- - write help function
- - write setup
- - write editLore
->>>>>>> 9787d34aaae56615dd2eda5b93ed089b77909141
  - update readme
 
 """
@@ -45,7 +39,7 @@ def cmdFuncs(cmd, args):
         ("print_section", "ps"): lambda: cmdf.printSection(master, args),
         ("clear", "clr"): lambda: system('clear'),
         ("help", "h"): lambda: cmdf.printHelp(),
-        ("edit_lore", "elore"): lambda: cmdf.editLore(master)
+        ("edit_lore", "edit"): lambda: cmdf.editLore(master, args)
     }
 
     for pair in funcs:
@@ -145,7 +139,6 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
-<<<<<<< HEAD
     if path.exists(path.join("lore_files", "tmp.lore")):
         finalSave()
     exit(0)
@@ -165,13 +158,10 @@ def checkForTmp():
                 return
             isNew = False
     return isNew
-=======
->>>>>>> 9787d34aaae56615dd2eda5b93ed089b77909141
 
 
 def main(args):
     argc = len(args)
-    isNew = True
 
     # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
     if argc > 1:
@@ -189,15 +179,13 @@ def main(args):
             cmdf.tmpSave(master)
         mainPrompts()
 
+    isNew = checkForTmp()
     # no lore file loaded on startup, create new lore
     if isNew:
         master.addSection(Section("inspiration"))
         setupPrompts()
 
     mainPrompts()
-    finalSave()
-    print("Goodbye!")
-
 
 if __name__ == '__main__':
     main(argv)

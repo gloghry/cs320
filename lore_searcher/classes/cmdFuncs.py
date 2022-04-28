@@ -1,4 +1,4 @@
-from os import path, remove, listdir
+from os import path, remove, listdir, system
 from sys import stdin
 from .LoreSection import Section
 
@@ -40,6 +40,7 @@ def printPage(searcher, args):
         return
     page = searcher.searchID(args[0])
     if page != None:
+        system('clear')
         page.printFull()
     else:
         print(f"Sorry, no page with id: {args[0]} exists in index")
@@ -65,24 +66,31 @@ def listSection(master, args):
         print(f"Section '{args[0]}' was not found")
 
 
-def search(searcher, args):
-    if len(args) < 1:
+def search(searcher, args, start):
+    argc = len(args)
+    if argc < 1 or argc > 2:
         return
     query = args[0]
+    sType = args[1] if argc == 2 else 'AND'
     pageno = 1
     while True:
-        results = searcher.search(query, pageNum=pageno)
+        results = searcher.search(query, pageNum=pageno, searchType=sType)
         if results['results'] == None:
-            print(
-                f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
-            break
-
+            if start == False:
+                print(
+                    f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
+                return False
+            else:
+                return False
+        elif results['results'] != None and pageno == 1:
+            system('clear')
         pageTot = results['total-pages']
         for result in results['results']:
             result.printSummary()
         if pageno == pageTot:
-            print(f"No more results for {query}")
-            break
+            if start == False:
+                print(f"No more results for '{query}'")
+            return True
         uinput = input(
             "Press [Enter] for more results, or [n] to stop: ").lower()
         while uinput not in ['', 'n']:
@@ -91,7 +99,7 @@ def search(searcher, args):
         if uinput == "":
             pageno += 1
         else:
-            break
+            return True
 
 
 def addPage(master, searcher, args):
@@ -179,6 +187,30 @@ def prettySave(master, textBound, args):
     if master.prettySave(filePath, textBound) == False:
         print(f"An error occured while attempting save to '{filePath}'")
 
+def loadChar(master, args):
+    filePath = args[0]
+    if not path.exists(filePath):
+        print(f"ERROR: '{filePath}' could not be found")
+        return False
+
+    with open(filePath, 'r') as fd:
+        charFile = fd.read()
+    
+    fields = charFile.split('\n')
+    master.cName = fields[0]
+    # subrace + race (e.g. 'Hill Giant')
+    master.cRace = f"{fields[3]} {fields[2]}"
+    master.cClass = fields[4]
+    master.cArch = fields[5]
+
+    # getting full bio
+    bio = ""
+    for string in fields[9:]:
+        if string == "**":
+            break
+        bio += f"{string}\n"
+    master.cBio = f"{fields[6].title()}: {bio}"
+
 
 def loadLore(master, searcher, args):
     if len(args) != 1:
@@ -223,21 +255,29 @@ def editLore(master, args):
     elif field != 'bio' and argc == 1:
         newVal = input("Enter new value: ")
 
+    updateMsg = lambda x: print(f"{x} updated!")
+
     if field == 'name':
         master.cName = newVal
+        updateMsg("Name")
     elif field == 'bio':
         if argc != 2:
             print("Enter Bio (press [ctrl/cmd + d] when done): ")
             newVal = stdin.read()
         master.cBio = newVal
+        updateMsg("Bio")
     elif field == 'class':
         master.cClass = newVal
+        updateMsg("Class")
     elif field == 'race':
         master.cRace = newVal
+        updateMsg("Race")
     elif field == 'sex':
         master.cSex = newVal
+        updateMsg("Sex")
     elif field == 'origin':
         master.cOrigin = newVal
+        updateMsg("Origin")
     else:
         while newVal not in ['camp', 'char']:
             newVal = input("Enter [camp] or [char]: ").lower()

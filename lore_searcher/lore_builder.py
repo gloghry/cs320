@@ -2,7 +2,6 @@ from sys import argv, stdin
 import classes.cmdFuncs as cmdf
 from os import system, path
 from classes.LoreSearcher import Searcher
-from classes.LorePage import Page
 from classes.LoreSection import Section
 from classes.LoreMaster import Master
 
@@ -11,7 +10,6 @@ from classes.LoreMaster import Master
 Todo:
  - write help function
  - update readme
- - more robust save (check if file with name already exists)
 
 """
 
@@ -31,7 +29,7 @@ def cmdFuncs(cmd, args):
         ("print_page", "pp"): lambda: cmdf.printPage(searcher, args),
         ("del_section", "rms"): lambda: cmdf.deleteSection(master, args),
         ("list_section", "ls"): lambda: cmdf.listSection(master, args),
-        ("search", "s"): lambda: cmdf.search(searcher, args),
+        ("search", "s"): lambda: cmdf.search(searcher, args, False),
         ("add_page", "mkp"): lambda: cmdf.addPage(master, searcher, args),
         ("del_page", "rmp"): lambda: cmdf.delPage(master, args),
         ("list_all", "la"): lambda: master.listAllSections(),
@@ -68,11 +66,37 @@ def finalSave():
         lorePath = path.join("lore_files", f"{filename}.txt")
         if master.prettySave(lorePath) == False:
             return
+    # program exit was normal, clear the tmp.lore file
     cmdf.clrTmp()
+
+def introSearch():
+    print("Lets first try a search that includes all of you traits")
+    allTraits = ' '.join([master.cName, master.cRace, master.cClass, master.cOrigin])
+    results = cmdf.search(searcher, [allTraits], True)
+    if results == False:
+        print("Sorry, we couldn't find anything that had all your traits")
+        uinput = input("Want to try a broader search (y): ").lower()
+        if uinput == 'y':
+            results = cmdf.search(searcher, [allTraits, 'OR'], True)
+            if results == False:
+                print("Wow! We could'nt find a thing. You sure have a unique character!")
 
 
 def printIntro():
-    title = "<{  Welcome to the Lore Builder  }>"
+    system('clear')
+    title = f"<{{  Welcome to the Lore Builder, {master.cName.title()}  }}>\n"
+    print(title)
+    print("Reminder: Pressing [ENTER] will skip most prompts")
+
+    # asking user if they would like to see some search results for the fields they entered at setup
+    uinput = input("Would you like to see some search results for your characters traits (y/n): ").lower()
+    while uinput not in ['y', 'n', '']:
+        uinput = input("Enter 'y' for yes, or 'n'/[ENTER] for no: ").lower()
+    if uinput == 'y':
+        introSearch()
+
+    print("Have fun exploring!")
+
 
 
 def setupPrompts():
@@ -97,6 +121,8 @@ def setupPrompts():
         master.cRace = cRace
         cClass = input("Class: ")
         master.cClass = cClass
+        cArch = input("Archetype: ")
+        master.cArch = cArch
         cSex = input("Sex: ")
         master.cSex = cSex
         cOrigin = input("Origin: ")
@@ -105,11 +131,11 @@ def setupPrompts():
         cBio = stdin.read()
         master.cBio = cBio
 
-    print("tmp saving...")
     cmdf.tmpSave(master)
 
 
 def mainPrompts():
+    printIntro()
     while True:
         uInput = input("> ").lower()
         if uInput in ['q', 'quit']:
@@ -142,13 +168,19 @@ def main(args):
     argc = len(args)
 
     # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
-    if argc > 1 and args[1] == '-l':
+    if argc > 1:
         if argc != 3:
             print(
-                "Invalid amount of arguments\nUsage: python(3) lore_builder.py -l some_file")
+                "Invalid amount of arguments\nUsage: python(3) lore_builder.py <option> <input_file>")
             return
-        if cmdf.loadLore(master, searcher, args[2:]) == False:
-            return
+        if args[1] == '-l':
+            if cmdf.loadLore(master, searcher, args[2:]) == False:
+                return
+        elif args[1] == '-c':
+            if cmdf.loadChar(master, args[2:]) == False:
+                return
+            master.addSection(Section("inspiration"))
+            cmdf.tmpSave(master)
         mainPrompts()
 
     isNew = checkForTmp()

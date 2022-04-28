@@ -16,9 +16,19 @@ class Master:
         self.cRace = ""
         self.cOrigin = ""
         self.cSex = ""
+        self.version = 0
+        self.isSaved = False
         self.isCamp = False
         self.sectionDict = {}
         self.sectionNames = []
+
+    def getMeta(self):
+        return {
+            "vNum": self.version,
+            "page-total": self.getPageTotal(),
+            "isSaved": self.isSaved,
+            "section-total": len(self.sectionNames)
+        }
 
     def addSection(self, section) -> bool:
         sName = section.sectionName
@@ -52,7 +62,7 @@ class Master:
             print("Race:", self.cRace.title())
             print("Sex:", self.cSex.title())
             print("Origin:", self.cOrigin.title(), "\n")
-            print(textwrap.fill(f"{self.cBio}", width=bound))
+        print(textwrap.fill(f"{self.cBio}", width=bound))
         print()
         for name, section in self.sectionDict.items():
             section.printSection(bound)
@@ -66,6 +76,7 @@ class Master:
             "cOrigin": self.cOrigin,
             "isCamp": self.isCamp,
             "cSex": self.cSex,
+            "vNum": self.version,
             "page-total": self.getPageTotal(),
             "section-names": self.sectionNames,
             "sections": list(map(lambda x: self.sectionDict[x].getSection(), self.sectionNames))
@@ -109,6 +120,7 @@ class Master:
         self.cRace = data['cRace']
         self.isCamp = data['isCamp']
         self.cSex = data['cSex']
+        self.version = data['vNum']
         self.sectionNames = data['section-names']
 
         sectionDict = {}

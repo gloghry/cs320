@@ -1,4 +1,4 @@
-from os import path, remove
+from os import path, remove, listdir
 from sys import stdin
 from .LoreSection import Section
 
@@ -6,8 +6,10 @@ from .LoreSection import Section
 def helpErrorMsg():
     print("Enter 'help' or 'h' for more details")
 
+
 def usageMsg(usageStr):
     print(f"Invalid number of arguments\nUsage: {usageStr}")
+
 
 def clrTmp():
     # session ended normally, remove tmp.lore file
@@ -131,8 +133,30 @@ def delPage(master, args):
 
 
 def saveLore(master, args):
+    meta = master.getMeta()
     filename = master.cName.replace(' ', '_').lower()
-    filePath = path.join("lore_files", f"{filename}.lore")
+    v = meta['vNum']
+    file = f"{filename}.lore" if v == 0 else f"{filename}({v}).lore"
+    filePath = path.join("lore_files", file)
+
+    if path.exists(filePath) and meta['isSaved'] == False:
+        uinput = input(
+            f"A file named '{file}' already exists\nWould you like to replace it (y/n): ").lower()
+        while uinput not in ['y', 'n']:
+            uinput = input("Enter 'y' for yes, or 'n' for no: ").lower()
+
+        if uinput == 'n':
+            dirFiles = listdir('lore_files')
+            vNums = [x[x.find('(') + 1:x.find(')')]
+                     for x in dirFiles if "(" in x and ").lore" in x]
+            print(vNums)
+            maxV = int(max(vNums)) + 1 if len(vNums) != 0 else 0
+            master.version = maxV
+            print(master.version)
+            filePath = path.join(
+                "lore_files", f"{filename}({master.version}).lore")
+            print(filePath)
+
     if len(args) != 0:
         print("Invalid save command\nUsage: <save_lore / save>")
         helpErrorMsg()
@@ -140,6 +164,8 @@ def saveLore(master, args):
     if master.saveLore(filePath) == False:
         print(f"An error occured while attempting save to '{filePath}'")
         return
+    master.isSaved = True if path.basename(
+        filePath) != 'tmp.lore' else master.isSaved
     clrTmp()
 
 
@@ -162,6 +188,8 @@ def loadLore(master, searcher, args):
 
     filePath = args[0]
     master.loadLore(filePath, searcher)
+    master.isSaved = True if path.basename(
+        filePath) != 'tmp.lore' else master.isSaved
 
 
 def printSection(master, args):
@@ -174,6 +202,7 @@ def printSection(master, args):
         print(f"Section '{sName}' not found")
         return
     master.sectionDict[sName].printSection()
+
 
 def editLore(master, args):
     argc = len(args)
@@ -193,7 +222,6 @@ def editLore(master, args):
         newVal = args[1]
     elif field != 'bio' and argc == 1:
         newVal = input("Enter new value: ")
-
 
     if field == 'name':
         master.cName = newVal
@@ -215,6 +243,7 @@ def editLore(master, args):
             newVal = input("Enter [camp] or [char]: ").lower()
         master.isCamp = True if newVal == 'camp' else False
     tmpSave(master)
+
 
 def printHelp():
     print("You have made it to help")

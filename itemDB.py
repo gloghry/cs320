@@ -25,8 +25,8 @@ class itemDB:
         if(self.isItem(name)):
             return self.jsonFormat(False, reason = "Item already exists")
 
-        if(not "homebrew" in kwargs.items()):
-            return self.jsonFormat(False, reason = "Must contain the homebrew key")
+        #if(not "homebrew" in kwargs.items()):
+        #    return self.jsonFormat(False, reason = "Must contain the homebrew key")
 
         newItem = {"name": name}
         for tName, dType in kwargs.items():

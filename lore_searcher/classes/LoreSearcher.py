@@ -45,14 +45,16 @@ class Searcher(object):
                 return None
             return Page(result['docText'])
 
+    """ 
+    Conjunctive search if searchType == AND
+    Disjunctive search if searchType == OR
+    Both search types search over multiple indexed fields:
+    title, document text, and document blurb 
+    """
     def search(self, userQuery, pageNum=1, limit=10, searchType="AND"):
         resultDict = {"query": userQuery, "results": []}
 
         with self.ix.searcher() as searcher:
-            # Conjunctive search if searchType == AND
-            # Disjunctive search if searchType == OR
-            # Both search types search over multiple indexed fields:
-            #   title, document text, and document blurb
             if searchType == "AND":
                 parser = mfp(['title', 'docText', 'blurb'],
                              schema=self.ix.schema)

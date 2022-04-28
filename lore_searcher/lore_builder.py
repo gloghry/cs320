@@ -1,6 +1,6 @@
-from sys import argv
+from sys import argv, stdin
 import classes.cmdFuncs as cmdf
-from os import system, path, remove
+from os import system, path
 from classes.LoreSearcher import Searcher
 from classes.LoreSection import Section
 from classes.LoreMaster import Master
@@ -8,9 +8,6 @@ from classes.LoreMaster import Master
 """
 
 Todo:
- - write help function
- - write setup
- - write editLore
  - update readme
 
 """
@@ -42,7 +39,7 @@ def cmdFuncs(cmd, args):
         ("print_section", "ps"): lambda: cmdf.printSection(master, args),
         ("clear", "clr"): lambda: system('clear'),
         ("help", "h"): lambda: cmdf.printHelp(),
-        ("edit_lore", "elore"): lambda: cmdf.editLore(master)
+        ("edit_lore", "edit"): lambda: cmdf.editLore(master, args)
     }
 
     for pair in funcs:
@@ -87,8 +84,8 @@ def introSearch():
 def printIntro():
     system('clear')
     title = f"<{{  Welcome to the Lore Builder, {master.cName.title()}  }}>\n"
-    print(title)
-    print("Reminder: Pressing [ENTER] will skip most prompts")
+    print(title.center(textBound))
+    cmdf.printHelp()
 
     # asking user if they would like to see some search results for the fields they entered at setup
     uinput = input("Would you like to see some search results for your characters traits (y/n): ").lower()
@@ -96,10 +93,6 @@ def printIntro():
         uinput = input("Enter 'y' for yes, or 'n'/[ENTER] for no: ").lower()
     if uinput == 'y':
         introSearch()
-
-    print("Have fun exploring!")
-
-
 
 def setupPrompts():
     print("\nWhat is this Lore Builder session going to be used for?")
@@ -115,7 +108,7 @@ def setupPrompts():
         master.isCamp = True
 
     cName = input("Enter your Campain's name: ") if master.isCamp else input(
-        "Enter your Character's: ")
+        "Enter your Character's name: ")
     master.cName = cName if len(cName) != 0 else master.cName
 
     if master.isCamp == False:
@@ -146,11 +139,29 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
+    if path.exists(path.join("lore_files", "tmp.lore")):
+        finalSave()
+    exit(0)
+
+
+def checkForTmp():
+    isNew = True
+    # last session closed before final save, ask if user wants to cached lore tmp.lore
+    tmpPath = path.join("lore_files", "tmp.lore")
+    if path.exists(tmpPath):
+        uinput = input(
+            "tmp.lore file detected from a previous session\nWould you like to load it (y/n): ").lower()
+        while uinput not in ['n', 'y', '']:
+            uinput = input("Please enter 'y' or 'n': ").lower()
+        if uinput == 'y':
+            if cmdf.loadLore(master, searcher, [tmpPath]) == False:
+                return
+            isNew = False
+    return isNew
 
 
 def main(args):
     argc = len(args)
-    isNew = True
 
     # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
     if argc > 1:
@@ -168,15 +179,13 @@ def main(args):
             cmdf.tmpSave(master)
         mainPrompts()
 
+    isNew = checkForTmp()
     # no lore file loaded on startup, create new lore
     if isNew:
         master.addSection(Section("inspiration"))
         setupPrompts()
 
     mainPrompts()
-    finalSave()
-    print("Goodbye!")
-
 
 if __name__ == '__main__':
     main(argv)

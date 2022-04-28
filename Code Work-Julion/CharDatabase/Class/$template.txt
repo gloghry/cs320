@@ -15,7 +15,8 @@
 14 <Lvl 4>		Ability Score Improvement
 15 <Lvl 5>		Extra Attack (x1)
 . . .			. . .
-30 <Lvl 20>		. . .
-31** 			<<Explain what each thing is used as on lines:>>
+31 <Lvl 20>		. . .
+32** 			<<Explain what each thing is used as on lines:>>
 Fighting Style: You adopt a particular style of fighting as your specialty.
-
+. . .
+**

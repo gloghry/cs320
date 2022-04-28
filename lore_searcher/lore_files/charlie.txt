@@ -1,0 +1,44 @@
+                         <{{  Character: Charlie  }}>
+                          
+Class: Fighter (Battle Master)
+Race: Hill Dwarf
+Sex: 
+Origin: Vancouver 
+
+Criminal: You have access to a contact/liaison to get connected to other
+criminals. Specifically, you know the local messengers, corrupt caravan masters,
+and seedy travelers. You are considered 1 of these: Blackmailers, Burglar,
+Enforcer, Fence, Highway Robber, Hired Killer, Pickpocket, Smuggler
+
+
+Section: Inspiration
+---------------------
+********************************************************************************
+
+                         Venturer%27S Rest (id: 3636)
+                          
+
+Topics Included: structure, interior, atmosphere, services, history
+Description: From the exterior, the inn appeared as hole-in-the-wall
+establishment of little acclaim. It was tucked away in an unremarkable corner of
+the city, built into...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Venturer%27s_Rest
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/b/ba/Old_Dirty
+_Dwarf_Ext.png/revision/latest/scale-to-width-down/350?cb=20210205165036
+
+********************************************************************************
+********************************************************************************
+
+                      Grand Army Of The Tuigan (id: 1092)
+                      
+
+Topics Included: organization, activities, tactics, base of operations
+Description: Formed mostly of horsemen, Yamun Khahan's army was fast, efficient,
+and lethal. The army was organized as follows:  Yamun Kahan's army numbered over
+300,000 ...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Grand_Army_of_the_Tuigan
+Img-URL: default.png
+
+********************************************************************************

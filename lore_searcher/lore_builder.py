@@ -10,7 +10,6 @@ from classes.LoreMaster import Master
 
 Todo:
  - write help function
- - write editLore
  - update readme
  - more robust save (check if file with name already exists)
 
@@ -72,14 +71,14 @@ def finalSave():
     cmdf.clrTmp()
 
 
-
 def printIntro():
     title = "<{  Welcome to the Lore Builder  }>"
 
 
 def setupPrompts():
     print("\nWhat is this Lore Builder session going to be used for?")
-    firstQ = input("Enter [camp] for Campaign, [char] for Character, or [skip]: ").lower()
+    firstQ = input(
+        "Enter [camp] for Campaign, [char] for Character, or [skip]: ").lower()
     while firstQ not in ['camp', 'char', 'skip', 's']:
         firstQ = input("Enter [camp], [skip / s], or [char]: ").lower()
 
@@ -89,7 +88,8 @@ def setupPrompts():
     if firstQ == 'camp':
         master.isCamp = True
 
-    cName = input("Enter your Campain's name: ") if master.isCamp else input("Enter your Character's: ")
+    cName = input("Enter your Campain's name: ") if master.isCamp else input(
+        "Enter your Character's: ")
     master.cName = cName if len(cName) != 0 else master.cName
 
     if master.isCamp == False:
@@ -118,6 +118,9 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
+    finalSave()
+    exit(0)
+
 
 def checkForTmp():
     isNew = True
@@ -137,7 +140,6 @@ def checkForTmp():
 
 def main(args):
     argc = len(args)
-    isNew = True
 
     # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
     if argc > 1 and args[1] == '-l':
@@ -147,19 +149,15 @@ def main(args):
             return
         if cmdf.loadLore(master, searcher, args[2:]) == False:
             return
-        isNew = False
+        mainPrompts()
 
     isNew = checkForTmp()
-
     # no lore file loaded on startup, create new lore
     if isNew:
         master.addSection(Section("inspiration"))
         setupPrompts()
 
     mainPrompts()
-    finalSave()
-    print("Goodbye!")
-
 
 if __name__ == '__main__':
     main(argv)

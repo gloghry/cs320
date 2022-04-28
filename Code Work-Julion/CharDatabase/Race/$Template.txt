@@ -1,5 +1,5 @@
 0<Name>			Dwarf
-1<Stat Increase>		0, 0, 2, 0, 0, 0
+1<Stat Increase>		0, 0, 2, 0, 0, 0 <Str, Dex, Const, Int, Wis, Char>
 2<Size>			Medium
 3<Land Speed>		25
 4<Age>			50, 350			<Matured, Max Age>

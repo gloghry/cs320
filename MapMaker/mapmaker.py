@@ -1,5 +1,4 @@
 import pygame
-import os
 import sys
 import random
 from math import *
@@ -15,7 +14,6 @@ random.seed(None) #initializes random number generator, with a seed of the curre
 WATERTOTAL = random.randrange(200, 1500) #min of about 10% water, to a maximum of about 75%
 RUNBEFORE = False
 FILEBUFFER = 51
-
 
 clock = pygame.time.Clock()
 baseFont = pygame.font.Font(None, 20)
@@ -167,7 +165,6 @@ class HexBox: #this is the hex boxes which compose the map
             path = 'DesertFeatures.txt'
         else:
             path = 'TundraFeatures.txt'
-        # open file
         if sys.platform == 'Windows':
             path = os.path.join('MapMaker', path)
         file = open(path, 'r')

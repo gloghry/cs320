@@ -22,7 +22,8 @@ def printResult(result):
     if result["success"]:
         for key, value in result.items():
             if(not key == "success"):
-                print(value)
+                if(key == "string"):
+                    print(value)
 
     else:
         print(f"Error!!", result["reason"], sep="\n")

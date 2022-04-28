@@ -25,8 +25,10 @@ class itemDB:
         if(self.isItem(name)):
             return self.jsonFormat(False, reason = "Item already exists")
 
-        #if(not "homebrew" in kwargs.items()):
-        #    return self.jsonFormat(False, reason = "Must contain the homebrew key")
+        tmp = self.convertKwargs(**kwargs)
+
+        if(not ('homebrew' in tmp)):
+            return self.jsonFormat(False, reason = "Must contain the homebrew key")
 
         newItem = {"name": name}
         for tName, dType in kwargs.items():
@@ -120,7 +122,15 @@ class itemDB:
             json.dump(data, item)
 
     def fileName(self, name):#Converts an item's name to an acceptable file name
-        return name.lower().strip()     
+        return name.lower().strip()
+
+    def convertKwargs(self, **kwargs):
+        formatedKwargs = {}
+        
+        for key, value in kwargs.items():
+            formatedKwargs.update({str(key): value})
+
+        return formatedKwargs     
 
     def jsonFormat(self, success, **kwargs):#Takes in the arguments and converts it into a dict/json
         dataFormated = {"success": success}

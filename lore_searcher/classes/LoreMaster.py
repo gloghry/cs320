@@ -9,7 +9,7 @@ from .LoreSearcher import Searcher
 
 
 class Master:
-    def __init__(self, characterName="new lore", isCamp=False, bio="", cClass="", cArch="", race="", origin="", sex=""):
+    def __init__(self, characterName="Adventurer", isCamp=False, bio="", cClass="", cArch="", race="", origin="", sex=""):
         self.cName = characterName
         self.cBio = bio
         self.cClass = cClass
@@ -55,12 +55,13 @@ class Master:
             return 0
         return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
-    def printLore(self, bound=80):
-        os.system('clear')
+    def printLore(self, bound=80, saving=False):
+        if not saving:
+            os.system('clear')
         cType = "Campaign:" if self.isCamp else "Character:"
         print(f"<{{{{  {cType} {self.cName.title()}  }}}}>\n".center(bound))
         if self.isCamp != True:
-            print("Class:", self.cClass.title(), f"({self.cArch})")
+            print("Class:", self.cClass.title(), f"({self.cArch.title()})")
             print("Race:", self.cRace.title())
             print("Sex:", self.cSex.title())
             print("Origin:", self.cOrigin.title(), "\n")
@@ -147,7 +148,7 @@ class Master:
         try:
             # redirecting stdout to file
             sys.stdout = open(path, 'w+')
-            self.printLore(bound)
+            self.printLore(bound, saving=True)
 
             # closing file pointer and restoring stdout
             sys.stdout.close()

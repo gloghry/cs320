@@ -8,7 +8,6 @@ from classes.LoreMaster import Master
 """
 
 Todo:
- - write help function
  - update readme
 
 """
@@ -85,8 +84,8 @@ def introSearch():
 def printIntro():
     system('clear')
     title = f"<{{  Welcome to the Lore Builder, {master.cName.title()}  }}>\n"
-    print(title)
-    print("Reminder: Pressing [ENTER] will skip most prompts")
+    print(title.center(textBound))
+    cmdf.printHelp()
 
     # asking user if they would like to see some search results for the fields they entered at setup
     uinput = input("Would you like to see some search results for your characters traits (y/n): ").lower()
@@ -94,10 +93,6 @@ def printIntro():
         uinput = input("Enter 'y' for yes, or 'n'/[ENTER] for no: ").lower()
     if uinput == 'y':
         introSearch()
-
-    print("Have fun exploring!")
-
-
 
 def setupPrompts():
     print("\nWhat is this Lore Builder session going to be used for?")
@@ -113,7 +108,7 @@ def setupPrompts():
         master.isCamp = True
 
     cName = input("Enter your Campain's name: ") if master.isCamp else input(
-        "Enter your Character's: ")
+        "Enter your Character's name: ")
     master.cName = cName if len(cName) != 0 else master.cName
 
     if master.isCamp == False:
@@ -144,7 +139,8 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
-    finalSave()
+    if path.exists(path.join("lore_files", "tmp.lore")):
+        finalSave()
     exit(0)
 
 

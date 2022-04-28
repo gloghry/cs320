@@ -243,8 +243,8 @@ def editLore(master, args):
         helpErrorMsg()
         return
 
-    field = args[0]
-    validFields = ['name', 'bio', 'class', 'race', 'sex', 'origin', 'type']
+    field = args[0].lower()
+    validFields = ['name', 'bio', 'class', 'race', 'sex', 'origin', 'type', 'archetype']
     if field not in validFields:
         print(f"Field '{field}' not recognized")
         print(f"Valid Fields: " + ', '.join(validFields))
@@ -269,6 +269,9 @@ def editLore(master, args):
     elif field == 'class':
         master.cClass = newVal
         updateMsg("Class")
+    elif field == 'archetype':
+        master.cArch = newVal
+        updateMsg("Archetype")
     elif field == 'race':
         master.cRace = newVal
         updateMsg("Race")
@@ -286,4 +289,35 @@ def editLore(master, args):
 
 
 def printHelp():
-    print("You have made it to help")
+    print("""
+Command Line Options:                                                                                                   
+    -l <path/to/file.lore>  Loads found lore file to new session                                                        
+    -c <path/to/char.txt>   Loads randomly generated character to new session                                           
+                                                                                                                        
+Session Commands:                                                                                                       
+    edit_lore | edit, <field>, <new_value>  Changes field to new value                                                  
+    load_lore | load, <path/to/file.lore>   Loads character/campaign from file (CURRENT SESSION LOST)                   
+    save_lore | save                        Saves current session to name.lore file (Json format)                       
+    pretty_save | psave                     Saves current session to name.txt file in print_lore format                 
+    clear | clr                             Clears console                                                              
+    help | h                                Prints command list
+    q | quit                                Quits current session                                                         
+                                                                                                                        
+Section Commands:                                                                                                       
+    add_section | mks, <section_name>           Creates a new section titled 'section_name'                             
+    del_section | rms, <section_name>           Removes section and all section pages                                   
+    list_section | ls, <section_name>           Lists the pages present in section                                      
+    print_section | ps, <section_name>          Prints page summaries for section pages                                 
+    add_page | mkp, <section_name>, <page_id>   Adds page associated with id to section                                 
+    del_page | rmp, <section_name>, <page_id>   Removes page associated with id from section                            
+    list_all | la                               Lists all sections and their pages                                      
+                                                                                                                        
+Page Commands:                                                                                                          
+    print_page | pp, <page_id>  Prints full page to console                                                             
+                                                                                                                        
+Search Commands:                                                                                                        
+    search | s, <search_terms>  Searches index and prints summaries of relevant pages found
+
+REMEMBER: Command arguments should be seperated by COMMAS. Most prompts can be skipped with [ENTER]                                                              
+Example: add_page, inspiration, 400  (Adds page associated with id=400 to inspiration section)
+    """)

@@ -9,13 +9,17 @@ from .LoreSearcher import Searcher
 
 
 class Master:
-    def __init__(self, characterName="new lore"):
+    def __init__(self, characterName="new lore", isCamp=False, bio="", cClass="", cArch="", race="", origin="", sex=""):
         self.cName = characterName
-        self.cBio = "aimless walker"
-        self.cClass = "researcher"
-        self.cRace = "none"
-        self.cOrigin = "the void"
-        self.cSex = "none"
+        self.cBio = bio
+        self.cClass = cClass
+        self.cRace = race
+        self.cOrigin = origin
+        self.cSex = sex
+        self.cArch = cArch
+        self.version = 0
+        self.isSaved = False
+        self.isCamp = isCamp
         self.sectionDict = {}
         self.sectionNames = []
 
@@ -44,11 +48,15 @@ class Master:
         return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
     def printLore(self, bound=80):
-        print(f"<{{{{  {self.cName.title()}  }}}}>\n".center(bound))
-        print("Class:", self.cClass.title())
-        print("Race:", self.cRace.title())
-        print("Sex:", self.cSex.title())
-        print("Origin:", self.cOrigin.title(), "\n")
+        os.system('clear')
+        cType = "Campaign:" if self.isCamp else "Character:"
+        print(f"<{{{{  {cType} {self.cName.title()}  }}}}>\n".center(bound))
+        if self.isCamp != True:
+            print("Class:", self.cClass.title(), f"({self.cArch})")
+            print("Race:", self.cRace.title())
+            print("Sex:", self.cSex.title())
+            print("Origin:", self.cOrigin.title(), "\n")
+
         print(textwrap.fill(f"{self.cBio}", width=bound))
         print()
         for name, section in self.sectionDict.items():
@@ -62,6 +70,8 @@ class Master:
             "cRace": self.cRace,
             "cOrigin": self.cOrigin,
             "cSex": self.cSex,
+            "cArch": self.cArch,
+            "vNum": self.version,
             "page-total": self.getPageTotal(),
             "section-names": self.sectionNames,
             "sections": list(map(lambda x: self.sectionDict[x].getSection(), self.sectionNames))
@@ -97,6 +107,8 @@ class Master:
         self.cOrigin = data['cOrigin']
         self.cRace = data['cRace']
         self.cSex = data['cSex']
+        self.cArch = data['cArch']
+        self.version = data['vNum']
         self.sectionNames = data['section-names']
 
         for section in data['sections']:

@@ -1,189 +1,71 @@
 {
     "character-name": "drizzt",
-    "cBio": "Drizzt Do'Urden was a drow. He stood about 5\u202ffeet and 4\u202finches (1.6\u202fmeters) tall and weighed about 130\u202fpounds (59\u202fkilograms).[13] His handsome features were sharp and well proportioned and, like other drow, Drizzt's skin was black and his stark white hair was long, thick, and flowing. His eyes were a lavender hue (quite different from the drow race's typical red, even when he used his infravision, which normally caused eyes to glow red) and seemed to glow fiercely when he was angry or determined.[20]",
-    "cClass": "skirmisher",
-    "cRace": "drow",
-    "cOrigin": "underdark",
-    "cSex": "male",
-    "page-total": 6,
+    "cBio": "",
+    "cClass": "",
+    "cRace": "",
+    "cOrigin": "",
+    "isCamp": true,
+    "cSex": "",
+    "vNum": 0,
+    "page-total": 1,
     "section-names": [
-        "bruh"
+        "inspiration"
     ],
     "sections": [
         {
-            "name": "bruh",
-            "total-pages": 6,
+            "name": "inspiration",
+            "total-pages": 1,
             "ids": [
-                "80",
-                "0",
-                "90",
-                "69",
-                "420",
-                "95"
+                "973"
             ],
             "page-list": [
                 {
-                    "id": "80",
-                    "name": "Zelraun Roaringhorn",
-                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/6/60/Zelraun.png/revision/latest/scale-to-width-down/350?cb=20190306154444",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Zelraun_Roaringhorn",
-                    "blurb": "Despite being in his 50s in the years following the War of the Silver Marches, Zelraun appeared to be about 30 years old. He maintained his youthful look by means of potions of longevity.",
+                    "id": "973",
+                    "name": "Ashemmi",
+                    "img": "default.png",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Ashemmi",
+                    "blurb": "Ashemmi had flaxen hair and gold eyes, which went some way to explain the regular confusion over her true race, since these traits are rare in moon elves (she had claimed to be a moon elf around 1372 DR).\n\nAshemmi changed her appearance frequently, every few months.\n\nAs of 1374 DR, Ashemmi's hair was snow-blond, bound in several places with silver ties.",
                     "topics": [
                         "appearance",
-                        "personality",
-                        "possession",
-                        "history"
+                        "relatives",
+                        "background",
+                        "early years",
+                        "bright banner brandished",
+                        "harper and zhent",
+                        "sleeping dragon inn",
+                        "origins in evermeet"
                     ],
                     "topic-list": [
                         {
                             "topic-name": "appearance",
-                            "paras": "Despite being in his 50s in the years following the War of the Silver Marches, Zelraun appeared to be about 30 years old. He maintained his youthful look by means of potions of longevity."
+                            "paras": "Ashemmi had flaxen hair and gold eyes, which went some way to explain the regular confusion over her true race, since these traits are rare in moon elves (she had claimed to be a moon elf around 1372 DR).\n\nAshemmi changed her appearance frequently, every few months.\n\nAs of 1374 DR, Ashemmi's hair was snow-blond, bound in several places with silver ties."
                         },
                         {
-                            "topic-name": "personality",
-                            "paras": "Zelraun always maintained an attitude of self-assurance and pride that derived from his family. He never forgot his roots and used the money of his family on the finer things in life. He lived to gamble."
+                            "topic-name": "relatives",
+                            "paras": "Ashemmi's mother was the gold elf Chelryn Sarynnryllar and her father was the moon elf Rhyem Maraphiir. Her older brother was Malphys Maraphiir."
                         },
                         {
-                            "topic-name": "possession",
-                            "paras": "He always had with him a shield guardian."
+                            "topic-name": "background"
                         },
                         {
-                            "topic-name": "history",
-                            "paras": "Zelraun hailed from the noble Roaringhorn family and trained as a wizard.\n\nDuring the Rage of Demons, Zelraun was the Harper delegate to King Bruenor Battlehammer of Gauntlgrym to discuss the madness spreading in the Underdark."
-                        }
-                    ]
-                },
-                {
-                    "id": "0",
-                    "name": "Tower of Twilight",
-                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/8/80/Tower_of_Twilight.jpg/revision/latest/scale-to-width-down/238?cb=20110920172626",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Tower_of_Twilight",
-                    "blurb": "The enchanted emerald tower with two twisted spires rested on an island within a small lake that drained into the woods to the west. It was invisible in the sunlight, but in starlight, the twisting spires twinkled and an emerald-green bridge appeared spanning the water to the island. The tower was reached by an invisible (although it could glow green, if needed) bridge.",
-                    "topics": [
-                        "structure",
-                        "exterior",
-                        "interior",
-                        "malchor's museum",
-                        "history"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "structure"
+                            "topic-name": "early years",
+                            "paras": "Ashemmi was born Shemmithil Maraphiir in 1171 DR, to her moon elf father Rhyem Maraphiir and gold elf mother Chelryn Sarynnryllar. She was born in Silverymoon, but shortly after birth, her parents traveled with her to the Neverwinter Woods, to live among the wood elves, where they were taken in by the Ilbaereth clan. Ashemmi's brother, Malphys, had apprenticed under Khelben \"Blackstaff\" Arunsun, and when she was around 80, Malphys began to teach her what he knew about magic."
                         },
                         {
-                            "topic-name": "exterior",
-                            "paras": "The enchanted emerald tower with two twisted spires rested on an island within a small lake that drained into the woods to the west. It was invisible in the sunlight, but in starlight, the twisting spires twinkled and an emerald-green bridge appeared spanning the water to the island. The tower was reached by an invisible (although it could glow green, if needed) bridge."
+                            "topic-name": "bright banner brandished",
+                            "paras": "Ashemmi left her home in the Neverwinter Woods in 1261 DR, traveling to Neverwinter where she joined the Bright Banner Brandished, an adventuring company. In 1266 DR, the band became trapped in subterranean crypts north of Mirabar by the lich necromancer Orvanath. The entire company died except for Ashemmi, who escaped using a scroll of teleport, but this experience quelled her desire for adventure."
                         },
                         {
-                            "topic-name": "interior",
-                            "paras": "Upon entering, visitors discovered a wide, round chamber lined with stalls for steeds along one wall. A corridor from the chamber gradually turned upward along the tower's inner circumference, growing steeper, and tightening as it wound to the top. The second level housed the dining room and above that was Malchor's study, which occupied the whole upper level; its door opened directly from the spiraling corridor. The passageway continued past the study to serve the turret chambers.[note 1]"
+                            "topic-name": "harper and zhent",
+                            "paras": "After Ashemmi wandered the North as wizard-for-hire until the 1297 DR when she met the Harper bard Elthaor, secretly send by Khelben Arunsun. Soon Ashemmi and Elthaor became lovers and Ashemmi joined the Harpers. In 1339 DR however Elthaor was killed by some drow near Calaunt. Devastated by the loss Ashemmi was recruited by Khelben for a very difficult mission: infiltrate the Zhentarim in Darkhold.\nSo in the disguise of a human male and using for the first time the name Ashemmi she joined the Zhent in 1344 DR. In Darkhold she first met Sememmon and understood that the high Zhent used evil only as shield for his inner feeling. In 1355 DR the two became lovers and she even told him about her heritage and her role as Harper spy. In 1357 during a purge of spies in Zhent ranks Ashemmi was unveiled and Manshoon, in a twisted form of respect for Sememmon, instead to killing her like all the other spies, he used a powerful spell to suppress all of her emotions, transforming Ashemmi in an amoral being."
                         },
                         {
-                            "topic-name": "malchor's museum",
-                            "paras": "Being a former aide of Khelben \"Blackstaff\" Arunsun, Malchor trained other wizards, like himself, and spent most of his time researching the creation of magical items, potions, and elixirs. Malchor's Museum was a fine treasure room behind a heavy door past an intersecting passage on the second level. Malchor often lent aid in the form of both mundane and magical items taken from this room. A teleportation ward allowed someone to enter the museum, but not to escape by magic or planar means. The door to the museum was designed to be opened only from the outside, making it nearly foolproof against the tools and guile of rogues."
+                            "topic-name": "sleeping dragon inn",
+                            "paras": "On 28 Uktar 1374 DR, Ashemmi and Sememmon assisted Khelben \"Blackstaff\" Arunsun to defeat a sharn at the Sleeping Dragon inn, using a strategy known as Petrylloc's Gambit."
                         },
                         {
-                            "topic-name": "history",
-                            "paras": "In 1356 DR, the Companions of the Hall Drizzt Do'Urden and Wulfgar visited the Tower of Twilight to seek the knowledge of Malchor. During the encounter, Harpell awarded Drizzt a magical scimitar called Twinkle.\n\nAs of 1372 DR, Malchor Harpell was still residing in the Tower.\n\nDuring the Spellplague of 1385 DR, the tower and its inhabitants vanished from Neverwinter Wood. It was theorized that the tower was just expelled from the normal timeline.\n\nThe tower reappeared after the eruption of Mount Hotenow, in 1451 DR. At first, the tower began making infrequent and uncertain returns, however it was uncertain if the lives of those who lived inside had returned with it."
-                        }
-                    ]
-                },
-                {
-                    "id": "90",
-                    "name": "Mount Pojah",
-                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/f/fe/Tabot.jpg/revision/latest/scale-to-width-down/350?cb=20211210151550",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Mount_Pojah",
-                    "blurb": "In Shou Year\u00a02607 (1357\u00a0DR), a tortoise-shell divination at U'Chan Gompa promised the finding of a very rich gold mine east of Mount Pojah.",
-                    "topics": [
-                        "history",
-                        "notable inhabitants"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "history",
-                            "paras": "In Shou Year\u00a02607 (1357\u00a0DR), a tortoise-shell divination at U'Chan Gompa promised the finding of a very rich gold mine east of Mount Pojah."
-                        },
-                        {
-                            "topic-name": "notable inhabitants",
-                            "paras": "It was the home of the Forgotten One, a hermit and oracle, around 2607."
-                        }
-                    ]
-                },
-                {
-                    "id": "69",
-                    "name": "Beldenshyn",
-                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/c/ca/Beldenshyn.png/revision/latest/scale-to-width-down/350?cb=20190324231313",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Beldenshyn",
-                    "blurb": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river.",
-                    "topics": [
-                        "geography",
-                        "trade",
-                        "defenses",
-                        "history"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "geography",
-                            "paras": "Beldenshyn was located west of Trollclaw Ford on the south side of the Winding Water on the southernmost curve of that river."
-                        },
-                        {
-                            "topic-name": "trade",
-                            "paras": "This community manufactured and sold crossbows and bolts."
-                        },
-                        {
-                            "topic-name": "defenses",
-                            "paras": "The village was surrounded by a stockade, and the residents were sure-shots with crossbows."
-                        },
-                        {
-                            "topic-name": "history",
-                            "paras": "The residents of Beldenshyn raised long-haired goats that grazed around the village, both inside and outside the walls. Unfortunately, these hirsute ungulates had an odor that most humans found disgusting, thus giving the village the disparaging nicknames that were bandied about in places like Scornubel."
-                        }
-                    ]
-                },
-                {
-                    "id": "420",
-                    "name": "Yuji Takaesu",
-                    "img": "default.png",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Yuji_Takaesu",
-                    "blurb": "Yuji was totally loyal to his daimyo. He loved music and outside his government dutieshe  was an introspective and intellectual individual.",
-                    "topics": [
-                        "personality",
-                        "activities",
-                        "history"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "personality",
-                            "paras": "Yuji was totally loyal to his daimyo. He loved music and outside his government dutieshe  was an introspective and intellectual individual."
-                        },
-                        {
-                            "topic-name": "activities",
-                            "paras": "Yuji was the right-hand man of the daimyo Benju Matsutomo. His hobbies were acting in noh plays with Benju and playing go."
-                        },
-                        {
-                            "topic-name": "history",
-                            "paras": "Yuji met Benju Matsutomo when he was a simple samurai general. From that day, Yuji was his closest advisor and best friend."
-                        }
-                    ]
-                },
-                {
-                    "id": "95",
-                    "name": "Dlatha Faenar",
-                    "img": "default.png",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Dlatha_Faenar",
-                    "blurb": "Though advanced in age by 1367\u00a0DR, Dlatha was kept beautiful by powerful magic.",
-                    "topics": [
-                        "description",
-                        "activities"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "description",
-                            "paras": "Though advanced in age by 1367\u00a0DR, Dlatha was kept beautiful by powerful magic."
-                        },
-                        {
-                            "topic-name": "activities",
-                            "paras": "Dlatha advanced over her rivals by slaying and outwitting them at every instance, rising through Beshaba's ranks for nearly a century. She was believed to wield magic that most mortals could not use or understand."
+                            "topic-name": "origins in evermeet",
+                            "paras": "A rumour existed that asserted that Ashemmi was originally a sun elf noble from Evermeet."
                         }
                     ]
                 }

@@ -107,8 +107,6 @@ def getToc(toc):
         return ', '.join(list(map(lambda x: x, toc)))
 
 # returns the first paragraph found on page. Used if no blurb was found on page
-
-
 def firstPara(page):
     for topic in page['toc']:
         if page[topic]['paras']:

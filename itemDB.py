@@ -131,4 +131,4 @@ class itemDB:
         return dataFormated
 
     def __str__(self):#Will return the full list of items in database
-        return str(self.itemList)
+        return str('\n'.join(map(str, self.itemList)))

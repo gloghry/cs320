@@ -1,9 +1,8 @@
 from itemDB import *
-import re
 
 def commandParser(rawInput):
     args = { 
-        "c": rawInput.split()#re.split(" ", rawInput)
+        "c": rawInput.split()
     }
     args.update({"v": len(args["c"])})
     return args
@@ -58,6 +57,16 @@ if __name__ == '__main__':
             if "homebrew" == args["c"][2]:
                 args["c"][3] = strToBool(args["c"][3])
             printResult(items.editItem(args["c"][1], args["c"][2], args["c"][3]))
+
+        elif(command == "printItem" and args["v"] == 2):
+            printResult(items.printItem(args["c"][1]))
+
+        elif(command == "listItems" and args["v"] == 1):
+            print("List of all items in the database:")
+            print(items)
+
+        elif(command == "help" and args["v"] == 1):
+            print("Hasn't been implemented yet")
 
         elif(command == "exit"):
             print("Have a good day!")

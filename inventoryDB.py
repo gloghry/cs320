@@ -64,14 +64,53 @@ class inventoryDB:
             
         with open(f'inventory/{self.fileName(self.current)}.inventory', "w") as inventoryFile:
             json.dump(inventory, inventoryFile)
+
+        self.updateList()
         
         return self.jsonFormat(False, reason = "Cause yeah")
 
-    def decrementItem(self, itemName):
-        return self.jsonFormat(False, reason = "Cause yeah")
+    def decrementItem(self, itemName, amount):
+        if(not self.inventoryExists(self.current)):
+            return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
+
+        inventory = {}
+
+        with open(f'inventory/{self.fileName(self.current)}.inventory', "r") as inventoryFile:
+            inventory = json.load(inventoryFile)
+            if itemName in inventory:
+                tmp = inventory[itemName]
+                tmp -= amount
+                inventory[itemName] = tmp
+            else:
+                inventory.update({itemName, (-1 * amount)})
+            
+        with open(f'inventory/{self.fileName(self.current)}.inventory', "w") as inventoryFile:
+            json.dump(inventory, inventoryFile)
+
+        self.updateList()
+
+        return self.jsonFormat(True)
 
     def removeItem(self, itemName):
-        return self.jsonFormat(False, reason = "Cause yeah")
+        if(not self.inventoryExists(self.current)):
+            return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
+
+        if os.path.exists(f'items/{self.fileName(self.current))}.item'):
+            os.remove(f'items/{self.fileName(self.current)}.item')
+        else:
+            return self.jsonFormat(False, reason = "No such file exists")
+
+        self.updateList()
+
+        return self.jsonFormat(True)
+
+    def printInventory(self):
+        if(not self.inventoryExists(self.current)):
+            return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
+
+        with open(f'inventory/{self.fileName(self.current)}.inventory', "r") as inventoryFile:
+            inventory = json.load(inventoryFile)
+            return self.jsonFormat(True, **inventory)
 
     def inventoryExists(self, name):
         for inventoryName in self.itemList:
@@ -96,3 +135,6 @@ class inventoryDB:
             dataFormated.update({str(tName): dType})
 
         return dataFormated
+
+    def __str__(self):
+        return "hello there"

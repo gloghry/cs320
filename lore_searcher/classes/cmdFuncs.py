@@ -7,25 +7,14 @@ def helpErrorMsg():
     print("Enter 'help' or 'h' for more details")
 
 
-def usageMsg(usageStr):
-    print(f"Invalid number of arguments\nUsage: {usageStr}")
-
-
-def clrTmp():
-    # session ended normally, remove tmp.lore file
-    tmpPath = path.join("lore_files", "tmp.lore")
-    if path.exists(tmpPath):
-        remove(tmpPath)
-
-
 def tmpSave(master):
-    tmpPath = path.join("lore_files", "tmp.lore")
-    master.saveLore(tmpPath)
+    path = os.path.join("lore_files", "tmp.lore")
+    master.saveLore(path)
 
 
 def addSection(master, args):
     if len(args) != 1:
-        usageMsg("<add_section / mks, sectionName>")
+        print("Invalid number of arguments\nUsage: <add_section / mks, sectionName>")
         helpErrorMsg()
         return
     newSection = Section(args[0])
@@ -48,7 +37,7 @@ def printPage(searcher, args):
 
 def deleteSection(master, args):
     if len(args) != 1:
-        usageMsg("<del_section / rms, sectionName>")
+        print("Invalid number of arguments\nUsage: <del_section / rms, sectionName>")
         helpErrorMsg()
         return
     if master.delSection(args[0]) == False:
@@ -59,7 +48,7 @@ def deleteSection(master, args):
 
 def listSection(master, args):
     if len(args) != 1:
-        usageMsg("<list_section / ls, sectionName>")
+        print("Invalid number of arguments\nUsage: <list_section / ls, sectionName>")
         helpErrorMsg()
         return
     if master.listSection(args[0]) == False:
@@ -104,7 +93,7 @@ def search(searcher, args, start):
 
 def addPage(master, searcher, args):
     if len(args) != 2:
-        usageMsg("<add_page / mkp, sectionName, pageID>")
+        print("Invalid number of arguments\nUsage: <add_page / mkp, sectionName, pageID>")
         helpErrorMsg()
         return
     sName = args[0]
@@ -124,7 +113,7 @@ def addPage(master, searcher, args):
 
 def delPage(master, args):
     if len(args) != 2:
-        usageMsg("<del_page / rmp, sectionName, pageID>")
+        print("Invalid number of arguments\nUsage: <del_page / rmp, sectionName, pageID>")
         helpErrorMsg()
         return
     sName = args[0]
@@ -141,51 +130,25 @@ def delPage(master, args):
 
 
 def saveLore(master, args):
-    meta = master.getMeta()
     filename = master.cName.replace(' ', '_').lower()
-    v = meta['vNum']
-    file = f"{filename}.lore" if v == 0 else f"{filename}({v}).lore"
-    filePath = path.join("lore_files", file)
-
-    if path.exists(filePath) and meta['isSaved'] == False:
-        uinput = input(
-            f"A file named '{file}' already exists\nWould you like to replace it (y/n): ").lower()
-        while uinput not in ['y', 'n']:
-            uinput = input("Enter 'y' for yes, or 'n' for no: ").lower()
-
-        if uinput == 'n':
-            dirFiles = listdir('lore_files')
-            vNums = [x[x.find('(') + 1:x.find(')')]
-                     for x in dirFiles if "(" in x and ").lore" in x]
-            print(vNums)
-            maxV = int(max(vNums)) + 1 if len(vNums) != 0 else 0
-            master.version = maxV
-            print(master.version)
-            filePath = path.join(
-                "lore_files", f"{filename}({master.version}).lore")
-            print(filePath)
-
+    path = os.path.join("lore_files", f"{filename}.lore")
     if len(args) != 0:
         print("Invalid save command\nUsage: <save_lore / save>")
         helpErrorMsg()
         return
-    if master.saveLore(filePath) == False:
-        print(f"An error occured while attempting save to '{filePath}'")
-        return
-    master.isSaved = True if path.basename(
-        filePath) != 'tmp.lore' else master.isSaved
-    clrTmp()
+    if master.saveLore(path) == False:
+        print(f"An error occured while attempting save to '{path}'")
 
 
 def prettySave(master, textBound, args):
     filename = master.cName.replace(' ', '_').lower()
-    filePath = path.join("lore_files", f"{filename}.txt")
+    path = os.path.join("lore_files", f"{filename}.txt")
     if len(args) != 0:
-        usageMsg("<pretty_save / psave>")
+        print("Invalid pretty save command\nUsage: <pretty_save / psave>")
         helpErrorMsg()
         return
-    if master.prettySave(filePath, textBound) == False:
-        print(f"An error occured while attempting save to '{filePath}'")
+    if master.prettySave(path, textBound) == False:
+        print(f"An error occured while attempting save to '{path}'")
 
 def loadChar(master, args):
     filePath = args[0]
@@ -214,19 +177,51 @@ def loadChar(master, args):
 
 def loadLore(master, searcher, args):
     if len(args) != 1:
-        usageMsg("<load_lore / load, path_to_file>")
+        print("Invalid number of arguments\nUsage: <load_lore / load, path_to_file>")
         helpErrorMsg()
         return False
 
     filePath = args[0]
-    master.loadLore(filePath, searcher)
-    master.isSaved = True if path.basename(
-        filePath) != 'tmp.lore' else master.isSaved
+    if not os.path.exists(filePath):
+        print(f"ERROR: '{filePath}' could not be found")
+        return False
+
+    if os.path.isdir(filePath):
+        print(f"ERROR: '{filePath}' is a directory")
+        return False
+
+    with open(filePath, 'r') as fd:
+        data = json.load(fd)
+
+    master.cName = data['character-name']
+    master.cBio = data['cBio']
+    master.cClass = data['cClass']
+    master.cOrigin = data['cOrigin']
+    master.cRace = data['cRace']
+    master.cSex = data['cSex']
+    master.sectionNames = data['section-names']
+
+    sectionDict = {}
+
+    for section in data['sections']:
+        newSection = Section(section['name'])
+        for page in section['page-list']:
+            tmpPage = searcher.searchID(page['id'])
+            if tmpPage == None:
+                print(
+                    f"Sorry, a page with id:{page['id']} could not be found, skipping...")
+                continue
+            newSection.addPage(tmpPage)
+        sectionDict[section['name']] = newSection
+
+    master.sectionDict = sectionDict
+    print("Lore loaded successfully")
+    return True
 
 
 def printSection(master, args):
     if len(args) != 1:
-        usageMsg("<print_section / ps, sectionName>")
+        print("Invalid number of arguments\nUsage: <print_section / ps, sectionName>")
         helpErrorMsg()
         return
     sName = args[0]

@@ -23,14 +23,6 @@ class Master:
         self.sectionDict = {}
         self.sectionNames = []
 
-    def getMeta(self):
-        return {
-            "vNum": self.version,
-            "page-total": self.getPageTotal(),
-            "isSaved": self.isSaved,
-            "section-total": len(self.sectionNames)
-        }
-
     def addSection(self, section) -> bool:
         sName = section.sectionName
         if sName in self.sectionDict:
@@ -65,6 +57,7 @@ class Master:
             print("Race:", self.cRace.title())
             print("Sex:", self.cSex.title())
             print("Origin:", self.cOrigin.title(), "\n")
+
         print(textwrap.fill(f"{self.cBio}", width=bound))
         print()
         for name, section in self.sectionDict.items():
@@ -77,7 +70,6 @@ class Master:
             "cClass": self.cClass,
             "cRace": self.cRace,
             "cOrigin": self.cOrigin,
-            "isCamp": self.isCamp,
             "cSex": self.cSex,
             "cArch": self.cArch,
             "vNum": self.version,
@@ -105,44 +97,25 @@ class Master:
             print(e)
             return False
 
-    def loadLore(self, filePath, searcher) -> bool:
+    def loadLore(self, filePath) -> bool:
         if not os.path.exists(filePath):
-            print(f"ERROR: '{filePath}' could not be found")
             return False
 
-        if os.path.isdir(filePath):
-            print(f"ERROR: '{filePath}' is a directory")
-            return False
-
-        with open(filePath, 'r') as fd:
-            data = json.load(fd)
-
+        data = json.load(filePath)
         self.cName = data['character-name']
         self.cBio = data['cBio']
         self.cClass = data['cClass']
         self.cOrigin = data['cOrigin']
         self.cRace = data['cRace']
-        self.isCamp = data['isCamp']
         self.cSex = data['cSex']
         self.cArch = data['cArch']
         self.version = data['vNum']
         self.sectionNames = data['section-names']
 
-        sectionDict = {}
-
         for section in data['sections']:
             newSection = Section(section['name'])
             for page in section['page-list']:
-                tmpPage = searcher.searchID(page['id'])
-                if tmpPage == None:
-                    print(
-                        f"Sorry, a page with id:{page['id']} could not be found, skipping...")
-                    continue
-                newSection.addPage(tmpPage)
-            sectionDict[section['name']] = newSection
-
-        self.sectionDict = sectionDict
-        return True
+                tmpPage = Searcher.searchID()
 
     def prettySave(self, path, bound=80) -> bool:
         try:

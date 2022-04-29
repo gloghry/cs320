@@ -15,6 +15,7 @@ Section: Inspiration
 ---------------------
 ********************************************************************************
 
+<<<<<<< HEAD
                              Mount Pojah (id: 90)
                               
 
@@ -25,5 +26,18 @@ Gompa promised the finding of a very rich gold mine east of Mount Pojah.
 Source-URL: https://forgottenrealms.fandom.com/wiki/Mount_Pojah
 Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/f/fe/Tabot.jpg
 /revision/latest/scale-to-width-down/350?cb=20211210151550
+=======
+                           Tower Of Twilight (id: 0)
+                           
+
+Topics Included: structure, exterior, interior, malchor's museum, history
+Description: The enchanted emerald tower with two twisted spires rested on an
+island within a small lake that drained into the woods to the west. It was
+invisible in the ...
+
+Source-URL: https://forgottenrealms.fandom.com/wiki/Tower_of_Twilight
+Img-URL: https://static.wikia.nocookie.net/forgottenrealms/images/8/80/Tower_of_
+Twilight.jpg/revision/latest/scale-to-width-down/238?cb=20110920172626
+>>>>>>> 343a4fe506cf389d485875122f82a45b5a1c89e0
 
 ********************************************************************************

@@ -40,13 +40,24 @@ def fullbg():
         print("Current Background: "+str(mybg))
         bgFlage = False
         while True:
-            incheck = input("Reroll? (y/n): ")
+            print("Yes / No / Choose My Own")
+            incheck = input("Reroll? (y/n/c): ")
             if incheck == "n":
                 bgFlag = True
                 break
             if incheck == "y":
                 bgFlag = False
                 break
+            if incheck == "c":
+                mybg = pickbackground()
+                while True:
+                    choosecheck = input("You have gotten " + str(mybg) + ". Keep? (y/n): ")
+                    if choosecheck == "y":
+                        return mybg
+                    if choosecheck == "n":
+                        break
+                    else:
+                        print("Only 'y' or 'n' please.")
             else:
                 print("Not Correct. 'y' or 'n' Only Please. ")
         if bgFlag is True:
@@ -67,3 +78,27 @@ def bgabbilitiesadd(filename, bg):
         charfile.write("**\n")
         bgfile.close()
         charfile.close()
+
+def pickbackground():
+    try:
+        bgList = open("CharDatabase/Background/$List.txt")
+        bgread = bgList.read()
+        bgEntries = bgread.split("\n")
+        bgnum = len(bgEntries)
+        bgTrueList = []
+        for x in bgEntries:
+            if bgrollertry(str(x)):
+                bgTrueList.append(str(x))
+        i = 0
+        for y in bgTrueList:
+            print("Number ["+str(i)+"]: "+str(y))
+            i = i+1
+        while True:
+            num = input("Enter Number You Want: ")
+            if (int(num) <= i-1) and (int(num) >= 0):
+                print("Chosen: "+str(bgTrueList[int(num)]))
+                return bgTrueList[int(num)]
+            else:
+                print("Try Again.")
+    finally:
+        bgList.close()

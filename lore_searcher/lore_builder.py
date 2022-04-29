@@ -7,8 +7,15 @@ from classes.LoreMaster import Master
 
 """
 
-Todo:
- - update readme
+Program Name: Lore Builder
+Author: Jared Diamond
+Assignment: Cool Cam
+Class: CS 320
+Professor: Dr. Grant Williams
+
+Description: lore_builder.py is an interactive console sesssion that lets a user
+interact with the two components of Lore Builder: The Lorebook and Lore Search
+Engine
 
 """
 
@@ -21,6 +28,10 @@ if not path.exists(ixPath):
 else:
     searcher = Searcher(ixPath)
 
+# The control flow function for lore_builder.py. Called whenever user inputs a
+# command to the '> ' prompt
+# cmd = first argument passed to session input
+# args = comma seperated arguments to cmd
 
 def cmdFuncs(cmd, args):
     funcs = {
@@ -49,8 +60,12 @@ def cmdFuncs(cmd, args):
     print(
         f"Command '{cmd}' not recognized. Enter 'help' to see available commands")
 
+# Prompts user on exit, asking if they would like to save/pretty save their 
+# current session. Will only be called when user inputs 'q'/'quit' and there
+# is a tmp.lore file present in the lore_files directory
 
 def finalSave():
+    # normal save prompt
     print("Would you like to save your current session?")
     uinput = input("Press [y] for yes, anything else for no: ")
     if uinput == 'y':
@@ -59,6 +74,7 @@ def finalSave():
         if master.saveLore(lorePath) == False:
             return
 
+    # pretty save prompt
     uinput = input("Would you like to PRETTY save your current session (y): ")
     if uinput == 'y':
         filename = master.cName.replace(' ', '_').lower()
@@ -68,18 +84,27 @@ def finalSave():
     # program exit was normal, clear the tmp.lore file
     cmdf.clrTmp()
 
+# Prompts user if they would like to a search that includes all of the
+# characters / campaigns attributes as search terms. If no results are returned
+# with the first conjunctive search, user will be asked if they would like to
+# perform a disjunctive search using the same search terms. Called on startup
+
 def introSearch():
     print("Lets first try a search that includes all of you traits")
     allTraits = ' '.join([master.cName, master.cRace, master.cClass, master.cOrigin])
+    
+    # conjunctive search performed
     results = cmdf.search(searcher, [allTraits], True)
     if results == False:
         print("Sorry, we couldn't find anything that had all your traits")
         uinput = input("Want to try a broader search (y): ").lower()
         if uinput == 'y':
+            # disjunctive search performed
             results = cmdf.search(searcher, [allTraits, 'OR'], True)
             if results == False:
                 print("Wow! We could'nt find a thing. You sure have a unique character!")
 
+# Introduction dialogue and prompts. Called on startup
 
 def printIntro():
     system('clear')
@@ -91,8 +116,12 @@ def printIntro():
     uinput = input("Would you like to see some search results for your characters traits (y/n): ").lower()
     while uinput not in ['y', 'n', '']:
         uinput = input("Enter 'y' for yes, or 'n'/[ENTER] for no: ").lower()
+    # User would like to search
     if uinput == 'y':
         introSearch()
+
+# Setup dialogue for new character / campaign. Called on startup unless a character
+# has imported with either -l or -c options
 
 def setupPrompts():
     print("\nWhat is this Lore Builder session going to be used for?")
@@ -126,8 +155,11 @@ def setupPrompts():
         cBio = stdin.read()
         master.cBio = cBio
 
+    # Session saved to tmp.lore
     cmdf.tmpSave(master)
 
+# The main loop of the program. Will prompt user with '> ', and then wait for
+# a command input
 
 def mainPrompts():
     printIntro()
@@ -139,6 +171,8 @@ def mainPrompts():
             continue
         tmp = uInput.split(",")
         cmdFuncs(tmp[0], list(map(lambda x: x.strip().lower(), tmp[1:])))
+    
+    # tmp.lore file found, prompt for save
     if path.exists(path.join("lore_files", "tmp.lore")):
         finalSave()
     exit(0)
@@ -163,7 +197,7 @@ def checkForTmp():
 def main(args):
     argc = len(args)
 
-    # loading .lore file on startup with 'python3 lore_builder.py -l some_file'
+    # loading file on startup with 'python3 lore_builder.py <option> some_file'
     if argc > 1:
         if argc != 3:
             print(

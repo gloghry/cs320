@@ -2,27 +2,49 @@ from os import path, remove, listdir, system
 from sys import stdin
 from .LoreSection import Section
 
+# Simple help command reminder print statement
 
 def helpErrorMsg():
     print("Enter 'help' or 'h' for more details")
 
+# Prints Command usage to terminal
+# usageStr = the expected arguments for a command
+
+def usageMsg(usageStr):
+    print(f"Invalid number of arguments\nUsage: {usageStr}")
+
+# Clears the tmp.lore file from lore_files. Called whenever lore is saved
+# with saveLore()
+
+def clrTmp():
+    tmpPath = path.join("lore_files", "tmp.lore")
+    if path.exists(tmpPath):
+        remove(tmpPath)
+
+# Lore Session saved to tmp.lore, a backup of sorts. Called whenever the current
+# session changes state.
 
 def tmpSave(master):
     tmpPath = path.join("lore_files", "tmp.lore")
     master.saveLore(tmpPath)
 
+# Adds a LoreSection to session LoreMaster.
 
 def addSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <add_section / mks, sectionName>")
+        usageMsg("<add_section / mks, sectionName>")
         helpErrorMsg()
         return
     newSection = Section(args[0])
+
+    # Alerts user that they are trying to overwrite a LoreSection
+    # and then returns before saving
     if master.addSection(newSection) == False:
         print(f"ERROR: Section '{args[0]}' already exists")
         return
     tmpSave(master)
 
+# Prints full pages to terminal
 
 def printPage(searcher, args):
     if len(args) != 1:
@@ -34,10 +56,11 @@ def printPage(searcher, args):
     else:
         print(f"Sorry, no page with id: {args[0]} exists in index")
 
+# Deletes LoreSection from session LoreMaster
 
 def deleteSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <del_section / rms, sectionName>")
+        usageMsg("<del_section / rms, sectionName>")
         helpErrorMsg()
         return
     if master.delSection(args[0]) == False:
@@ -45,27 +68,43 @@ def deleteSection(master, args):
         return
     tmpSave(master)
 
+# Lists LorePages associated with LoreSection 
 
 def listSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <list_section / ls, sectionName>")
+        usageMsg("<list_section / ls, sectionName>")
         helpErrorMsg()
         return
     if master.listSection(args[0]) == False:
         print(f"Section '{args[0]}' was not found")
 
+# Searches provided index for relevant files
+# start = let's search know if it's a new search or not
 
 def search(searcher, args, start):
     argc = len(args)
     if argc < 1 or argc > 2:
         return
     query = args[0]
-    sType = args[1] if argc == 2 else 'AND'
-    pageno = 1
+
+    # search type used
+    # 'OR' = Disjunctive Search
+    # 'AND' = Conjunctive Search (default)
+    sType = args[1] if argc == 2 else 'AND' 
+    pageno = 1 # current page number of results displayed
+
+
+    # The main search loop. Will continue to loop, grabbing pages of results for
+    # user as long as there are results. Will stop looping once current page num
+    # is equal to total available pages for query, if the user enters 'n' when
+    # prompted, or when there are no results for query
+
     while True:
+        # results will contain a list of LorePages returned from LoreSearcher.search()
         results = searcher.search(query, pageNum=pageno, searchType=sType)
         if results['results'] == None:
             if start == False:
+                # No results found for query, alert user and suggest a new query
                 print(
                     f"0 results found for '{results['query']}', did you mean '{results['corrected']}'?")
                 return False
@@ -73,7 +112,10 @@ def search(searcher, args, start):
                 return False
         elif results['results'] != None and pageno == 1:
             system('clear')
+        # page total = total_relavent_docs_in_index / results_per_page
         pageTot = results['total-pages']
+
+        # summaries of results are printed to terminal using LorePage.printSummary()
         for result in results['results']:
             result.printSummary()
         if pageno == pageTot:
@@ -90,17 +132,22 @@ def search(searcher, args, start):
         else:
             return True
 
+# Adds a LorePage object to a LoreSection. LorePage created from the ID of an
+# index document
 
 def addPage(master, searcher, args):
     if len(args) != 2:
-        print("Invalid number of arguments\nUsage: <add_page / mkp, sectionName, pageID>")
+        usageMsg("<add_page / mkp, sectionName, pageID>")
         helpErrorMsg()
         return
+
+    # LoreSection name
     sName = args[0]
     if sName not in master.sectionDict:
         print(f"ERROR: No section titled '{sName}' found")
         return
 
+    # index doc ID
     pageID = args[1]
     page = searcher.searchID(pageID)
     if page == None:
@@ -110,16 +157,21 @@ def addPage(master, searcher, args):
     master.sectionDict[sName].addPage(page)
     tmpSave(master)
 
+# Deletes a LorePage from a LoreSection
 
 def delPage(master, args):
     if len(args) != 2:
-        print("Invalid number of arguments\nUsage: <del_page / rmp, sectionName, pageID>")
+        usageMsg("<del_page / rmp, sectionName, pageID>")
         helpErrorMsg()
         return
+    
+    # LoreSection name
     sName = args[0]
     if sName not in master.sectionDict:
         print(f"ERROR: No section titled '{sName}' found")
         return
+
+    # index doc ID
     pageID = args[1]
     if pageID not in master.sectionDict[sName].pageIDs:
         print(f"ERROR: '{sName}' does not have that page")
@@ -128,27 +180,75 @@ def delPage(master, args):
     master.sectionDict[sName].delPage(pageID)
     tmpSave(master)
 
+# Saves current Lore Builder session to lore_files/master.cName.lore
 
 def saveLore(master, args):
+    meta = master.getMeta()
     filename = master.cName.replace(' ', '_').lower()
-    tmpPath = path.join("lore_files", f"{filename}.lore")
+    v = meta['vNum']
+    file = f"{filename}.lore" if v == 0 else f"{filename}({v}).lore"
+    filePath = path.join("lore_files", file)
+
+    # If this lore session hasn't already been saved, alert of potential .lore
+    # file overwrite. If user does not want to overwrite, session will be saved
+    # as lore_files/master.cName(version_num).lore
+    if path.exists(filePath) and meta['isSaved'] == False:
+        uinput = input(
+            f"A file named '{file}' already exists\nWould you like to replace it (y/n): ").lower()
+        while uinput not in ['y', 'n']:
+            uinput = input("Enter 'y' for yes, or 'n' for no: ").lower()
+
+        # finding highest version number present in lore_files, e.g
+        # highest = max([file(1).lore, file(2).lore]) = 2
+        # This is not a perfect way of doing this because the name of the file
+        # is not considered
+        if uinput == 'n':
+            dirFiles = listdir('lore_files')
+            vNums = [x[x.find('(') + 1:x.find(')')]
+                     for x in dirFiles if "(" in x and ").lore" in x]
+            maxV = int(max(vNums)) if len(vNums) != 0 else 0
+            master.version = maxV + 1
+            filePath = path.join(
+                "lore_files", f"{filename}({master.version}).lore")
+
     if len(args) != 0:
         print("Invalid save command\nUsage: <save_lore / save>")
         helpErrorMsg()
         return
-    if master.saveLore(tmpPath) == False:
-        print(f"An error occured while attempting save to '{path}'")
+    if master.saveLore(filePath) == False:
+        print(f"An error occured while attempting save to '{filePath}'")
+        return
+    
+    # prevents tmp.lore being saved as tmp(1).lore, tmp(2).lore, etc
+    # Also makes sure that user will not be prompted with potential overwrite
+    # warnings
 
+    master.isSaved = True if path.basename(
+        filePath) != 'tmp.lore' else master.isSaved
+
+    # session saved successfully, clear the tmp.lore file
+    clrTmp()
+
+# Saves Lore Builder session to a master.cName.txt file in a nicer format
+# Format will be the same as what is printed to screen when user enters
+# '> print_lore'
 
 def prettySave(master, textBound, args):
-    filename = master.cName.replace(' ', '_').lower()
-    tmpPath = path.join("lore_files", f"{filename}.txt")
+    cleanName = master.cName.replace(' ', '_').lower()
+    filename = cleanName if master.version == 0 else f"{cleanName}({master.version})"
+    filePath = path.join("lore_files", f"{filename}.txt")
     if len(args) != 0:
-        print("Invalid pretty save command\nUsage: <pretty_save / psave>")
+        usageMsg("<pretty_save / psave>")
         helpErrorMsg()
         return
-    if master.prettySave(tmpPath, textBound) == False:
-        print(f"An error occured while attempting save to '{path}'")
+    if master.prettySave(filePath, textBound) == False:
+        print(f"An error occured while attempting save to '{filePath}'")
+
+# Imports a name.txt file generated from the random character generator to the
+# current Lore session, overwriting current session. Only called when -c option
+# used on lore_builder.py's startup. Will attempt to import any valid .txt file
+# it does not check for proper random generator format........
+
 
 def loadChar(master, args):
     filePath = args[0]
@@ -174,10 +274,11 @@ def loadChar(master, args):
         bio += f"{string}\n"
     master.cBio = f"{fields[6].title()}: {bio}"
 
+# Imports a name.lore file into the current session, overwriting current session.
 
 def loadLore(master, searcher, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <load_lore / load, path_to_file>")
+        usageMsg("<load_lore / load, path_to_file>")
         helpErrorMsg()
         return False
 
@@ -186,42 +287,22 @@ def loadLore(master, searcher, args):
         print(f"ERROR: '{filePath}' could not be found")
         return False
 
-    if path.isdir(filePath):
-        print(f"ERROR: '{filePath}' is a directory")
-        return False
+    master.loadLore(filePath, searcher)
 
-    with open(filePath, 'r') as fd:
-        data = json.load(fd)
+    # prevents tmp.lore being saved as tmp(1).lore, tmp(2).lore, etc
+    # Also makes sure that user will not be prompted with potential overwrite
+    # warnings
 
-    master.cName = data['character-name']
-    master.cBio = data['cBio']
-    master.cClass = data['cClass']
-    master.cOrigin = data['cOrigin']
-    master.cRace = data['cRace']
-    master.cSex = data['cSex']
-    master.sectionNames = data['section-names']
+    master.isSaved = True if path.basename(
+        filePath) != 'tmp.lore' else master.isSaved
 
-    sectionDict = {}
 
-    for section in data['sections']:
-        newSection = Section(section['name'])
-        for page in section['page-list']:
-            tmpPage = searcher.searchID(page['id'])
-            if tmpPage == None:
-                print(
-                    f"Sorry, a page with id:{page['id']} could not be found, skipping...")
-                continue
-            newSection.addPage(tmpPage)
-        sectionDict[section['name']] = newSection
-
-    master.sectionDict = sectionDict
-    print("Lore loaded successfully")
-    return True
-
+# Prints specified LoreSection to terminal. All LorePages present in LoreSection
+# will have their summaries printed to the terminal
 
 def printSection(master, args):
     if len(args) != 1:
-        print("Invalid number of arguments\nUsage: <print_section / ps, sectionName>")
+        usageMsg("<print_section / ps, sectionName>")
         helpErrorMsg()
         return
     sName = args[0]
@@ -230,6 +311,7 @@ def printSection(master, args):
         return
     master.sectionDict[sName].printSection()
 
+# Lets user edit current session's LoreMaster attribute fields 
 
 def editLore(master, args):
     argc = len(args)
@@ -245,11 +327,15 @@ def editLore(master, args):
         print(f"Valid Fields: " + ', '.join(validFields))
         return
 
+    # if 2nd arg present: set newVal to 2nd arg, else: set to user input
+    # The bio attribute will have its own, special, input
+
     if argc == 2:
         newVal = args[1]
     elif field != 'bio' and argc == 1:
         newVal = input("Enter new value: ")
 
+    # alerts user that an attribute has successfully been updated
     updateMsg = lambda x: print(f"{x} updated!")
 
     if field == 'name':
@@ -277,11 +363,15 @@ def editLore(master, args):
         master.cOrigin = newVal
         updateMsg("Origin")
     else:
+        # Special care is taken when user attempts to change from character to
+        # campaign, or vice versa
         while newVal not in ['camp', 'char']:
             newVal = input("Enter [camp] or [char]: ").lower()
         master.isCamp = True if newVal == 'camp' else False
     tmpSave(master)
 
+
+# Prints possible commands to terminal
 
 def printHelp():
     print("""

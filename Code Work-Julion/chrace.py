@@ -63,18 +63,54 @@ def fullrace():
         print("Current Race: "+str(sub)+" "+str(myRace))
         raceFlag = False
         while True:
-            incheck = input("Reroll? (y/n): ")
+            print("Yes / No / Choose My Own")
+            incheck = input("Reroll? (y/n/c): ")
             if incheck == "n":
                 raceFlag = True
                 break
             if incheck == "y":
                 raceFlag = False
                 break
+            if incheck == "c":
+                myRace = pickrace()
+                sub = subchoose(str(myRace))
+                while True:
+                    choosecheck = input("You have gotten " + str(sub) + " " + str(myRace) + ". Keep? (y/n): ")
+                    if choosecheck == "y":
+                        return myRace, sub
+                    if choosecheck == "n":
+                        break
+                    else:
+                        print("Only 'y' or 'n' please.")
             else:
                 print("Not Correct. 'y' or 'n' Only Please. ")
         if raceFlag is True:
             break
     return myRace, sub
+
+def pickrace():
+    try:
+        raList = open("CharDatabase/Race/$List.txt")
+        raread = raList.read()
+        raEntries = raread.split("\n")
+        ranum = len(raEntries)
+        raTrueList = []
+        for x in raEntries:
+            if racerollertry(str(x)):
+                raTrueList.append(str(x))
+        i = 0
+        for y in raTrueList:
+            print("Number ["+str(i)+"]: "+str(y))
+            i = i+1
+        while True:
+            num = input("Enter Number You Want: ")
+            if (int(num) <= i-1) and (int(num) >= 0):
+                print("Chosen: " + str(raTrueList[int(num)]))
+                return raTrueList[int(num)]
+            else:
+                print("Try Again.")
+    finally:
+        raList.close()
 
 def racemod(myRace, myStats):
     try:

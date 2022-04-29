@@ -8,8 +8,8 @@ def helpErrorMsg():
 
 
 def tmpSave(master):
-    path = os.path.join("lore_files", "tmp.lore")
-    master.saveLore(path)
+    tmpPath = path.join("lore_files", "tmp.lore")
+    master.saveLore(tmpPath)
 
 
 def addSection(master, args):
@@ -131,23 +131,23 @@ def delPage(master, args):
 
 def saveLore(master, args):
     filename = master.cName.replace(' ', '_').lower()
-    path = os.path.join("lore_files", f"{filename}.lore")
+    tmpPath = path.join("lore_files", f"{filename}.lore")
     if len(args) != 0:
         print("Invalid save command\nUsage: <save_lore / save>")
         helpErrorMsg()
         return
-    if master.saveLore(path) == False:
+    if master.saveLore(tmpPath) == False:
         print(f"An error occured while attempting save to '{path}'")
 
 
 def prettySave(master, textBound, args):
     filename = master.cName.replace(' ', '_').lower()
-    path = os.path.join("lore_files", f"{filename}.txt")
+    tmpPath = path.join("lore_files", f"{filename}.txt")
     if len(args) != 0:
         print("Invalid pretty save command\nUsage: <pretty_save / psave>")
         helpErrorMsg()
         return
-    if master.prettySave(path, textBound) == False:
+    if master.prettySave(tmpPath, textBound) == False:
         print(f"An error occured while attempting save to '{path}'")
 
 def loadChar(master, args):
@@ -182,11 +182,11 @@ def loadLore(master, searcher, args):
         return False
 
     filePath = args[0]
-    if not os.path.exists(filePath):
+    if not path.exists(filePath):
         print(f"ERROR: '{filePath}' could not be found")
         return False
 
-    if os.path.isdir(filePath):
+    if path.isdir(filePath):
         print(f"ERROR: '{filePath}' is a directory")
         return False
 

@@ -153,10 +153,10 @@ def main():
             next_button_pressed = False
 
         for event in pygame.event.get():
+            next_button.handle_event(event)
             # IDE gives an error, but this should be guaranteed to be true. I will add an assert for now I suppose.
-            if next_button.handle_event(event):
+            if page_num_box.handle_event(event):
                 # next_button_pressed = True
-                print('Can only print the first entry currently')
                 pass
             for box in all_boxes:
                 box.handle_event(event)

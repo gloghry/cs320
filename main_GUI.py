@@ -37,9 +37,6 @@ ORANGE = (255, 120, 0)
 PINK = (255, 0, 255)
 CYAN = (0, 255, 255)
 
-# create the window var
-MAIN_WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
-
 # Import background image
 BACKGROUND_LARGE = pygame.image.load(
     os.path.join('gui', 'Assets/desert.jpg'))
@@ -70,8 +67,9 @@ def opening_window():
         pygame.display.init()
 
     # Opening Window closes itself a set period of time, I have it set to 4 seconds.
+    screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pygame.time.Clock()
-    MAIN_WINDOW.fill(BLACK)
+    screen.fill(BLACK)
     run = True
 
     all_boxes = []
@@ -125,7 +123,7 @@ def opening_window():
 
         for box in all_boxes:
             box.txt_surface = box.font.render(box.text, True, WHITE)        # manually change the color of the box
-            box.draw(MAIN_WINDOW)
+            box.draw(screen)
 
         # update should always be last (other than clock tick)
         pygame.display.update()
@@ -191,9 +189,10 @@ def main():
         pygame.display.init()
 
     clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
     # Window is filled in case the image cannot/will not load. I don't want WHTIE or BLACK or RED or whatever default is
-    MAIN_WINDOW.fill(SAND)
+    screen.fill(SAND)
 
     # My things are on the left, buttons to other cool cams are on the right. Buttons are blue, boxes typically black
     # NEED TO ACCOUNT FOR A BARE MINIMUM OF:
@@ -251,27 +250,27 @@ def main():
     run = True
     while run:
         # need to blint the window, it's actually an image
-        MAIN_WINDOW.blit(BACKGROUND_SCALED, (0, 0))
+        screen.blit(BACKGROUND_SCALED, (0, 0))
         for event in pygame.event.get():
             for box in input_boxes:
                 box.handle_event(event)
-                box.update(MAIN_WINDOW)
+                box.update(screen)
             for button in buttons:
                 ret = button.handle_event(event)
                 if ret is not None:
                     for i in range(len(input_boxes)):
                         input_boxes[i].text = box_texts[i] + ret[i]
-                        input_boxes[i].update(MAIN_WINDOW)
+                        input_boxes[i].update(screen)
             search_box.handle_event(event)
 
             if event.type == pygame.QUIT:
                 run = False
 
         for box in input_boxes:
-            box.draw(MAIN_WINDOW)
+            box.draw(screen)
         for button in buttons:
-            button.draw(MAIN_WINDOW)
-        search_box.draw(MAIN_WINDOW)
+            button.draw(screen)
+        search_box.draw(screen)
 
         # update should always be last (other than clock tick)
         pygame.display.update()
@@ -287,7 +286,8 @@ def closing_window():
         pygame.display.init()
 
     clock = pygame.time.Clock()
-    MAIN_WINDOW.fill(BLACK)
+    screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+    screen.fill(BLACK)
     run = True
 
     all_boxes = []
@@ -313,7 +313,7 @@ def closing_window():
 
         for box in all_boxes:
             box.txt_surface = box.font.render(box.text, True, WHITE)
-            box.draw(MAIN_WINDOW)
+            box.draw(screen)
 
         # update should always be last (other than clock tick)
         pygame.display.update()

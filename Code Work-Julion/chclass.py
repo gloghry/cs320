@@ -48,6 +48,7 @@ def archchoose(classname):
             if i:
                 archnum += 1
         gotarch = archetypeList[random.randint(0, archnum-1)]
+        return str(gotarch)
     except:
         print("Somehow an error in the archetype choosing!!")
     return str(gotarch)

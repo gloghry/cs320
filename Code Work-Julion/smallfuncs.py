@@ -1,6 +1,9 @@
 import os.path
+import array
+import math
+import random
+import pathlib
 from FunctionSetUp import *
-
 
 class Character:
     def __init__(self, Name, Stats, CharClass, CharRace, Level, Archetype):

@@ -47,13 +47,24 @@ def fullbg():
         print("Current Background: "+str(mybg))
         bgFlage = False
         while True:
-            incheck = input("Reroll? (y/n): ")
+            print("Yes / No / Choose My Own")
+            incheck = input("Reroll? (y/n/c): ")
             if incheck == "n":
                 bgFlag = True
                 break
             if incheck == "y":
                 bgFlag = False
                 break
+            if incheck == "c":
+                mybg = pickbackground()
+                while True:
+                    choosecheck = input("You have gotten " + str(mybg) + ". Keep? (y/n): ")
+                    if choosecheck == "y":
+                        return mybg
+                    if choosecheck == "n":
+                        break
+                    else:
+                        print("Only 'y' or 'n' please.")
             else:
                 print("Not Correct. 'y' or 'n' Only Please. ")
         if bgFlag is True:
@@ -157,13 +168,25 @@ def fullclass():
         print("Current Class: "+str(arch)+" "+str(myClass))
         classFlag = False
         while True:
-            incheck = input("Reroll? (y/n): ")
+            print("Yes / No / Choose My Own")
+            incheck = input("Reroll? (y/n/c): ")
             if incheck == "n":
                 classFlag = True
                 break
             if incheck == "y":
                 classFlag = False
                 break
+            if incheck == "c":
+                myClass = pickclass()
+                arch = archchoose(str(myClass))
+                while True:
+                    choosecheck = input("You have gotten " + str(arch) + " " + str(myClass) + ". Keep? (y/n): ")
+                    if choosecheck == "y":
+                        return myClass, arch
+                    if choosecheck == "n":
+                        break
+                    else:
+                        print("Only 'y' or 'n' please.")
             else:
                 print("Not Correct. 'y' or 'n' Only Please. ")
         if classFlag is True:
@@ -268,13 +291,25 @@ def fullrace():
         print("Current Race: "+str(sub)+" "+str(myRace))
         raceFlag = False
         while True:
-            incheck = input("Reroll? (y/n): ")
+            print("Yes / No / Choose My Own")
+            incheck = input("Reroll? (y/n/c): ")
             if incheck == "n":
                 raceFlag = True
                 break
             if incheck == "y":
                 raceFlag = False
                 break
+            if incheck == "c":
+                myRace = pickrace()
+                sub = subchoose(str(myRace))
+                while True:
+                    choosecheck = input("You have gotten " + str(sub) + " " + str(myRace) + ". Keep? (y/n): ")
+                    if choosecheck == "y":
+                        return myRace, sub
+                    if choosecheck == "n":
+                        break
+                    else:
+                        print("Only 'y' or 'n' please.")
             else:
                 print("Not Correct. 'y' or 'n' Only Please. ")
         if raceFlag is True:
@@ -1014,6 +1049,9 @@ I will NOT include the "$List.txt" , "$Template.txt", and "@PossibleFullList.txt
 List is used in the code yes, but its a list of names, nothing else important or in any specific order.
 Template is just that- a template for that section. Not used in any of the code.
 PossibleFullList was just a marking thing for myself to see what else I could make or offer as help for others.
+
+NOTE: White spaces bellow are empty spots but its simply saying that section just has a NULL, Nothing, or Non-Applicable
+      So honestly I do not know if these should count as lines or not, so that will be up to you!
 """
 #  ====================================================================================
 #  BACKGROUNDS
@@ -1272,3 +1310,39 @@ Signature Spells: Choose 2 Lvl-3 spells, you can cast them once for free per sho
 #  ====================================================================================
 #  RACES
 #  ====================================================================================
+Dwarf
+0, 0, 2, 0, 0, 0
+Medium
+25
+50, 350
+Common, Dwarvish
+Hill, Mountain, Duergar
+**
+Darkvision: Able to see in the dark within a radius of 60 ft.
+Combat Training: Proficency in Battleaxe, Handaxe, Light Hammer, and Warhammer
+Tool Proficency: Choose 1 tool to be trained in: Smiths Tools, Brewers Supplies, or Mason's Tools
+Stonecutting: When you make a History Check on Stonework, you add double proficiency to the check instead of normal.
+**
+Elf
+0, 2, 0, 0, 0, 0
+Medium
+30
+100, 750
+Common, Elven
+Dark, High, Wood
+**
+Darkvision: Able to see in the dark within a radius of 60 ft.
+Fey Ancestry: Advantage against being charmed, and magic cannot put you to sleep.
+Trance: Elves don't need sleep, but meditate 4 hours a day. Therefore, an 8 hour rest can be done within a 4 hour period for Elves.
+Keen Senses: Proficiency in Perception.
+**
+Human
+1, 1, 1, 1, 1, 1
+Medium
+30
+16, 90
+Common, +1 Extra Player Choice
+0
+**
+0
+**

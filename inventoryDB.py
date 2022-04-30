@@ -2,6 +2,8 @@ import json
 import os
 
 """
+github link: https://github.com/gloghry/cs320
+
 This is the inventory Database system
 When called make sure to run the updateList() method right after to get list of all possible inventories
 All public return values are in a pyDict/json format

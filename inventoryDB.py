@@ -1,17 +1,34 @@
 import json
 import os
 
+"""
+This is the inventory Database system
+When called make sure to run the updateList() method right after to get list of all possible inventories
+All public return values are in a pyDict/json format
+"""
+
 class inventoryDB:
     def __init__(self):
         self.current = ""
         self.inventoryList = []
 
+    """
+    This will get all the avaible inventories
+
+    Public Method 
+    """
     def updateList(self):
         self.inventoryList = []
         for file in os.listdir("inventory/"):
             if file.endswith(".inventory"):
                 self.inventoryList.append(self.inventoryName("inventory/" + file))
 
+    """
+    The user will need to call this set the inventory they want to use
+    It will check if the inventory exists, and if it does it will set the current value to that inventory
+
+    Public Method
+    """
     def setInventory(self, name):
         if(not self.inventoryExists(name)):
             return self.jsonFormat(False, reason = "Inventory for {name} does not exist")
@@ -20,6 +37,12 @@ class inventoryDB:
 
         return self.jsonFormat(True)
 
+    """
+    The user can use this to create a new inventory
+    It will check if the inventory with the same name exists already
+
+    Public Method
+    """
     def createNewInventory(self, name):
         if(self.inventoryExists(name)):
             return self.jsonFormat(False, reason = "Inventory for {name} already exists")
@@ -31,6 +54,12 @@ class inventoryDB:
 
         return self.jsonFormat(True)
 
+    """
+    The user can use this to delete an inventory
+    Once deleted it cannot be recovered, though might implement a system to do so down the line
+
+    Public Method
+    """
     def deleteInventory(self, name):
         if(not self.inventoryExists(name)):
             return self.jsonFormat(False, reason = "Inventory for {name} does not exist")
@@ -47,6 +76,11 @@ class inventoryDB:
 
         return self.jsonFormat(True)
 
+    """
+    The user can use this method to add an item to the current inventory, or increment the count of the item
+
+    Public Method
+    """
     def incrementItem(self, itemName, amount):
         if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {name} does not exist")
@@ -69,6 +103,12 @@ class inventoryDB:
         
         return self.jsonFormat(False, reason = "Cause yeah")
 
+    """
+    The user can use this decrement the amount of an item in the inventory
+    It can go into the negatives
+
+    Public method
+    """
     def decrementItem(self, itemName, amount):
         if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
@@ -91,6 +131,11 @@ class inventoryDB:
 
         return self.jsonFormat(True)
 
+    """
+    The user can use this to remove an item from the current inventory entirely
+
+    Public Method
+    """
     def removeItem(self, itemName):
         if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
@@ -104,6 +149,11 @@ class inventoryDB:
 
         return self.jsonFormat(True)
 
+    """
+    The user can use this method to get the contents of the current inventory
+
+    Public Method
+    """
     def printInventory(self):
         if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
@@ -112,6 +162,11 @@ class inventoryDB:
             inventory = json.load(inventoryFile)
             return self.jsonFormat(True, **inventory)
 
+    """
+    This will check if the inventory exists
+
+    Private Method
+    """
     def inventoryExists(self, name):
         for inventoryName in self.itemList:
             if (inventoryName == name):
@@ -119,15 +174,31 @@ class inventoryDB:
 
         return False
 
+    """
+    This will obtain the name of the inventory
+
+    Private Method
+    """
     def inventoryName(self, filePath):
         file = open(filePath)
         data = json.load(file)
         file.close()
-        return data["name"] 
+        return data["name"]
 
+    """
+    This will convert the inventory name into a file name
+
+    Private Method
+    """
     def fileName(self, name):#Converts an item's name to an acceptable file name
-        return name.lower().strip()  
+        return name.lower().strip()
 
+    """
+    This method takes what the public methods give it and convert it into a pyDict/json format
+    It requires a success flag to be passed
+
+    Private Method
+    """
     def jsonFormat(self, success, **kwargs):#Takes in the arguments and converts it into a dict/json
         dataFormated = {"success": success}
 
@@ -136,5 +207,8 @@ class inventoryDB:
 
         return dataFormated
 
+    """
+    When str is called on the inventory database it will return all the aviable inventories
+    """
     def __str__(self):
-        return "hello there"
+        return str('\n'.join(map(str, self.inventoryList)))

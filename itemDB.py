@@ -25,6 +25,11 @@ class itemDB:
         if(self.isItem(name)):
             return self.jsonFormat(False, reason = "Item already exists")
 
+        tmp = self.convertKwargs(**kwargs)
+
+        if(not ('homebrew' in tmp)):
+            return self.jsonFormat(False, reason = "Must contain the homebrew key")
+
         newItem = {"name": name}
         for tName, dType in kwargs.items():
             if tName in self.validKeys:
@@ -62,11 +67,11 @@ class itemDB:
             return self.jsonFormat(False, reason = "{key} is not a valid key")
 
         if(key == "name"):
-            with open(f'items/{self.fileName(data["name"])}.item', 'r') as file:
+            with open(f'items/{self.fileName(name)}.item', 'r') as file:
                 item = json.load(file)
                 item[key] = value
                 self.save(item)
-            os.remove("items/" + str(f'items/{self.fileName(name)}.item') + ".item")
+            os.remove(f'items/{self.fileName(name)}.item')
             self.updateList()
             return self.jsonFormat(True)                      
 
@@ -117,7 +122,15 @@ class itemDB:
             json.dump(data, item)
 
     def fileName(self, name):#Converts an item's name to an acceptable file name
-        return name.lower().strip()     
+        return name.lower().strip()
+
+    def convertKwargs(self, **kwargs):
+        formatedKwargs = {}
+        
+        for key, value in kwargs.items():
+            formatedKwargs.update({str(key): value})
+
+        return formatedKwargs     
 
     def jsonFormat(self, success, **kwargs):#Takes in the arguments and converts it into a dict/json
         dataFormated = {"success": success}
@@ -128,4 +141,4 @@ class itemDB:
         return dataFormated
 
     def __str__(self):#Will return the full list of items in database
-        return str(self.itemList)
+        return str('\n'.join(map(str, self.itemList)))

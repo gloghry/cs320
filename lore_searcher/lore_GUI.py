@@ -1,8 +1,10 @@
 import os
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 from classes.LoreSearcher import Searcher
+
 # from lore_searcher.classes.LorePage import Page
 
 # look, is it what I want to do? Change my python PATH? No
@@ -11,8 +13,8 @@ from classes.LoreSearcher import Searcher
 path_to_add = os.path.abspath('..') + '/'
 sys.path.append(path_to_add)
 import gui.Classes.gui_classes as gc
-sys.path.remove(path_to_add)
 
+sys.path.remove(path_to_add)
 
 pygame.init()
 pygame.display.init()
@@ -40,17 +42,6 @@ pygame.display.set_caption("D&D Cool Cam")
 # Colors that will be used, so I don't have to reference the RGB value every time
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-SAND = (215, 208, 94)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
-YELLOW = (255, 255, 0)
-ORANGE = (255, 120, 0)
-PINK = (255, 0, 255)
-CYAN = (0, 255, 255)
-
-# create the window var
-MAIN_WINDOW = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
 COLOR_INACTIVE = BLACK
 COLOR_ACTIVE = WHITE
@@ -64,6 +55,8 @@ lore_GUI is a completely different GUI than what I worked on originally. It is v
     how that text is split and sent. Jared also showed me to a python module that may do this as well, but as of now,
     the 'blurbs' is omitted until that can be figured out.
 """
+
+
 def main():
     clock = pygame.time.Clock()
     path = os.path.join("data", "index")
@@ -94,6 +87,8 @@ def main():
         data.append(result.getSummary())
         # result.printSummary()
 
+    main_window = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+
     # SHOW IN THIS ORDER
     # id
     # name
@@ -117,10 +112,12 @@ def main():
     w, h = pygame.font.Font(None, DEFAULT_FONT).size(text)
     next_button = gc.Button((WIN_WIDTH - w - 20), (WIN_HEIGHT - h - 20), w, h, text)
 
+    assert next_button_pressed,  'Error, please ensure next_button_pressed = True to start'
+
     run = True
     while run:
 
-        MAIN_WINDOW.fill(WHITE)
+        main_window.fill(WHITE)
 
         if next_button_pressed:
             all_boxes = []
@@ -156,9 +153,10 @@ def main():
             next_button_pressed = False
 
         for event in pygame.event.get():
-            next_button.handle_event(event)
-            if page_num_box.handle_event(event):
+            # IDE gives an error, but this should be guaranteed to be true. I will add an assert for now I suppose.
+            if next_button.handle_event(event):
                 # next_button_pressed = True
+                print('Can only print the first entry currently')
                 pass
             for box in all_boxes:
                 box.handle_event(event)
@@ -166,12 +164,12 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-        next_button.draw(MAIN_WINDOW)
+        next_button.draw(main_window)
 
         for box in all_boxes:
-            box.draw(MAIN_WINDOW)
+            box.draw(main_window)
 
-        page_num_box.draw(MAIN_WINDOW)
+        page_num_box.draw(main_window)
 
         # update should always be last (other than clock tick)
         pygame.display.update()

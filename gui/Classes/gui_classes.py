@@ -276,7 +276,7 @@ class Button:
                     return True
                 elif self.text == 'Open Database ':
                     # Sadge
-                    print("Not implemented! Sorry :(")
+                    os.system('python3 database_GUI.py')
                 else:
                     # ???
                     print("That button isn't recognized...")

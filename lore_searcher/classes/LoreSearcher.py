@@ -88,10 +88,6 @@ class Searcher(object):
         # title, document text, and document blurb 
 
         with self.ix.searcher() as searcher:
-            # Conjunctive search if searchType == AND
-            # Disjunctive search if searchType == OR
-            # Both search types search over multiple indexed fields:
-            #   title, document text, and document blurb
             if searchType == "AND":
                 parser = mfp(['title', 'docText', 'blurb'],
                              schema=self.ix.schema)

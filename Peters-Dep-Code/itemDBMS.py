@@ -231,7 +231,7 @@ def searchManifest(whichManifest, searchTerms, switch):
     elif operator == "lessThan":
         result = dict(filter(lambda x: int(x[1]) < int(resultString), manifest.items()))
     elif operator == "greaterThanorEquals":
-        result = dict(filter(lambda x: int(x[1]) >= int(resutlString), manifest.items()))
+        result = dict(filter(lambda x: int(x[1]) >= int(resultString), manifest.items()))
     elif operator == "lessThanorEquals":
         result = dict(filter(lambda x: int(x[1]) <= int(resultString), manifest.items()))
 
@@ -301,13 +301,13 @@ def storeToHistory(commandLineInput):
             outfile.write(historyContentsListCorrectedString)
     return True
 
-#print("Welcome to the commandLine itemDMBS tool!")
-#printHelp()
+print("Welcome to the commandLine itemDMBS tool!")
+printHelp()
 
-#commandInput = ["DNE"]
+commandInput = ["DNE"]
 
-#while commandInput[0] != "exit":
-#    commandInputRaw = input(">")
-#    commandInput = re.split(" ", commandInputRaw)
-#    commandParser(commandInput)
-#    storeToHistory(commandInputRaw)
+while commandInput[0] != "exit":
+    commandInputRaw = input(">")
+    commandInput = re.split(" ", commandInputRaw)
+    commandParser(commandInput)
+    storeToHistory(commandInputRaw)

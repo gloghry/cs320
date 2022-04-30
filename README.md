@@ -7,10 +7,15 @@ Name: Garett Loghry
 Contact: garett.loghry@wsu.edu  
 Description:  
 My Cool Cam is a GUI that will (hopefully) link all of our Cool Cams togther! It is made with Python using the pygame library. Pygame is an excellent Free and Open Source Python library typically used in game development. I work in the pycharm IDE and will make system calls to Julion and Levicy's Cool Cams (see below!)  
-   TO RUN:  
-      make garett  
-   NOTE:
-      An asset is included in the repo. Can be removed if cumbersome. The Assets/ dir is mine also  
+
+> TO RUN:  
+make garett  
+> 
+
+> NOTE:  
+An asset image is included in the repo. Can be removed if cumbersome. The gui/ dir is mine and all of its
+> sub directories belong to this project.
+> 
 
 ## Julion
 Name: Julion Oddy  

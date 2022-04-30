@@ -1,10 +1,11 @@
-from chrace import *
-from chclass import *
-from chbackground import *
-from helpfuncs import *
+import os.path
 import array
 import math
-
+import random
+import pathlib
+from chclass import *
+from chrace import *
+from chbackground import *
 
 class Character:
     def __init__(self, Name, Stats, CharClass, CharRace, Level, Archetype, Subrace):

@@ -22,7 +22,8 @@ def printResult(result):
     if result["success"]:
         for key, value in result.items():
             if(not key == "success"):
-                print(value)
+                if(key == "string"):
+                    print(value)
 
     else:
         print(f"Error!!", result["reason"], sep="\n")
@@ -31,7 +32,7 @@ def strToBool(string):
 
     return string.lower() in ['true']
 
-if __name__ == '__main__':
+def main():
     items = itemDB()#Start the database
     items.updateList()#Must call this function, else you are fucked
 
@@ -73,3 +74,7 @@ if __name__ == '__main__':
 
         else:
             print("No such command exists or not enough arguments.\nRun 'help' to get help")
+
+
+if __name__ == '__main__':
+    main()

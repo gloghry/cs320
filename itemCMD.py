@@ -70,9 +70,7 @@ def main():
 
         print(args)
 
-        """
-        Item database stuff
-        """
+        #Item database stuff
         if(command == "addItem" and args["v"] >= 3):
             keyValue = keyCreation(args["c"][2:])
             printResult(items.addItem(args["c"][1], **keyValue))
@@ -95,9 +93,7 @@ def main():
         elif(command == "search"):
             print("Hasn't been implemented yet")
 
-            """
-            Inventory database stuff
-            """
+        #Inventory database stuff
         elif(command == "setInventory" and args["v"] == 2):
             print("Hasn't been implemented yet")
 
@@ -116,10 +112,7 @@ def main():
         elif(command == "remove" and args["v"] == 2):
             print("Hasn't been implemented yet")
 
-            """
-            Other Stuff
-            """
-
+        #Other Stuff
         elif(command == "help" and args["v"] == 1):
             print("Hasn't been implemented yet")
 

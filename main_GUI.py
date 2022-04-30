@@ -321,6 +321,6 @@ def closing_window():
 
 
 if __name__ == "__main__":
-    # opening_window()
+    opening_window()
     main()
-    # closing_window()
+    closing_window()

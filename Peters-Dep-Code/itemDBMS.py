@@ -11,42 +11,42 @@ def add(itemName):
         masterManifest = json.load(outfile)
 
     if itemName in masterManifest:
-        #print("Item already exists in the itembase")
+        print("Item already exists in the itembase")
         return False
 
-    #print(itemName)
-    #print("Creating an item with the name: " + itemName)
-    #isMagic = input("Is this item magical?(Enter yes or no)\n\t>")
-    #acNum = input("What is the ac of this item?(Enter a number)\n\t>")
-    #damageNum = input("What the is the damage of the item?(Enter 0 if there is no damage done)\n\t>")
-    #try:
-    #    isZero = int(damageNum)
+    print(itemName)
+    print("Creating an item with the name: " + itemName)
+    isMagic = input("Is this item magical?(Enter yes or no)\n\t>")
+    acNum = input("What is the ac of this item?(Enter a number)\n\t>")
+    damageNum = input("What the is the damage of the item?(Enter 0 if there is no damage done)\n\t>")
+    try:
+        isZero = int(damageNum)
 
-    #    if isZero != 0:
-    #        damageType = input("What is the damage type?\n\t>")
-    #    else:
-    #        damageType = "none"
+        if isZero != 0:
+            damageType = input("What is the damage type?\n\t>")
+        else:
+            damageType = "none"
 
-    #except ValueError:
-    #    damageType = "none"
-    #print("Enter a discription:")
-    #x = ''
-    #discription = ''
-    #for line in iter(input, x):
-    #    pass
-    #    discription = discription + line + " "
+    except ValueError:
+        damageType = "none"
+    print("Enter a discription:")
+    x = ''
+    discription = ''
+    for line in iter(input, x):
+        pass
+        discription = discription + line + " "
         
-    #item = {
+    item = {
 
-    #    "itemName": itemName,
-    #    "isMagic": isMagic,
-    #    "damage": damageNum,
-    #    "ac": acNum,
-    #    "damageType": damageType,
-    #    "isHomebrew": "yes",
-    #    "discription": discription
+        "itemName": itemName,
+        "isMagic": isMagic,
+        "damage": damageNum,
+        "ac": acNum,
+        "damageType": damageType,
+        "isHomebrew": "yes",
+        "discription": discription
 
-    #}
+    }
     item = {
 
         "itemName": itemName,
@@ -98,17 +98,17 @@ def add(itemName):
     
     jsonItem = json.dumps(item)
 
-    #print(item)
-    #print(jsonItem)
+    print(item)
+    print(jsonItem)
 
-##    returnStatement = {
+    #returnStatement = {
 
-##        "printType" : "add"
-##        "data" : item
+        #"printType" : "add"
+        #"data" : item
 
-##    }
+   #}
     
-##    return returnStatement
+    return returnStatement
     return True
 
 def edit(itemName):
@@ -161,14 +161,14 @@ def delete(itemName):
 
     os.remove("items/" + itemName + ".json")
 
-#    returnStatement = {
+    #returnStatement = {
 
-#        "printType" = "delete"
-#        "data" = "Deleted Successfully"
+        #"printType" = "delete",
+        #"data" = "Deleted Successfully"
 
-#    }
+    #}
 
-#    return returnStatement
+    #return returnStatement
     return result
 
 def search(parameters):

@@ -15,7 +15,9 @@ make garett
 > NOTE:  
 An asset image is included in the repo. Can be removed if cumbersome. The gui/ dir is mine and all of its
 > sub directories belong to this project.
-> 
+
+See the [README](https://github.com/gloghry/cs320/tree/master/gui) in the gui/ directory for a more 
+    in depth explanation of what my project is.
 
 ## Julion
 Name: Julion Oddy  

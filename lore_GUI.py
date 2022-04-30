@@ -26,8 +26,6 @@ WIN_WIDTH = 900
 WIN_HEIGHT = 600
 
 # To keep boxes uniform stored here
-# Might be moved inside main(), shouldn't ever change, so I treat it as a macro, but since math is done,
-#   maybe it should not be a global
 BOX_WIDTH = int(WIN_WIDTH * .15)
 BOX_HEIGHT = int(WIN_HEIGHT * .05)
 # Frames per Second - we likely won't even need this many for a GUI. Consider downscaling
@@ -56,12 +54,9 @@ lore_GUI is a completely different GUI than what I worked on originally. It is v
     Text wrapping also proved to be an issue. Pygame has an 'easy' way to do this, but more work is needed to see
     how that text is split and sent. Jared also showed me to a python module that may do this as well, but as of now,
     the 'blurbs' is omitted until that can be figured out.
-    
-All Globals are repasted here. This is not to inflate lines, this is is just naturally how building a standalone GUI
-    should probably go. There's no reason that the size of the window of main_GUI should the same size as this window
-    inits need to happen every time pygame is started as this is an entirely new session of pygame pygame.init, 
-    display.init, and font.init() are needed in every instance.
 """
+
+
 def main():
     clock = pygame.time.Clock()
     path = os.path.join("data", "index")
@@ -158,10 +153,10 @@ def main():
             next_button_pressed = False
 
         for event in pygame.event.get():
+            next_button.handle_event(event)
             # IDE gives an error, but this should be guaranteed to be true. I will add an assert for now I suppose.
-            if next_button.handle_event(event):
+            if page_num_box.handle_event(event):
                 # next_button_pressed = True
-                print('Can only print the first entry currently')
                 pass
             for box in all_boxes:
                 box.handle_event(event)

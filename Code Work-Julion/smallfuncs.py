@@ -1,6 +1,9 @@
 import os.path
+import array
+import math
+import random
+import pathlib
 from FunctionSetUp import *
-
 
 class Character:
     def __init__(self, Name, Stats, CharClass, CharRace, Level, Archetype):
@@ -58,7 +61,6 @@ def chargen(name):
             templist[1] = raceChoice
             templist[2] = subChoice
             choicelist.pop(choicelist.index("1: Race"))
-            print("Lets say you got your race for now. Awesome.")
         #  ==========================================================================
         if (choiceA == "2") and ("2: Class" in choicelist):
             classChoice, archChoice = fullclass()

@@ -48,6 +48,10 @@ I am not versed enough in python to know if I can access his database informatio
     Need to request Peter to make a main() function, or otherwise I need to learn Python better.
     
 I will do the work of building the initial window, but it doesn't do any calls to his actual database
+
+All set up is needed in this instance of lore_GUI, main_GUI, and this program (database_GUI), as they are all meant to be
+    stand alone GUI's if wanted, and every new instance of pygame needs to have all initializations and window building
+    as pygame doesn't even support multiple windows currently - 4/29
 """
 def main():
     items = icmd.itemDB()

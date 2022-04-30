@@ -1,9 +1,0 @@
-Fighter
-Ranger
-Wizard
-Sorcerer
-Rouge
-Bard
-Druid
-Barbarian
-Artificer

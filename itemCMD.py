@@ -75,5 +75,6 @@ def main():
         else:
             print("No such command exists or not enough arguments.\nRun 'help' to get help")
 
+
 if __name__ == '__main__':
     main()

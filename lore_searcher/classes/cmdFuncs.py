@@ -95,7 +95,7 @@ def search(searcher, args, start):
 
 
     # The main search loop. Will continue to loop, grabbing pages of results for
-    # user as long as there are results. Will stop looping once current page num
+    # user as long as there are results. Will stop looping if current page num
     # is equal to total available pages for query, if the user enters 'n' when
     # prompted, or when there are no results for query
 
@@ -245,9 +245,9 @@ def prettySave(master, textBound, args):
         print(f"An error occured while attempting save to '{filePath}'")
 
 # Imports a name.txt file generated from the random character generator to the
-# current Lore session, overwriting current session. Only called when -c option
-# used on lore_builder.py's startup. Will attempt to import any valid .txt file
-# it does not check for proper random generator format........
+# current Lore session. Only called when -c option used on lore_builder.py's 
+# startup. Will attempt to import any valid .txt file it does not check for 
+# proper random generator format........
 
 def loadChar(master, args):
     filePath = args[0]
@@ -345,7 +345,7 @@ def editLore(master, args):
             print("Enter Bio (press [ctrl/cmd + d] when done): ")
             newVal = stdin.read()
         master.cBio = newVal
-        updateMsg("Bio")
+        updateMsg("\nBio")
     elif field == 'class':
         master.cClass = newVal
         updateMsg("Class")

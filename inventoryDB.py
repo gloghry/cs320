@@ -40,7 +40,7 @@ class inventoryDB:
         else:
             return self.jsonFormat(False, reason = "No such file exists")
 
-        if(self.current = name):
+        if(self.current == name):
             self.current = ""
 
         self.updateList()
@@ -48,7 +48,7 @@ class inventoryDB:
         return self.jsonFormat(True)
 
     def incrementItem(self, itemName, amount):
-        if(not self.inventoryExists(name)):
+        if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {name} does not exist")
 
         inventory = {}
@@ -95,7 +95,7 @@ class inventoryDB:
         if(not self.inventoryExists(self.current)):
             return self.jsonFormat(False, reason = "Inventory for {self.current} does not exist")
 
-        if os.path.exists(f'items/{self.fileName(self.current))}.item'):
+        if os.path.exists(f'items/{self.fileName(self.current)}.item'):
             os.remove(f'items/{self.fileName(self.current)}.item')
         else:
             return self.jsonFormat(False, reason = "No such file exists")
@@ -119,7 +119,7 @@ class inventoryDB:
 
         return False
 
-    def inventoryName(self, file):
+    def inventoryName(self, filePath):
         file = open(filePath)
         data = json.load(file)
         file.close()

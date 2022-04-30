@@ -148,7 +148,7 @@ class TextBox:
                     self.active = not self.active
                 else:
                     self.active = False
-                return True
+                # return True
             if event.type == pygame.KEYDOWN:
                 if self.active:
                     if event.key == pygame.K_RETURN:
@@ -158,7 +158,7 @@ class TextBox:
                     else:
                         self.text += event.unicode
                     # Re-render the text.
-                    return True
+                    # return True
             self.txt_surface = self.font.render(self.text, True, self.color_text)
 
     """
@@ -278,7 +278,6 @@ class Button:
                     print("Opening and running Map Maker")
                     # os.system use C for system calls. You can run multiple commands with ;
                     os.system("cd MapMaker; python3 mapmaker.py")
-                    return True
                 elif self.text == 'Generate Character ':
                     print('Loading files....')
                     return generate_new_character()
@@ -290,7 +289,6 @@ class Button:
                 elif self.text == 'Open Database ':
                     # Sadge
                     os.system('python3 database_GUI.py')
-                    return True
                 else:
                     # ???
                     print("That button isn't recognized...")

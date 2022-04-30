@@ -28,6 +28,7 @@ You can read about these methods below
 """
 
 class Master:
+<<<<<<< HEAD
 
     # Initializes Master
     # characterName: desired name for character / campaign
@@ -108,6 +109,7 @@ class Master:
             return 0
         return reduce(lambda x, y: x+y, list(map(lambda x: self.sectionDict[x].totalPages, self.sectionDict)))
 
+<<<<<<< HEAD
     # Prints all fields, LoreSections and LorePages to terminal in nice format
     # int bound: char limit for printed lines
     # bool saving: Bool used by self.prettySave()
@@ -143,10 +145,7 @@ class Master:
             "cClass": self.cClass,
             "cRace": self.cRace,
             "cOrigin": self.cOrigin,
-            "isCamp": self.isCamp,
             "cSex": self.cSex,
-            "cArch": self.cArch,
-            "vNum": self.version,
             "page-total": self.getPageTotal(),
             "section-names": self.sectionNames,
             "sections": list(map(lambda x: self.sectionDict[x].getSection(), self.sectionNames))
@@ -197,27 +196,14 @@ class Master:
 
     def loadLore(self, filePath, searcher) -> bool:
         if not os.path.exists(filePath):
-            print(f"ERROR: '{filePath}' could not be found")
             return False
-
-        if os.path.isdir(filePath):
-            print(f"ERROR: '{filePath}' is a directory")
-            return False
-
-        with open(filePath, 'r') as fd:
-            data = json.load(fd)
-
-        # atttributes set
-
+        data = json.load(filePath)
         self.cName = data['character-name']
         self.cBio = data['cBio']
         self.cClass = data['cClass']
         self.cOrigin = data['cOrigin']
         self.cRace = data['cRace']
-        self.isCamp = data['isCamp']
         self.cSex = data['cSex']
-        self.cArch = data['cArch']
-        self.version = data['vNum']
         self.sectionNames = data['section-names']
 
         sectionDict = {}
@@ -226,19 +212,12 @@ class Master:
         # Skips adding LorePages that could not be found with LoreSearcher
         # Note: should notify user of skipping in some way other than printing
 
+
+
         for section in data['sections']:
             newSection = Section(section['name'])
             for page in section['page-list']:
-                tmpPage = searcher.searchID(page['id'])
-                if tmpPage == None:
-                    print(
-                        f"Sorry, a page with id:{page['id']} could not be found, skipping...")
-                    continue
-                newSection.addPage(tmpPage)
-            sectionDict[section['name']] = newSection
-
-        self.sectionDict = sectionDict
-        return True
+                tmpPage = Searcher.searchID()
 
     # Saves LoreMaster to a .txt file in a nicer format (printLore format)
     # str filePath: path to .txt file
@@ -250,6 +229,7 @@ class Master:
     def prettySave(self, filePath, bound=80) -> bool:
         try:
             # redirecting stdout to file
+
             sys.stdout = open(filePath, 'w+')
             self.printLore(bound, saving=True)
 

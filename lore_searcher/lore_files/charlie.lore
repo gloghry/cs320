@@ -3,96 +3,40 @@
     "cBio": "Criminal: You have access to a contact/liaison to get connected to other criminals.\nSpecifically, you know the local messengers, corrupt caravan masters, and seedy travelers.\nYou are considered 1 of these: Blackmailers, Burglar, Enforcer, Fence, Highway Robber, Hired Killer, Pickpocket, Smuggler\n",
     "cClass": "Fighter",
     "cRace": "Hill Dwarf",
-    "cOrigin": "vancouver",
-    "isCamp": false,
+    "cOrigin": "",
     "cSex": "",
     "cArch": "Battle Master",
     "vNum": 0,
-    "page-total": 2,
+    "page-total": 1,
     "section-names": [
         "inspiration"
     ],
     "sections": [
         {
             "name": "inspiration",
-            "total-pages": 2,
+            "total-pages": 1,
             "ids": [
-                "3636",
-                "1092"
+                "90"
             ],
             "page-list": [
                 {
-                    "id": "3636",
-                    "name": "Venturer%27s Rest",
-                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/b/ba/Old_Dirty_Dwarf_Ext.png/revision/latest/scale-to-width-down/350?cb=20210205165036",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Venturer%27s_Rest",
-                    "blurb": "From the exterior, the inn appeared as hole-in-the-wall establishment of little acclaim. It was tucked away in an unremarkable corner of the city, built into the side of the Hold's numerous stone archways that passed over its stone streets.\n\nThe only noteworthy feature outside the inn simple wooden sign upon which was scrawled the crude likeness of a mug of ale.",
+                    "id": "90",
+                    "name": "Mount Pojah",
+                    "img": "https://static.wikia.nocookie.net/forgottenrealms/images/f/fe/Tabot.jpg/revision/latest/scale-to-width-down/350?cb=20211210151550",
+                    "url": "https://forgottenrealms.fandom.com/wiki/Mount_Pojah",
+                    "blurb": "In Shou Year\u00a02607 (1357\u00a0DR), a tortoise-shell divination at U'Chan Gompa promised the finding of a very rich gold mine east of Mount Pojah.",
                     "topics": [
-                        "structure",
-                        "interior",
-                        "atmosphere",
-                        "services",
-                        "history"
+                        "history",
+                        "notable inhabitants"
                     ],
                     "topic-list": [
-                        {
-                            "topic-name": "structure",
-                            "paras": "From the exterior, the inn appeared as hole-in-the-wall establishment of little acclaim. It was tucked away in an unremarkable corner of the city, built into the side of the Hold's numerous stone archways that passed over its stone streets.\n\nThe only noteworthy feature outside the inn simple wooden sign upon which was scrawled the crude likeness of a mug of ale."
-                        },
-                        {
-                            "topic-name": "interior",
-                            "paras": "In contrast to its rather unremarkable exterior, the inn featured spacious and welcoming bar on the its ground floor.\n\nA secret passageway within the inn's cellar led into the Watcher's Forest."
-                        },
-                        {
-                            "topic-name": "atmosphere",
-                            "paras": "Its taproom offered ample seating and featured grand hearth that contributed to a relaxing environment."
-                        },
-                        {
-                            "topic-name": "services",
-                            "paras": "When it operated under the name of the Old Dirty Dwarf, the inn and tavern was considered to be the finest in all of Helm's Hold. The proprietor Juetta was particularly welcoming, catering to those individuals that were new to the city. Quite unfortunately the Dwarf did not cater to any spellscarred citizens of the city.\n\nBy the Year of the Warrior Princess, 1489 DR, the renamed Venturer's Rest had become a favored stop for adventurers that were staying at Helm's Hold."
-                        },
                         {
                             "topic-name": "history",
-                            "paras": "While many businesses in Helm's Hold were forced to close down during difficult years that plagued Helm's Hold in the latter half of the 15th century, the Old Dirty Dwarf stood strong.\n\nWhen the Prophet Rohini rose to power in the Helm's Hold some time before the Year of the Ageless One, 1479 DR, the inn became a point of interest for her foulspawn agents. They monitored all the out-of-towners who passed through its doors and reported their findings to their devilish leader.\n\nDuring the Siege of Helm's Hold that same year, the inn was used as a base of operations by Councilwoman Alisara Callum during her efforts to aid the reclamation of the city.\n\nYears after the Prohpet's demise, sometime between 1485 and 1489 DR, the Old Dirty Dwarf came under the ownership of Kharissa Anuvien, a paladin of Chauntea who was new to the city. She gave the inn the more dignified name the Venturer's Rest and it remained a favored establishment for the people of Helm's Hold."
-                        }
-                    ]
-                },
-                {
-                    "id": "1092",
-                    "name": "Grand Army of the Tuigan",
-                    "img": "default.png",
-                    "url": "https://forgottenrealms.fandom.com/wiki/Grand_Army_of_the_Tuigan",
-                    "blurb": "Formed mostly of horsemen, Yamun Khahan's army was fast, efficient, and lethal. The army was organized as follows:\n\nYamun Kahan's army numbered over 300,000 strong during the height of its power. However, their main strength lay not in sheer numbers, which they certainly possessed, but in the accountability of each individual soldier. If one man within an arban committed a crime, then all 10 men of that arban were punished. Similarly, if a single man distinguished himself during combat, then all were praised and honored. This iron-willed mentality transformed simple soldiers into something far greater.\n\nIn the time of Yamun's successor, Hubadai Khahan, this army had expanded to include a vanguard of hobgoblins, ogres, and hill giants.",
-                    "topics": [
-                        "organization",
-                        "activities",
-                        "tactics",
-                        "base of operations"
-                    ],
-                    "topic-list": [
-                        {
-                            "topic-name": "organization",
-                            "paras": "Formed mostly of horsemen, Yamun Khahan's army was fast, efficient, and lethal. The army was organized as follows:\n\nYamun Kahan's army numbered over 300,000 strong during the height of its power. However, their main strength lay not in sheer numbers, which they certainly possessed, but in the accountability of each individual soldier. If one man within an arban committed a crime, then all 10 men of that arban were punished. Similarly, if a single man distinguished himself during combat, then all were praised and honored. This iron-willed mentality transformed simple soldiers into something far greater.\n\nIn the time of Yamun's successor, Hubadai Khahan, this army had expanded to include a vanguard of hobgoblins, ogres, and hill giants.",
-                            "lists": [
-                                [
-                                    "Arban - group of 10 soldiers, led by one sergeant",
-                                    "Jagun - 10 arbans or 100 soldiers, led by one commander",
-                                    "Minghan - 10 jaguns or 1,000 soldiers, led by a khan",
-                                    "Tumen - 10 minghans or 10,000 soldiers led by individuals selected by the Great Khan",
-                                    "Army Commanders - sons or trusted generals of Yamun Khahan, each had command of 2\u20136 (or more) tumens"
-                                ]
-                            ]
+                            "paras": "In Shou Year\u00a02607 (1357\u00a0DR), a tortoise-shell divination at U'Chan Gompa promised the finding of a very rich gold mine east of Mount Pojah."
                         },
                         {
-                            "topic-name": "activities"
-                        },
-                        {
-                            "topic-name": "tactics",
-                            "paras": "The Horde always carried four times as many horses as men. This allowed for their swift movement which often made it easy for them to surprise and surround their slower adversaries.\n\nAll individuals of the various tribes of the Hordelands began their training with horses at a very early age. Children learned the art of controlling their mounts to work alone and in coordinated groups. As adults, the Tuigans were masters of horseback feints, feigned retreats, and forced encirclement.\n\nYamun Kahan pioneered the skilled use of drums, flags, horns, and standards to communicate during pitched battle, giving his fighting force a huge advantage over any opponent they faced on the field. Through strict practice and drilling, he was able to effectively communicate with the commanders of his tumens during battle. It was suspected that he learned, and further developed, these techniques from the Shou.\n\nYamun also mastered the use of the feinting charge: a tactic where he would charge the enemy to nearly within range of their missiles, fire a volley of his own, and gather intelligence on the strengths of his enemy. More often than not, when faced with such a massive charge of horsemen, the enemy would instantly commit their most dangerous and mobile weapons, allowing the Tuigan ample time to counter."
-                        },
-                        {
-                            "topic-name": "base of operations",
-                            "paras": "Though they rose to power on the vast steppes of the Hordelands, the Horde ranged over a considerable amount of territory including Semphar, Khazari, Shou Lung, and parts of Faer\u00fbn such as Thay, Thesk and Rashemen."
+                            "topic-name": "notable inhabitants",
+                            "paras": "It was the home of the Forgotten One, a hermit and oracle, around 2607."
                         }
                     ]
                 }
